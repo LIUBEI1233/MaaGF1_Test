@@ -12,27 +12,36 @@ version = len(sys.argv) > 1 and sys.argv[1] or "v0.0.1"
 
 
 def install_deps():
-    if not (working_dir / "deps" / "bin").exists():
-        print("Please download the MaaFramework to \"deps\" first.")
-        print("请先下载 MaaFramework 到 \"deps\"。")
+    """
+    Install dependencies from deps/bin to install directory.
+    Since MFAAvalonia includes both binaries and MaaAgentBinary in the same root,
+    we only need to copy from deps/bin.
+    """
+    source_dir = working_dir / "deps" / "bin"
+    
+    if not source_dir.exists():
+        print("Please download the MaaFramework/MFAAvalonia to \"deps/bin\" first.")
+        print("请先下载 MaaFramework/MFAAvalonia 到 \"deps/bin\"。")
         sys.exit(1)
 
+    print(f"Copying dependencies from {source_dir} to {install_path}...")
+
+    # Copy everything from deps/bin (includes DLLs, EXEs, and MaaAgentBinary folder)
     shutil.copytree(
-        working_dir / "deps" / "bin",
+        source_dir,
         install_path,
         ignore=shutil.ignore_patterns(
             "*MaaDbgControlUnit*",
             "*MaaThriftControlUnit*",
             "*MaaRpc*",
             "*MaaHttp*",
+            # If there are other files in MFA you want to exclude, add them here
+            "*.pdb", # Optional: Exclude debug symbols if not needed to reduce size
         ),
         dirs_exist_ok=True,
     )
-    shutil.copytree(
-        working_dir / "deps" / "share" / "MaaAgentBinary",
-        install_path / "MaaAgentBinary",
-        dirs_exist_ok=True,
-    )
+    
+    # The explicit copy for MaaAgentBinary is removed because it is now inside deps/bin
 
 
 def install_resource():
@@ -76,7 +85,7 @@ def install_chores():
 
 
 def install_agent():
-    """安装 agent 源码到安装目录"""
+    """Install agent source code to the install directory"""
     agent_src = working_dir / "agent"
     agent_dst = install_path / "agent"
     
@@ -84,13 +93,13 @@ def install_agent():
         print("Warning: agent directory not found, skipping agent installation.")
         return
     
-    # 创建 agent 目录
+    # Create agent directory
     agent_dst.mkdir(parents=True, exist_ok=True)
     
-    # 复制 agent 源码文件
+    # Copy agent source files
     for item in agent_src.iterdir():
         if item.name in ["__pycache__"]:
-            continue  # 跳过缓存目录
+            continue  # Skip cache directory
         
         dst_item = agent_dst / item.name
         if item.is_file():
@@ -102,7 +111,7 @@ def install_agent():
 
 
 def install_tools():
-    """安装工具脚本到安装目录"""
+    """Install tools scripts to the install directory"""
     tools_src = working_dir / "tools"
     tools_dst = install_path / "tools"
     
