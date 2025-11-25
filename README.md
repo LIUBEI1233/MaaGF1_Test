@@ -27,8 +27,8 @@
 2. [MFAAvalonia](https://github.com/SweetSmellFox/MFAAvalonia)
 3. [FMddl-MAAutoGirlsFrontLine](https://github.com/Fufu-OuO/FMddl-MAAutoGirlsFrontLine)
 
-### 4.1 贡献者墙
+### 4.2 贡献者墙
 
-感谢所有参与开发、测试的贡献者和用户
+感谢所有参与开发、测试的贡献者和用户。
 
 [![Contributors](https://contrib.rocks/image?repo=MaaGF1/MaaGF1&show_noncode=true)](https://github.com/MaaGF1/MaaGF1/graphs/contributors)
