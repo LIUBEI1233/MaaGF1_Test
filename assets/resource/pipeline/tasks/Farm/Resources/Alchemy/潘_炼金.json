@@ -1,0 +1,992 @@
+{
+	"潘_炼金": {
+		"next": [
+			"潘_炼金_地图大小确认",
+			"潘_炼金_地图最小化"
+		]
+	},
+	"潘_炼金_地图最小化": {
+		"action": "Command",
+		"exec": "powershell",
+		"args": [
+			"-ExecutionPolicy",
+			"Bypass",
+			"-File",
+			"{RESOURCE_DIR}/../tools/scroll.ps1",
+			"-ScrollCount",
+			"50",
+			"-Direction",
+			"down"
+		],
+		"next": [
+			"潘_炼金_地图初始化"
+		]
+	},
+	"潘_炼金_地图初始化": {
+		"action": "Command",
+		"exec": "powershell",
+		"args": [
+			"-ExecutionPolicy",
+			"Bypass",
+			"-File",
+			"{RESOURCE_DIR}/../tools/scroll.ps1",
+			"-ScrollCount",
+			"2",
+			"-Direction",
+			"up"
+		],
+		"next": [
+			"潘_炼金_地图大小确认"
+		]
+	},
+	"潘_炼金_地图大小确认": {
+		"recognition": "TemplateMatch",
+		"template": "combat/resourceRecovery/pan/坦克电池.png",
+		"roi": [676, 354, 125, 131],
+		"next": [
+			"潘_炼金_作战开始"
+		]
+	},
+	"潘_炼金_作战开始": {
+		"recognition": "OCR",
+		"expected": "开始",
+		"roi": [1038, 616, 188, 83],
+		"action": "LongPress",
+		"duration": 20,
+		"next": [
+			"潘_炼金_说明跳过"
+		]
+	},
+	"潘_炼金_说明跳过": {
+		"recognition": "OCR",
+		"expected": "指挥官",
+		"roi": [240, 554, 83, 42],
+		"action": "LongPress",
+		"duration": 20,
+		"target": [1197, 21, 43, 18],
+		"next": [
+			"潘_炼金_任务目标"
+		]
+	},
+	"潘_炼金_任务目标": {
+		"recognition": "OCR",
+		"expected": "目标",
+		"roi": [251, 190, 158, 43],
+		"action": "Key",
+		"key": 27,
+		"next": [
+			"潘_炼金_退出重置地图"
+		]
+	},
+	"潘_炼金_退出重置地图": {
+		"recognition": "OCR",
+		"expected": "任务",
+		"roi": [32, 39, 101, 44],
+		"action": "Key",
+		"key": 27,
+		"post_delay": 500,
+		"next": [
+			"潘_炼金_活动页面重返战斗"
+		]
+	},
+	"潘_炼金_活动页面重返战斗": {
+		"recognition": "OCR",
+		"expected": "卷",
+		"roi": [105, 577, 157, 54],
+		"action": "LongPress",
+		"duration": 20,
+		"target": [612, 321, 53, 38],
+		"next": [
+			"潘_炼金_重返战斗继续作战"
+		]
+	},
+	"潘_炼金_重返战斗继续作战": {
+		"recognition": "OCR",
+		"expected": "继续作战",
+		"roi": [1126, 391, 109, 43],
+		"action": "LongPress",
+		"duration": 20,
+		"next": [
+			"潘_炼金_坦克位置"
+		]
+	},
+	"潘_炼金_坦克位置": {
+		"recognition": "TemplateMatch",
+		"template": "combat/resourceRecovery/pan/坦克电池.png",
+		"roi": [680, 400, 100, 100],
+		"next": [
+			"潘_炼金_点击狗粮"
+		]
+	},
+	"潘_炼金_点击狗粮": {
+		"action": "LongPress",
+		"duration": 20,
+		"target": "潘_炼金_坦克位置",
+		"target_offset": [-39, -33, -7, -1],
+		"next": [
+			"潘_炼金_狗粮撤离",
+			"潘_炼金_点击狗粮"
+		]
+	},
+	"潘_炼金_狗粮撤离": {
+		"recognition": "OCR",
+		"expected": "撤离",
+		"roi": [956, 608, 97, 58],
+		"action": "LongPress",
+		"duration": 20,
+		"next": [
+			"潘_炼金_撤离确定"
+		]
+	},
+	"潘_炼金_撤离确定": {
+		"recognition": "OCR",
+		"expected": "确定",
+		"roi": [731, 470, 87, 50],
+		"action": "LongPress",
+		"duration": 20,
+		"post_delay": 500,
+		"next": [
+			"潘_炼金_点击坦克"
+		]
+	},
+	"潘_炼金_点击坦克": {
+		"action": "LongPress",
+		"duration": 20,
+		"target": "潘_炼金_坦克位置",
+		"target_offset": [-41, 51, -6, -1],
+		"next": [
+			"潘_炼金_坦克迷彩"
+		]
+	},
+	"潘_炼金_坦克迷彩": {
+		"recognition": "OCR",
+		"expected": "释放",
+		"roi": [1161, 147, 102, 363],
+		"action": "LongPress",
+		"duration": 20,
+		"target_offset": [35, 12, -47, -18],
+		"next": [
+			"潘_炼金_坦克技能释放"
+		]
+	},
+	"潘_炼金_坦克技能释放": {
+		"recognition": "OCR",
+		"expected": "取消",
+		"roi": [1161, 147, 102, 363],
+		"action": "LongPress",
+		"duration": 20,
+		"target": "潘_炼金_坦克位置",
+		"target_offset": [-41, 51, -6, -1],
+		"next": [
+			"潘_炼金_结束回合1"
+		]
+	},
+	"潘_炼金_结束回合1": {
+		"recognition": "OCR",
+		"expected": "冷却",
+		"roi": [1161, 147, 102, 363],
+		"action": "LongPress",
+		"duration": 20,
+		"target": [1144, 642, 89, 49],
+		"next": [
+			"潘_炼金_回合2"
+		]
+	},
+	"潘_炼金_回合2": {
+		"recognition": "OCR",
+		"expected": "02",
+		"roi": [412, 32, 74, 58],
+		"action": "LongPress",
+		"duration": 20,
+		"pre_delay": 15000,
+		"target": [167, 47, 61, 30],
+		"next": [
+			"潘_炼金_回合2关闭说明"
+		],
+		"interrupt": [
+			"潘_炼金_点击说明"
+		]
+	},
+	"潘_炼金_点击说明": {
+		"recognition": "OCR",
+		"expected": "说明",
+		"roi": [192, 44, 54, 36],
+		"action": "LongPress",
+		"duration": 20,
+		"post_delay": 2000
+	},
+	"潘_炼金_回合2关闭说明": {
+		"recognition": "OCR",
+		"expected": "目标",
+		"roi": [251, 190, 158, 43],
+		"action": "Key",
+		"key": 27,
+		"next": [
+			"潘_炼金_坦克位置1"
+		]
+	},
+	"潘_炼金_坦克位置1": {
+		"recognition": "TemplateMatch",
+		"template": "combat/resourceRecovery/pan/坦克电池.png",
+		"roi": [680, 400, 100, 100],
+		"next": [
+			"潘_炼金_上1空",
+			"潘_炼金_上1部署"
+		]
+	},
+	"潘_炼金_上1空": {
+		"recognition": "ColorMatch",
+		"lower": [148, 201, 243],
+		"upper": [168, 221, 255],
+		"roi": "潘_炼金_坦克位置1",
+		"roi_offset": [-51, -310, 17, 21],
+		"connected": true,
+		"count": 200,
+		"next": [
+			"潘_炼金_坦克位置2"
+		]
+	},
+	"潘_炼金_上1部署": {
+		"action": "LongPress",
+		"duration": 20,
+		"target": "潘_炼金_坦克位置1",
+		"target_offset": [-40, -122, -4, -1],
+		"next": [
+			"潘_炼金_上1计划模式中"
+		],
+		"interrupt": [
+			"潘_炼金_部署确定",
+			"潘_炼金_计划模式"
+		]
+	},
+	"潘_炼金_部署确定": {
+		"recognition": "OCR",
+		"expected": "确定",
+		"roi": [1141, 611, 91, 52],
+		"action": "LongPress",
+		"duration": 20
+	},
+	"潘_炼金_计划模式": {
+		"recognition": "OCR",
+		"expected": ["计划", "模式"],
+		"roi": [30, 611, 115, 41],
+		"action": "LongPress",
+		"duration": 20
+	},
+	"潘_炼金_上1计划模式中": {
+		"recognition": "ColorMatch",
+		"roi": [35, 615, 46, 32],
+		"lower": [240, 180, 40],
+		"upper": [255, 210, 90],
+		"action": "LongPress",
+		"duration": 20,
+		"target": "潘_炼金_坦克位置1",
+		"target_offset": [-40, -122, -4, -1],
+		"next": [
+			"潘_炼金_上1计划模式梯队选中"
+		]
+	},
+	"潘_炼金_上1计划模式梯队选中": {
+		"recognition": "ColorMatch",
+		"roi": "潘_炼金_坦克位置1",
+		"roi_offset": [-53, -125, -5, -3],
+		"lower": [210, 150, 0],
+		"upper": [255, 190, 10],
+		"action": "LongPress",
+		"duration": 20,
+		"target": "潘_炼金_坦克位置1",
+		"target_offset": [-40, -299, -5, -1],
+		"next": [
+			"潘_炼金_上1计划点1"
+		]
+	},
+	"潘_炼金_上1计划点1": {
+		"recognition": "ColorMatch",
+		"roi": [1102, 547, 23, 22],
+		"lower": [168, 205, 0],
+		"upper": [188, 225, 10],
+		"count": 100,
+		"action": "LongPress",
+		"duration": 20,
+		"target": [1143, 647, 41, 29],
+		"next": [
+			"潘_炼金_上1数据读取"
+		]
+	},
+	"潘_炼金_上1数据读取": {
+		"recognition": "OCR",
+		"expected": "读取",
+		"roi": [81, 434, 60, 35],
+		"action": "LongPress",
+		"duration": 20,
+		"next": [
+			"潘_炼金_上1坦克位置"
+		]
+	},
+	"潘_炼金_上1坦克位置": {
+		"recognition": "TemplateMatch",
+		"template": "combat/resourceRecovery/pan/坦克电池.png",
+		"roi": [658, 425, 128, 264],
+		"next": [
+			"潘_炼金_上1滑动复位"
+		]
+	},
+	"潘_炼金_上1滑动复位": {
+		"action": "Swipe",
+		"duration": 100,
+		"begin": "潘_炼金_上1坦克位置",
+		"end": "潘_炼金_坦克位置1",
+		"next": [
+			"潘_炼金_上1坦克位置复位确认",
+			"潘_炼金_坦克位置2"
+		]
+	},
+	"潘_炼金_上1坦克位置复位确认": {
+		"recognition": "TemplateMatch",
+		"template": "combat/resourceRecovery/pan/坦克电池.png",
+		"roi": [680, 400, 100, 100],
+		"inverse": true,
+		"next": [
+			"潘_炼金_上1坦克位置"
+		]
+	},
+	"潘_炼金_坦克位置2": {
+		"recognition": "TemplateMatch",
+		"template": "combat/resourceRecovery/pan/坦克电池.png",
+		"roi": [680, 400, 100, 100],
+		"next": [
+			"潘_炼金_上2空",
+			"潘_炼金_上2部署"
+		]
+	},
+	"潘_炼金_上2空": {
+		"recognition": "ColorMatch",
+		"lower": [148, 201, 243],
+		"upper": [168, 221, 255],
+		"roi": "潘_炼金_坦克位置2",
+		"roi_offset": [-201, -132, 14, 19],
+		"connected": true,
+		"count": 200,
+		"next": [
+			"潘_炼金_坦克位置3"
+		]
+	},
+	"潘_炼金_上2部署": {
+		"action": "LongPress",
+		"duration": 20,
+		"target": "潘_炼金_坦克位置2",
+		"target_offset": [-40, -122, -4, -1],
+		"next": [
+			"潘_炼金_上2计划模式中"
+		],
+		"interrupt": [
+			"潘_炼金_部署确定",
+			"潘_炼金_计划模式"
+		]
+	},
+	"潘_炼金_上2计划模式中": {
+		"recognition": "ColorMatch",
+		"roi": [35, 615, 46, 32],
+		"lower": [240, 180, 40],
+		"upper": [255, 210, 90],
+		"action": "LongPress",
+		"duration": 20,
+		"target": "潘_炼金_坦克位置2",
+		"target_offset": [-40, -122, -4, -1],
+		"next": [
+			"潘_炼金_上2计划模式梯队选中"
+		]
+	},
+	"潘_炼金_上2计划模式梯队选中": {
+		"recognition": "ColorMatch",
+		"roi": "潘_炼金_坦克位置2",
+		"roi_offset": [-53, -125, -5, -3],
+		"lower": [210, 150, 0],
+		"upper": [255, 190, 10],
+		"action": "LongPress",
+		"duration": 20,
+		"target": "潘_炼金_坦克位置2",
+		"target_offset": [-190, -122, -7, -2],
+		"next": [
+			"潘_炼金_上2计划点1"
+		]
+	},
+	"潘_炼金_上2计划点1": {
+		"recognition": "ColorMatch",
+		"roi": [1102, 547, 23, 22],
+		"lower": [168, 205, 0],
+		"upper": [188, 225, 10],
+		"count": 100,
+		"action": "LongPress",
+		"duration": 20,
+		"target": [1143, 647, 41, 29],
+		"next": [
+			"潘_炼金_上2数据读取"
+		]
+	},
+	"潘_炼金_上2数据读取": {
+		"recognition": "OCR",
+		"expected": "读取",
+		"roi": [81, 434, 60, 35],
+		"action": "LongPress",
+		"duration": 20,
+		"next": [
+			"潘_炼金_上2坦克位置"
+		]
+	},
+	"潘_炼金_上2坦克位置": {
+		"recognition": "TemplateMatch",
+		"template": "combat/resourceRecovery/pan/坦克电池.png",
+		"roi": [687, 374, 198, 173],
+		"next": [
+			"潘_炼金_上2滑动复位"
+		]
+	},
+	"潘_炼金_上2滑动复位": {
+		"action": "Swipe",
+		"duration": 100,
+		"begin": "潘_炼金_上2坦克位置",
+		"end": "潘_炼金_坦克位置2",
+		"next": [
+			"潘_炼金_上2坦克位置复位确认",
+			"潘_炼金_坦克位置3"
+		]
+	},
+	"潘_炼金_上2坦克位置复位确认": {
+		"recognition": "TemplateMatch",
+		"template": "combat/resourceRecovery/pan/坦克电池.png",
+		"roi": [680, 400, 100, 100],
+		"inverse": true,
+		"next": [
+			"潘_炼金_上2坦克位置"
+		]
+	},
+	"潘_炼金_坦克位置3": {
+		"recognition": "TemplateMatch",
+		"template": "combat/resourceRecovery/pan/坦克电池.png",
+		"roi": [680, 400, 100, 100],
+		"next": [
+			"潘_炼金_左1空",
+			"潘_炼金_左1部署"
+		]
+	},
+	"潘_炼金_左1空": {
+		"recognition": "ColorMatch",
+		"lower": [148, 201, 243],
+		"upper": [168, 221, 255],
+		"roi": "潘_炼金_坦克位置3",
+		"roi_offset": [-278, 91, 15, 19],
+		"connected": true,
+		"count": 200,
+		"next": [
+			"潘_炼金_坦克位置4"
+		]
+	},
+	"潘_炼金_左1部署": {
+		"action": "LongPress",
+		"duration": 20,
+		"target": "潘_炼金_坦克位置3",
+		"target_offset": [-115, 12, -6, -2],
+		"next": [
+			"潘_炼金_左1计划模式中"
+		],
+		"interrupt": [
+			"潘_炼金_部署确定",
+			"潘_炼金_计划模式"
+		]
+	},
+	"潘_炼金_左1计划模式中": {
+		"recognition": "ColorMatch",
+		"roi": [35, 615, 46, 32],
+		"lower": [240, 180, 40],
+		"upper": [255, 210, 90],
+		"action": "LongPress",
+		"duration": 20,
+		"target": "潘_炼金_坦克位置3",
+		"target_offset": [-115, 12, -6, -2],
+		"next": [
+			"潘_炼金_左1计划模式梯队选中"
+		]
+	},
+	"潘_炼金_左1计划模式梯队选中": {
+		"recognition": "ColorMatch",
+		"roi": "潘_炼金_坦克位置3",
+		"roi_offset": [-130, 7, -5, -3],
+		"lower": [210, 150, 0],
+		"upper": [255, 190, 10],
+		"action": "LongPress",
+		"duration": 20,
+		"target": "潘_炼金_坦克位置3",
+		"target_offset": [-116, 191, -6, -2],
+		"next": [
+			"潘_炼金_左1计划点1"
+		]
+	},
+	"潘_炼金_左1计划点1": {
+		"recognition": "ColorMatch",
+		"roi": [1102, 547, 23, 22],
+		"lower": [168, 205, 0],
+		"upper": [188, 225, 10],
+		"count": 100,
+		"action": "LongPress",
+		"duration": 20,
+		"target": "潘_炼金_坦克位置3",
+		"target_offset": [-267, 101, -7, -2],
+		"next": [
+			"潘_炼金_左1计划点2"
+		]
+	},
+	"潘_炼金_左1计划点2": {
+		"recognition": "ColorMatch",
+		"roi": "潘_炼金_坦克位置3",
+		"roi_offset": [-278, 92, 14, 18],
+		"lower": [230, 180, 40],
+		"upper": [255, 200, 60],
+		"count": 5,
+		"action": "LongPress",
+		"duration": 20,
+		"target": [1143, 647, 41, 29],
+		"post_delay": 7000,
+		"next": [
+			"潘_炼金_左1数据读取"
+		]
+	},
+	"潘_炼金_左1数据读取": {
+		"recognition": "OCR",
+		"expected": "读取",
+		"roi": [81, 434, 60, 35],
+		"action": "LongPress",
+		"duration": 20,
+		"next": [
+			"潘_炼金_左1坦克位置"
+		]
+	},
+	"潘_炼金_左1坦克位置": {
+		"recognition": "TemplateMatch",
+		"template": [
+			"combat/resourceRecovery/pan/坦克电池.png",
+			"combat/resourceRecovery/pan/坦克电池2.png"
+		],
+		"roi": [675, 240, 300, 240],
+		"next": [
+			"潘_炼金_左1滑动复位"
+		]
+	},
+	"潘_炼金_左1滑动复位": {
+		"action": "Swipe",
+		"duration": 100,
+		"begin": "潘_炼金_左1坦克位置",
+		"end": [700, 424, 12, 8],
+		"next": [
+			"潘_炼金_左1坦克位置复位确认",
+			"潘_炼金_坦克位置4"
+		]
+	},
+	"潘_炼金_左1坦克位置复位确认": {
+		"recognition": "TemplateMatch",
+		"template": "combat/resourceRecovery/pan/坦克电池.png",
+		"roi": [680, 400, 100, 100],
+		"inverse": true,
+		"next": [
+			"潘_炼金_左1坦克位置"
+		]
+	},
+	"潘_炼金_坦克位置4": {
+		"recognition": "TemplateMatch",
+		"template": "combat/resourceRecovery/pan/坦克电池.png",
+		"roi": [680, 400, 100, 100],
+		"next": [
+			"潘_炼金_左2空",
+			"潘_炼金_左2部署"
+		]
+	},
+	"潘_炼金_左2空": {
+		"recognition": "ColorMatch",
+		"lower": [148, 201, 243],
+		"upper": [168, 221, 255],
+		"roi": "潘_炼金_坦克位置4",
+		"roi_offset": [-49, 134, 15, 21],
+		"connected": true,
+		"count": 200,
+		"next": [
+			"潘_炼金_坦克位置5"
+		]
+	},
+	"潘_炼金_左2部署": {
+		"action": "LongPress",
+		"duration": 20,
+		"target": "潘_炼金_坦克位置4",
+		"target_offset": [-115, 12, -6, -2],
+		"next": [
+			"潘_炼金_左2计划模式中"
+		],
+		"interrupt": [
+			"潘_炼金_部署确定",
+			"潘_炼金_计划模式"
+		]
+	},
+	"潘_炼金_左2计划模式中": {
+		"recognition": "ColorMatch",
+		"roi": [35, 615, 46, 32],
+		"lower": [240, 180, 40],
+		"upper": [255, 210, 90],
+		"action": "LongPress",
+		"duration": 20,
+		"target": "潘_炼金_坦克位置4",
+		"target_offset": [-115, 12, -6, -2],
+		"next": [
+			"潘_炼金_左2计划模式梯队选中"
+		]
+	},
+	"潘_炼金_左2计划模式梯队选中": {
+		"recognition": "ColorMatch",
+		"roi": "潘_炼金_坦克位置4",
+		"roi_offset": [-130, 7, -5, -3],
+		"lower": [210, 150, 0],
+		"upper": [255, 190, 10],
+		"action": "LongPress",
+		"duration": 20,
+		"target": "潘_炼金_坦克位置4",
+		"target_offset": [-116, 191, -6, -2],
+		"next": [
+			"潘_炼金_左2计划点1"
+		]
+	},
+	"潘_炼金_左2计划点1": {
+		"recognition": "ColorMatch",
+		"roi": [1102, 547, 23, 22],
+		"lower": [168, 205, 0],
+		"upper": [188, 225, 10],
+		"count": 100,
+		"action": "LongPress",
+		"duration": 20,
+		"target": "潘_炼金_坦克位置4",
+		"target_offset": [-40, 146, -5, -1],
+		"next": [
+			"潘_炼金_左2计划点2"
+		]
+	},
+	"潘_炼金_左2计划点2": {
+		"recognition": "ColorMatch",
+		"roi": "潘_炼金_坦克位置4",
+		"roi_offset": [-51, 132, 17, 24],
+		"lower": [230, 180, 40],
+		"upper": [255, 200, 60],
+		"count": 5,
+		"action": "LongPress",
+		"duration": 20,
+		"target": [1143, 647, 41, 29],
+		"next": [
+			"潘_炼金_左2数据读取"
+		]
+	},
+	"潘_炼金_左2数据读取": {
+		"recognition": "OCR",
+		"expected": "读取",
+		"roi": [81, 434, 60, 35],
+		"action": "LongPress",
+		"duration": 20,
+		"next": [
+			"潘_炼金_左2坦克位置"
+		]
+	},
+	"潘_炼金_左2坦克位置": {
+		"recognition": "TemplateMatch",
+		"template": [
+			"combat/resourceRecovery/pan/坦克电池.png",
+			"combat/resourceRecovery/pan/坦克电池2.png"
+		],
+		"roi": [580, 200, 260, 280],
+		"next": [
+			"潘_炼金_左2滑动复位"
+		]
+	},
+	"潘_炼金_左2滑动复位": {
+		"action": "Swipe",
+		"duration": 100,
+		"begin": "潘_炼金_左2坦克位置",
+		"end": [700, 424, 12, 8],
+		"next": [
+			"潘_炼金_左2坦克位置复位确认",
+			"潘_炼金_坦克位置5"
+		]
+	},
+	"潘_炼金_左2坦克位置复位确认": {
+		"recognition": "TemplateMatch",
+		"template": "combat/resourceRecovery/pan/坦克电池.png",
+		"roi": [680, 400, 100, 100],
+		"inverse": true,
+		"next": [
+			"潘_炼金_左2坦克位置"
+		]
+	},
+	"潘_炼金_坦克位置5": {
+		"recognition": "TemplateMatch",
+		"template": "combat/resourceRecovery/pan/坦克电池.png",
+		"roi": [680, 400, 100, 100],
+		"next": [
+			"潘_炼金_右1空",
+			"潘_炼金_右1部署"
+		]
+	},
+	"潘_炼金_右1空": {
+		"recognition": "ColorMatch",
+		"lower": [148, 201, 243],
+		"upper": [168, 221, 255],
+		"roi": "潘_炼金_坦克位置5",
+		"roi_offset": [102, -133, 13, 19],
+		"connected": true,
+		"count": 200,
+		"next": [
+			"潘_炼金_坦克位置6"
+		]
+	},
+	"潘_炼金_右1部署": {
+		"action": "LongPress",
+		"duration": 20,
+		"target": "潘_炼金_坦克位置5",
+		"target_offset": [36, 11, -5, -2],
+		"pre_delay": 300,
+		"next": [
+			"潘_炼金_右1计划模式中"
+		],
+		"interrupt": [
+			"潘_炼金_部署确定",
+			"潘_炼金_计划模式"
+		]
+	},
+	"潘_炼金_右1计划模式中": {
+		"recognition": "ColorMatch",
+		"roi": [35, 615, 46, 32],
+		"lower": [240, 180, 40],
+		"upper": [255, 210, 90],
+		"action": "LongPress",
+		"duration": 20,
+		"target": "潘_炼金_坦克位置5",
+		"target_offset": [36, 11, -5, -2],
+		"next": [
+			"潘_炼金_右1计划模式梯队选中"
+		]
+	},
+	"潘_炼金_右1计划模式梯队选中": {
+		"recognition": "ColorMatch",
+		"roi": "潘_炼金_坦克位置5",
+		"roi_offset": [22, 7, -5, -3],
+		"lower": [210, 150, 0],
+		"upper": [255, 190, 10],
+		"action": "LongPress",
+		"duration": 20,
+		"target": "潘_炼金_坦克位置5",
+		"target_offset": [186, -79, -3, 2],
+		"next": [
+			"潘_炼金_右1计划点1"
+		]
+	},
+	"潘_炼金_右1计划点1": {
+		"recognition": "ColorMatch",
+		"roi": [1102, 547, 23, 22],
+		"lower": [168, 205, 0],
+		"upper": [188, 225, 10],
+		"count": 100,
+		"action": "LongPress",
+		"duration": 20,
+		"target": "潘_炼金_坦克位置5",
+		"target_offset": [111, -121, -5, -3],
+		"next": [
+			"潘_炼金_右1计划点2"
+		]
+	},
+	"潘_炼金_右1计划点2": {
+		"recognition": "ColorMatch",
+		"roi": "潘_炼金_坦克位置5",
+		"roi_offset": [98, -138, 22, 30],
+		"lower": [230, 180, 40],
+		"upper": [255, 200, 60],
+		"count": 5,
+		"action": "LongPress",
+		"duration": 20,
+		"target": [1143, 647, 41, 29],
+		"next": [
+			"潘_炼金_右1数据读取"
+		]
+	},
+	"潘_炼金_右1数据读取": {
+		"recognition": "OCR",
+		"expected": "读取",
+		"roi": [81, 434, 60, 35],
+		"action": "LongPress",
+		"duration": 20,
+		"next": [
+			"潘_炼金_右1坦克位置"
+		]
+	},
+	"潘_炼金_右1坦克位置": {
+		"recognition": "TemplateMatch",
+		"template": "combat/resourceRecovery/pan/坦克电池.png",
+		"roi": [480, 300, 300, 280],
+		"next": [
+			"潘_炼金_右1滑动复位"
+		]
+	},
+	"潘_炼金_右1滑动复位": {
+		"action": "Swipe",
+		"duration": 100,
+		"begin": "潘_炼金_右1坦克位置",
+		"end": [700, 424, 12, 8],
+		"next": [
+			"潘_炼金_右1坦克位置复位确认",
+			"潘_炼金_坦克位置6"
+		]
+	},
+	"潘_炼金_右1坦克位置复位确认": {
+		"recognition": "TemplateMatch",
+		"template": "combat/resourceRecovery/pan/坦克电池.png",
+		"roi": [680, 400, 100, 100],
+		"threshold": 0.6,
+		"inverse": true,
+		"next": [
+			"潘_炼金_右1坦克位置"
+		]
+	},
+	"潘_炼金_坦克位置6": {
+		"recognition": "TemplateMatch",
+		"template": "combat/resourceRecovery/pan/坦克电池.png",
+		"roi": [680, 400, 100, 100],
+		"next": [
+			"潘_炼金_右2空",
+			"潘_炼金_右2部署"
+		]
+	},
+	"潘_炼金_右2空": {
+		"recognition": "ColorMatch",
+		"lower": [148, 201, 243],
+		"upper": [168, 221, 255],
+		"roi": "潘_炼金_坦克位置6",
+		"roi_offset": [179, 91, 13, 19],
+		"connected": true,
+		"count": 200,
+		"next": [
+			"潘_炼金_结算"
+		]
+	},
+	"潘_炼金_右2部署": {
+		"action": "LongPress",
+		"duration": 20,
+		"target": "潘_炼金_坦克位置6",
+		"target_offset": [36, 11, -5, -2],
+		"next": [
+			"潘_炼金_右2计划模式中"
+		],
+		"interrupt": [
+			"潘_炼金_部署确定",
+			"潘_炼金_计划模式"
+		]
+	},
+	"潘_炼金_右2计划模式中": {
+		"recognition": "ColorMatch",
+		"roi": [35, 615, 46, 32],
+		"lower": [240, 180, 40],
+		"upper": [255, 210, 90],
+		"action": "LongPress",
+		"duration": 20,
+		"target": "潘_炼金_坦克位置6",
+		"target_offset": [36, 11, -5, -2],
+		"next": [
+			"潘_炼金_右2计划模式梯队选中"
+		]
+	},
+	"潘_炼金_右2计划模式梯队选中": {
+		"recognition": "ColorMatch",
+		"roi": "潘_炼金_坦克位置6",
+		"roi_offset": [22, 7, -5, -3],
+		"lower": [210, 150, 0],
+		"upper": [255, 190, 10],
+		"action": "LongPress",
+		"duration": 20,
+		"target": "潘_炼金_坦克位置6",
+		"target_offset": [186, -79, -3, 2],
+		"next": [
+			"潘_炼金_右2计划点1"
+		]
+	},
+	"潘_炼金_右2计划点1": {
+		"recognition": "ColorMatch",
+		"roi": [1102, 547, 23, 22],
+		"lower": [168, 205, 0],
+		"upper": [188, 225, 10],
+		"count": 100,
+		"action": "LongPress",
+		"duration": 20,
+		"target": "潘_炼金_坦克位置6",
+		"target_offset": [189, 101, -5, -2],
+		"next": [
+			"潘_炼金_右2计划点2"
+		]
+	},
+	"潘_炼金_右2计划点2": {
+		"recognition": "ColorMatch",
+		"roi": "潘_炼金_坦克位置6",
+		"roi_offset": [173, 87, 24, 29],
+		"lower": [230, 180, 40],
+		"upper": [255, 200, 60],
+		"count": 5,
+		"action": "LongPress",
+		"duration": 20,
+		"target": [1143, 647, 41, 29],
+		"next": [
+			"潘_炼金_右2数据读取"
+		]
+	},
+	"潘_炼金_右2数据读取": {
+		"recognition": "OCR",
+		"expected": "读取",
+		"roi": [81, 434, 60, 35],
+		"action": "LongPress",
+		"duration": 20,
+		"next": [
+			"潘_炼金_结算"
+		]
+	},
+	"潘_炼金_结算": {
+		"recognition": "OCR",
+		"expected": "结算",
+		"roi": [310, 44, 51, 35],
+		"action": "LongPress",
+		"duration": 20,
+		"next": [
+			"潘_炼金_结算确定"
+		]
+	},
+	"潘_炼金_结算确定": {
+		"recognition": "OCR",
+		"expected": "确定",
+		"roi": [724, 468, 92, 55],
+		"action": "LongPress",
+		"duration": 20,
+		"next": [
+			"潘_炼金_再次作战"
+		]
+	},
+	"潘_炼金_再次作战": {
+		"recognition": "OCR",
+		"expected": "再次作战",
+		"roi": [367, 606, 99, 33],
+		"action": "LongPress",
+		"duration": 20,
+		"next": [
+			"潘_炼金_地图大小确认",
+			"潘_炼金_再次作战"
+		],
+		"interrupt": [
+			"潘_炼金_结算分数"
+		]
+	},
+	"潘_炼金_结算分数": {
+		"recognition": "OCR",
+		"expected": "战利品",
+		"roi": [70, 201, 224, 55],
+		"action": "LongPress",
+		"target": [394, 619, 38, 11],
+		"duration": 20
+	}
+}

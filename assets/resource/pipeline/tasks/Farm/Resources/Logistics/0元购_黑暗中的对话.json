@@ -1,118 +1,6 @@
 {
-	"!黑暗中的对话": {
-		"doc": "后续简称'黑话'",
-		"recognition": "DirectHit",
-		"pre_delay": 500,
-		"next": [
-			"黑话_主界面进入战斗",
-			"黑话_进入卷积核",
-			"黑话_点击常驻活动",
-			"黑话_开始作战"
-		]
-	},
-	"黑话_主界面进入战斗": {
-		"recognition": "OCR",
-		"roi": [874, 377, 162, 102],
-		"expected": "战斗",
-		"action": "LongPress",
-		"duration": 20,
-		"next": [
-			"黑话_主界面进入战斗",
-			"黑话_点击卷积核",
-			"黑话_点击常驻活动"
-		]
-	},
-	"黑话_点击常驻活动": {
-		"recognition": "OCR",
-		"roi": [0, 310, 265, 410],
-		"expected": "常驻活动",
-		"action": "LongPress",
-		"duration": 20,
-		"post_delay": 1000,
-		"post_wait_freezes": 1,
-		"next": [
-			"黑话_点击卷积核",
-			"黑话_滚轮初始化"
-		]
-	},
-	"黑话_滚轮初始化": {
-		"recognition": "DirectHit",
-		"action": "Command",
-		"exec": "powershell",
-		"args": [
-			"-ExecutionPolicy",
-			"Bypass",
-			"-File",
-			"{RESOURCE_DIR}/../tools/scroll.ps1",
-			"-ScrollCount",
-			"100",
-			"-Direction",
-			"up",
-			"-MouseX",
-			"250",
-			"-MouseY",
-			"360"
-		],
-		"pre_delay": 1000,
-		"post_delay": 1000,
-		"next": [
-			"黑话_滚轮down",
-			"黑话_滚轮初始化"
-		]
-	},
-	"黑话_滚轮down": {
-		"recognition": "OCR",
-		"roi": [175, 87, 181, 123],
-		"expected": "魔方行动",
-		"action": "Command",
-		"exec": "powershell",
-		"args": [
-			"-ExecutionPolicy",
-			"Bypass",
-			"-File",
-			"{RESOURCE_DIR}/../tools/scroll.ps1",
-			"-ScrollCount",
-			"30",
-			"-Direction",
-			"down",
-			"-MouseX",
-			"250",
-			"-MouseY",
-			"360"
-		],
-		"pre_delay": 1000,
-		"post_delay": 1000,
-		"next": [
-			"黑话_点击卷积核"
-		]
-	},
-	"黑话_点击卷积核": {
-		"doc": "在滑轮菜单中点击",
-		"recognition": "OCR",
-		"roi": [182, 95, 136, 624],
-		"expected": "积核",
-		"action": "LongPress",
-		"duration": 20,
-		"post_delay": 1000,
-		"next": [
-			"黑话_进入卷积核",
-			"黑话_点击卷积核"
-		]
-	},
-	"黑话_进入卷积核": {
-		"recognition": "OCR",
-		"roi": [527, 134, 138, 53],
-		"expected": ["卷积核", "积核"],
-		"action": "LongPress",
-		"target": [1047, 493, 132, 41],
-		"duration": 10,
-		"post_delay": 1000,
-		"next": [
-			"黑话_识别假打捞关",
-			"黑话_滑动1"
-		]
-	},
 	"黑话_滑动1": {
+		"doc": "在活动界面缩放",
 		"recognition": "OCR",
 		"roi": [110, 575, 142, 57],
 		"expected": "卷积核",
@@ -124,7 +12,7 @@
 			"-File",
 			"{RESOURCE_DIR}/../tools/scroll.ps1",
 			"-ScrollCount",
-			"50",
+			"40",
 			"-Direction",
 			"down",
 			"-MouseX",
@@ -132,8 +20,7 @@
 			"-MouseY",
 			"700"
 		],
-		"pre_delay": 1000,
-		"post_delay": 1000,
+		"post_delay": 1400,
 		"next": [
 			"黑话_滑动2"
 		]
@@ -162,8 +49,8 @@
 		"recognition": "TemplateMatch",
 		"roi": [32, 152, 1144, 38],
 		"template": [
-			"卷积核/0元购.png",
-			"卷积核/0元购1.png"
+			"combat/resourceRecovery/卷积核/0元购.png",
+			"combat/resourceRecovery/卷积核/0元购1.png"
 		],
 		"action": "LongPress",
 		"target_offset": [-32, -29, 0, 0],
@@ -179,7 +66,7 @@
 		"roi": [895, 139, 340, 157],
 		"expected": "黑暗中的对话",
 		"action": "LongPress",
-		"duration": 20,
+		"duration": 15,
 		"target": [1120, 391, 92, 38],
 		"post_delay": 1000,
 		"next": [
@@ -191,28 +78,29 @@
 		"recognition": "OCR",
 		"roi": [1002, 604, 277, 115],
 		"action": "LongPress",
-		"duration": 20,
+		"duration": 15,
 		"expected": "点击指挥",
 		"pre_delay": 1,
 		"post_delay": 1000,
 		"timeout": 90000,
 		"next": [
-			"黑话_再次作战",
+			"黑话_结束回合1",
 			"黑话_开始作战"
 		]
 	},
-	"黑话_再次作战": {
+	"黑话_结束回合1": {
 		"recognition": "OCR",
-		"roi": [371, 610, 91, 30],
-		"expected": "再次作战",
+		"roi": [416, 34, 64, 55],
+		"expected": "02",
+		"rate_limit": 500,
+		"post_delay": 1,
+		"timeout": 90000,
 		"next": [
-			"黑话_进入卷积核",
 			"黑话_开始作战"
 		],
 		"interrupt": [
-			"public拆人形_人形回收",
+			"public二星人形回收_人形回收",
 			"public_关卡结算点击1"
-		],
-		"timeout": 600000
+		]
 	}
 }

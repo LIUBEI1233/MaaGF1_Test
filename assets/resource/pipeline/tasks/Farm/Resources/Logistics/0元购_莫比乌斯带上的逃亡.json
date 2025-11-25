@@ -2,11 +2,9 @@
 	"!莫比乌斯带上的逃亡": {
 		"recognition": "DirectHit",
 		"action": "DoNothing",
-		"pre_delay": 500,
 		"next": [
 			"逃亡_主界面进入战斗",
 			"逃亡_进入卷积核",
-			"逃亡_常驻活动",
 			"逃亡_开始作战"
 		]
 	},
@@ -18,85 +16,7 @@
 		"duration": 20,
 		"next": [
 			"逃亡_主界面进入战斗",
-			"逃亡_点击卷积核",
-			"逃亡_常驻活动"
-		]
-	},
-	"逃亡_常驻活动": {
-		"recognition": "OCR",
-		"roi": [0, 310, 265, 410],
-		"expected": "常驻活动",
-		"action": "LongPress",
-		"duration": 20,
-		"post_delay": 1000,
-		"post_wait_freezes": 1,
-		"next": [
-			"逃亡_点击卷积核",
-			"逃亡_滚轮初始化"
-		]
-	},
-	"逃亡_滚轮初始化": {
-		"recognition": "DirectHit",
-		"action": "Command",
-		"exec": "powershell",
-		"args": [
-			"-ExecutionPolicy",
-			"Bypass",
-			"-File",
-			"{RESOURCE_DIR}/../tools/scroll.ps1",
-			"-ScrollCount",
-			"100",
-			"-Direction",
-			"up",
-			"-MouseX",
-			"250",
-			"-MouseY",
-			"360"
-		],
-		"pre_delay": 1000,
-		"post_delay": 1000,
-		"next": [
-			"逃亡_滚轮down",
-			"逃亡_滚轮初始化"
-		]
-	},
-	"逃亡_滚轮down": {
-		"recognition": "OCR",
-		"roi": [175, 87, 181, 123],
-		"expected": "魔方行动",
-		"action": "Command",
-		"exec": "powershell",
-		"args": [
-			"-ExecutionPolicy",
-			"Bypass",
-			"-File",
-			"{RESOURCE_DIR}/../tools/scroll.ps1",
-			"-ScrollCount",
-			"30",
-			"-Direction",
-			"down",
-			"-MouseX",
-			"250",
-			"-MouseY",
-			"360"
-		],
-		"pre_delay": 1000,
-		"post_delay": 1000,
-		"next": [
-			"逃亡_点击卷积核"
-		]
-	},
-	"逃亡_点击卷积核": {
-		"doc": "在滑轮菜单中点击",
-		"recognition": "OCR",
-		"roi": [182, 95, 136, 624],
-		"expected": "积核",
-		"action": "LongPress",
-		"duration": 20,
-		"post_delay": 1000,
-		"next": [
-			"逃亡_进入卷积核",
-			"逃亡_点击卷积核"
+			"逃亡_进入卷积核"
 		]
 	},
 	"逃亡_进入卷积核": {
@@ -106,14 +26,16 @@
 		"action": "LongPress",
 		"target": [1047, 493, 132, 41],
 		"duration": 10,
+		"pre_delay": 1500,
 		"post_delay": 1000,
 		"next": [
+			"逃亡_进入卷积核",
 			"逃亡_识别假打捞关",
 			"逃亡_滑动1"
 		]
 	},
 	"逃亡_滑动1": {
-		"doc": "在活动界面,滑动",
+		"doc": "在活动界面缩放",
 		"recognition": "OCR",
 		"roi": [110, 575, 142, 57],
 		"expected": "卷积核",
@@ -125,7 +47,7 @@
 			"-File",
 			"{RESOURCE_DIR}/../tools/scroll.ps1",
 			"-ScrollCount",
-			"50",
+			"40",
 			"-Direction",
 			"down",
 			"-MouseX",
@@ -140,11 +62,11 @@
 	},
 	"逃亡_滑动2": {
 		"action": "Swipe",
-		"begin": [981, 460, 1, 1],
-		"end": [969, 706, 1, 1],
+		"begin": [181, 460, 1, 1],
+		"end": [1269, 706, 1, 1],
 		"duration": 100,
 		"next": [
-			"黑话_滑动3"
+			"逃亡_滑动3"
 		]
 	},
 	"逃亡_滑动3": {
@@ -161,7 +83,7 @@
 	"逃亡_识别假打捞关": {
 		"recognition": "TemplateMatch",
 		"roi": [410, 670, 571, 50],
-		"template": "卷积核/卷积核打捞图.png",
+		"template": "combat/resourceRecovery/卷积核/卷积核打捞图.png",
 		"duration": 20,
 		"action": "LongPress",
 		"target_offset": [173, -138, 0, 0],
@@ -178,36 +100,10 @@
 		"action": "LongPress",
 		"duration": 20,
 		"target": [1120, 391, 92, 38],
-		"post_delay": 1000,
-		"next": [
-			"逃亡_初始化地图",
-			"逃亡_进入卷积核关卡"
-		]
-	},
-	"逃亡_初始化地图": {
-		"recognition": "OCR",
-		"roi": [140, 15, 132, 78],
-		"expected": "战",
-		"action": "Command",
-		"exec": "powershell",
-		"args": [
-			"-ExecutionPolicy",
-			"Bypass",
-			"-File",
-			"{RESOURCE_DIR}/../tools/scroll.ps1",
-			"-ScrollCount",
-			"20",
-			"-Direction",
-			"down",
-			"-MouseX",
-			"1270",
-			"-MouseY",
-			"50"
-		],
-		"post_delay": 500,
+		"post_delay": 1500,
 		"next": [
 			"逃亡_部署梯队",
-			"逃亡_初始化地图"
+			"逃亡_进入卷积核关卡"
 		]
 	},
 	"逃亡_部署梯队": {
@@ -227,7 +123,7 @@
 		"expected": ["等级", "B", "M", "A", "L"],
 		"roi": [673, 138, 165, 443],
 		"action": "LongPress",
-		"duration": 20,
+		"duration": 15,
 		"post_delay": 400,
 		"next": [
 			"逃亡_确定部署"
@@ -238,7 +134,7 @@
 		"roi": [1121, 620, 84, 54],
 		"expected": "部署",
 		"action": "LongPress",
-		"duration": 10,
+		"duration": 15,
 		"post_delay": 1000,
 		"next": [
 			"逃亡_开始作战",
@@ -249,9 +145,10 @@
 		"recognition": "OCR",
 		"roi": [1002, 604, 277, 115],
 		"action": "LongPress",
-		"duration": 20,
+		"duration": 15,
 		"expected": "点击指挥",
 		"pre_delay": 1,
+		"post_delay": 1,
 		"next": [
 			"逃亡_结束回合",
 			"逃亡_开始作战"
@@ -261,25 +158,27 @@
 		"recognition": "OCR",
 		"roi": [1002, 604, 277, 115],
 		"action": "LongPress",
-		"duration": 20,
+		"duration": 15,
+		"pre_delay": 1,
+		"post_delay": 600,
 		"expected": ["结"],
 		"next": [
-			"逃亡_再次作战",
+			"逃亡_结束回合1",
 			"逃亡_结束回合"
 		]
 	},
-	"逃亡_再次作战": {
+	"逃亡_结束回合1": {
 		"recognition": "OCR",
-		"roi": [371, 610, 91, 30],
-		"expected": "再次作战",
+		"roi": [416, 34, 64, 55],
+		"expected": "02",
+		"rate_limit": 500,
+		"post_delay": 1,
 		"next": [
-			"逃亡_进入卷积核",
 			"逃亡_开始作战"
 		],
 		"interrupt": [
 			"public二星人形回收_人形回收",
 			"public_关卡结算点击1"
-		],
-		"timeout": 600000
+		]
 	}
 }

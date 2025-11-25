@@ -41,9 +41,10 @@
 		"post_delay": 1,
 		"pre_delay": 1,
 		"interrupt": [
-			"81N部署_部署3队"
+			"81N部署_选择狗粮"
 		]
 	},
+	"81N部署_选择狗粮": {},
 	"81N部署_确认3队是否已部署": {
 		"recognition": "TemplateMatch",
 		"roi": [947, 101, 298, 316],

@@ -23,6 +23,14 @@
 		],
 		"timeout": 600000
 	},
+	"134战斗_确认开始作战": {
+		"recognition": "OCR",
+		"roi": [944, 571, 335, 148],
+		"expected": ["结束"],
+		"next": [
+			"134战斗_点击2队单vv准备补给"
+		]
+	},
 	"134战斗_点击2队单vv准备补给": {
 		"target": [76, 533, 2, 20],
 		"action": "LongPress",
@@ -163,7 +171,7 @@
 		"template": [
 			"combat/levelUp/13-4/Gap0.png"
 		],
-		"threshold": 0.8,
+		"threshold": 0.7,
 		"green_mask": true,
 		"rate_limit": 200,
 		"next": [
