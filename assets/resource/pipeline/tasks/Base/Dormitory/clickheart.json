@@ -1,12 +1,12 @@
 {
 	"!点击爱心": {
-		"roi": [5, 239, 1274, 315],
+		"roi": [0, 220, 1280, 500],
 		"recognition": "TemplateMatch",
 		"template": "dormitory/Gheart.png",
 		"threshold": 0.7,
 		"action": "LongPress",
 		"duration": 10,
-		"rate_limit": 50,
+		"rate_limit": 10,
 		"pre_delay": 1,
 		"green_mask": true,
 		"post_delay": 1,

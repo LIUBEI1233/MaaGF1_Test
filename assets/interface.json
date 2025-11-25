@@ -13,8 +13,8 @@
             "win32": {
                 "class_regex": ".*",
                 "window_regex": "少女前线",
-                "input": 1,
-                "screencap": 16
+                "screencap": 16,
+                "mouse": 1
             }
         },
         {
@@ -157,20 +157,27 @@
             "repeat_count": 1
         },
         {
-            "name": "0元购_无核心",
-            "entry": "!莫比乌斯带上的逃亡",
+            "name": "指挥官后勤",
+            "entry": "!指挥官后勤",
             "check": false,
-            "doc": "⚠️在主界面 或 常驻活动-卷积核界面运行[点击这里浏览器打开操作手册](https://github.com/LeonNagant/MaaGF1_Test/blob/main/manual/%E6%8C%87%E6%8C%A5%E5%AE%98%E5%90%8E%E5%8B%A4%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C.md)",
+            "doc": "⚠️打开记录缩放，将地图缩放至最小并拉从最左下向右上拉至地图边缘后手动运行一次再开始脚本[点击这里浏览器打开操作手册](https://github.com/isla23/MaaGF1_Test/blob/main/manual/%E6%8C%87%E6%8C%A5%E5%AE%98%E5%90%8E%E5%8B%A4%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C.md)",
+            "option": [
+                "部署梯队选择"
+            ],
+            "advanced": [
+                "目标梯队一号位人形"
+            ],
             "repeatable": true,
             "repeat_count": 9999
         },
         {
-            "name": "0元购_有核心",
-            "entry": "!黑暗中的对话",
+            "name": "0元购",
+            "entry": "!莫比乌斯带上的逃亡",
             "check": false,
-            "doc": "⚠️在主界面 或 常驻活动-卷积核界面运行[点击这里浏览器打开操作手册](https://github.com/LeonNagant/MaaGF1_Test/blob/main/manual/%E6%8C%87%E6%8C%A5%E5%AE%98%E5%90%8E%E5%8B%A4%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C.md)",
-            "repeatable": true,
-            "repeat_count": 9999
+            "doc": "⚠️在主界面 或 常驻活动-卷积核界面运行[点击这里浏览器打开操作手册](https://github.com/MaaGF1/MaaGF1/blob/main/manual/0%E5%85%83%E8%B4%AD%E7%89%A9%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C.md)",
+            "option": [
+                "0元购关卡"
+            ]
         },
         {
             "name": "打捞-人形",
@@ -367,12 +374,34 @@
                         },
                         "134战斗_开始作战": {
                             "next": [
+                                "134战斗_确认开始作战",
+                                "134战斗_开始作战"
+                            ]
+                        },
+                        "134战斗_确认开始作战": {
+                            "next": [
                                 "134战斗_点击1队图标"
                             ]
                         },
                         "134战斗_点击计划模式": {
                             "next": [
                                 "134战斗_钢狮"
+                            ]
+                        },
+                        "134战斗_钢狮": {
+                            "post_delay": 1000
+                        },
+                        "134战斗_钢狮_确认": {
+                            "recognition": "OCR",
+                            "roi": [
+                                1010,
+                                661,
+                                46,
+                                45
+                            ],
+                            "expected": "1",
+                            "next": [
+                                "134战斗_下一回合"
                             ]
                         },
                         "134部署_确认1队是否已部署": {
@@ -487,8 +516,8 @@
                 {
                     "name": "重装小队（BGM-71）",
                     "pipeline_override": {
-                        "81N部署_确认2队是否已部署": {
-                            "interrupt": [
+                        "81N部署_选择狗粮": {
+                            "next": [
                                 "81N部署_部署重装"
                             ]
                         }
@@ -497,8 +526,8 @@
                 {
                     "name": "人形小队（第三梯队）",
                     "pipeline_override": {
-                        "81N部署_确认2队是否已部署": {
-                            "interrupt": [
+                        "81N部署_选择狗粮": {
+                            "next": [
                                 "81N部署_部署3队"
                             ]
                         }
@@ -610,6 +639,21 @@
                         "81N部署_确认1队是否已部署": {
                             "next": [
                                 "81N部署_确认3队是否已部署"
+                            ],
+                            "interrupt": [
+                                "81N部署_选择狗粮"
+                            ]
+                        },
+                        "81N部署_确认2队是否已部署": {
+                            "recognition": "DirectHit",
+                            "next": [
+                                "81N部署_确认3队是否已部署"
+                            ],
+                            "rate_limit": 20,
+                            "post_delay": 1,
+                            "pre_delay": 1,
+                            "interrupt": [
+                                "81N部署_选择狗粮"
                             ]
                         },
                         "81N部署_布置完成": {
@@ -624,9 +668,30 @@
                             "template": "combat/levelUp/8-1N/map_team1.png",
                             "next": "81N战斗_开始作战"
                         },
+                        "81N战斗_点击2队单zas准备补给": {
+                            "target": [
+                                282,
+                                659,
+                                20,
+                                7
+                            ]
+                        },
+                        "81N战斗_点击补给": {
+                            "next": [
+                                "81N战斗_点击计划模式"
+                            ]
+                        },
                         "81N战斗_执行计划": {
                             "expected": [
-                                "0"
+                                "0",
+                                "o",
+                                "O"
+                            ]
+                        },
+                        "81N部署_点击2队new": {
+                            "recognition": "DirectHit",
+                            "next": [
+                                "81N战斗_开始作战"
                             ]
                         }
                     }
@@ -712,6 +777,38 @@
                     "pipeline_override": {
                         "public梯队部署_选择梯队": {
                             "expected": "10"
+                        }
+                    }
+                }
+            ]
+        },
+        "0元购关卡": {
+            "cases": [
+                {
+                    "name": "莫比乌斯带上的逃亡(普通难度)",
+                    "pipeline_override": {
+                        "public二星人形回收_导航栏战斗": {
+                            "post_delay": 400,
+                            "next": [
+                                "逃亡_进入卷积核"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "黑暗中的对话",
+                    "pipeline_override": {
+                        "逃亡_进入卷积核": {
+                            "next": [
+                                "黑话_识别假打捞关",
+                                "黑话_滑动1"
+                            ]
+                        },
+                        "public拆人形_导航栏战斗": {
+                            "post_delay": 400,
+                            "next": [
+                                "逃亡_进入卷积核"
+                            ]
                         }
                     }
                 }
@@ -1385,6 +1482,14 @@
         },
         "Alchemy_Task_List": {
             "cases": [
+                {
+                    "name": "潘洛斯",
+                    "pipeline_override": {
+                        "!Alchemy_Entry": {
+                            "next": "潘_炼金"
+                        }
+                    }
+                },
                 {
                     "name": "静默沙盘",
                     "pipeline_override": {
