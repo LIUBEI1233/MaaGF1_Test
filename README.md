@@ -1,38 +1,12 @@
-<!-- markdownlint-disable MD033 MD041 -->
+[![Docs](https://img.shields.io/badge/使用手册-8CA1AF?logo=readthedocs&logoColor=fff)](https://github.com/MaaGF1/docs) [![Wiki](https://img.shields.io/badge/Wiki-018EF5?logo=readme&logoColor=fff)](https://github.com/MaaGF1/MaaGF1/wiki)
 
-<p align="center">
-  <img src="https://cdn.jsdelivr.net/gh/LeonNagant/MaaGF1_Test/example_img/icon/icon.png" width="200" height="200" alt="LOGO">
-</p>
+# MaaGF1 - 少女前线自动化助手
 
-<div align="center">
+## 一、免责声明
 
-# MaaGF1_Test - 少女前线自动化助手
+[查看完整免责声明与许可协议](docs/disclaimer.md)
 
-> **基于 [MaaFramework](https://github.com/MaaXYZ/MaaFramework) 项目模板创建**
-
----
-
-## ⚠️ 项目状态说明
-
-**MaaGF1** 项目是专为**少女前线电脑端**设计的自动化工具。作为新生项目：
-
-```!
-🚧 当前状态：
-- 界面仍在优化中
-- 功能持续扩展中
-- 结构逐步调整中
-- 逻辑不断完善中
-
-- 调度器准备中
-```
-
-### 🔒 账号安全警告
-
-少女前线官方曾有大量封禁脚本记录！  
-**使用风险自行承担，本项目不承担任何后果**  
-[查看完整免责声明](#-免责声明与许可)
-
----
+<!-- TODO -->
 
 ## 🚨 使用前必读
 
