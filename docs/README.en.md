@@ -20,8 +20,6 @@ MaaGF1 is an automation tool for the game "Girls' Frontline" based on [MaaFramew
 
 ### 2.2 Internationalization
 
-MaaGF1 currently supports the following servers:
-
 1. [CN Server](https://store.steampowered.com/app/3347970/_/) and its corresponding Epic version
 2. [US Server](https://store.steampowered.com/app/3887700/_/), partial functionality available
 
