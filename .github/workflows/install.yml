@@ -9,6 +9,7 @@ on:
     paths:
       - ".github/workflows/install.yml"
       - "assets/**"
+      - "mk/**"
       - "**.py"
   pull_request:
     branches:
@@ -16,6 +17,7 @@ on:
     paths:
       - ".github/workflows/install.yml"
       - "assets/**"
+      - "mk/**"
       - "**.py"
   workflow_dispatch:
 
@@ -60,7 +62,6 @@ jobs:
     strategy:
       matrix:
         os: [win]
-        # MFAAvalonia naming convention usually uses 'x64' or 'arm64'
         arch: [x86_64, aarch64]
       fail-fast: false
 
@@ -97,7 +98,6 @@ jobs:
           echo "  Tag: $tag"
           echo "  Date: $date"
           
-          # Handle empty values
           tag=${tag:-"No releases"}
           date=${date:-"N/A"}
           url=${url:-""}
@@ -108,11 +108,9 @@ jobs:
           echo "mfa_prerelease=$prerelease" >> $GITHUB_OUTPUT
 
       - name: Download MFAAvalonia
-        id: download_mfa
         uses: robinraju/release-downloader@v1
         with:
           repository: SweetSmellFox/MFAAvalonia
-          # Matches MFAAvalonia-v1.8.0-win-x64.zip or similar
           fileName: "MFAAvalonia-*-${{ matrix.os }}-${{ (matrix.arch == 'x86_64' && 'x64') || (matrix.arch == 'aarch64' && 'arm64') }}*"
           latest: true
           out-file-path: "deps/bin"
@@ -120,119 +118,26 @@ jobs:
 
       - name: Clean up MFAAvalonia archive
         shell: bash
-        run: |
-          # Remove the zip file to prevent it from being copied by install.py if logic changes
-          find deps/bin -name "*.zip" -type f -delete
-          echo "Archive cleanup completed."
+        run: find deps/bin -name "*.zip" -type f -delete
 
       - name: Run Install Script
         shell: bash
         run: |
-          # install.py cleans 'install/', copies 'deps/bin' content, and adds assets
-          python ./install.py ${{ needs.meta.outputs.tag }}
+          python ./mk/install.py ${{ needs.meta.outputs.tag }}
 
-      - name: Generate Build Report and Summary
+      - name: Generate Build Report
         shell: bash
+        env:
+          BUILD_TAG: ${{ needs.meta.outputs.tag }}
+          BUILD_ARCH: ${{ matrix.arch }}
+          BUILD_OS: ${{ matrix.os }}
+          IS_RELEASE: ${{ needs.meta.outputs.is_release }}
+          MFA_TAG: ${{ steps.mfa_info.outputs.mfa_tag }}
+          MFA_DATE: ${{ steps.mfa_info.outputs.mfa_date }}
+          MFA_URL: ${{ steps.mfa_info.outputs.mfa_url }}
+          MFA_PRERELEASE: ${{ steps.mfa_info.outputs.mfa_prerelease }}
         run: |
-          # Get build information
-          BUILD_DATE=$(date -u '+%Y-%m-%d %H:%M:%S UTC')
-          
-          MFA_TAG="${{ steps.mfa_info.outputs.mfa_tag }}"
-          MFA_DATE="${{ steps.mfa_info.outputs.mfa_date }}"
-          MFA_URL="${{ steps.mfa_info.outputs.mfa_url }}"
-          MFA_PRERELEASE="${{ steps.mfa_info.outputs.mfa_prerelease }}"
-
-          # --- GitHub Step Summary ---
-          cat >> $GITHUB_STEP_SUMMARY << 'SUMMARY_EOF'
-          # 🚀 Build Report - ${{ matrix.arch }}
-          
-          ## 📋 Build Information
-          | Component | Details |
-          |-----------|---------|
-          | **Build Date** | `BUILD_DATE_PLACEHOLDER` |
-          | **Build Tag** | `${{ needs.meta.outputs.tag }}` |
-          | **Architecture** | `${{ matrix.arch }}` |
-          | **OS** | `${{ matrix.os }}` |
-          | **Is Release** | ${{ needs.meta.outputs.is_release == 'true' && '✅ Yes' || '❌ No' }} |
-          
-          ## 📦 Dependencies (MFAAvalonia)
-          | Property | Value |
-          |----------|-------|
-          | **Version** | MFA_VERSION_PLACEHOLDER |
-          | **Release Date** | `MFA_DATE_PLACEHOLDER` |
-          | **Type** | MFA_PRERELEASE_PLACEHOLDER |
-          
-          ## 🔗 Links
-          - [MFAAvalonia](MFA_URL_PLACEHOLDER)
-          
-          ---
-          *📅 Generated on BUILD_DATE_PLACEHOLDER*
-          SUMMARY_EOF
-          
-          # Replacements for Summary
-          sed -i "s/BUILD_DATE_PLACEHOLDER/${BUILD_DATE}/g" $GITHUB_STEP_SUMMARY
-          sed -i "s/MFA_DATE_PLACEHOLDER/${MFA_DATE}/g" $GITHUB_STEP_SUMMARY
-          
-          if [[ -n "$MFA_URL" && "$MFA_URL" != "" ]]; then
-            sed -i "s|MFA_VERSION_PLACEHOLDER|[${MFA_TAG}](${MFA_URL})|g" $GITHUB_STEP_SUMMARY
-            sed -i "s|MFA_URL_PLACEHOLDER|${MFA_URL}|g" $GITHUB_STEP_SUMMARY
-          else
-            sed -i "s/MFA_VERSION_PLACEHOLDER/${MFA_TAG}/g" $GITHUB_STEP_SUMMARY
-            sed -i "s|MFA_URL_PLACEHOLDER|#|g" $GITHUB_STEP_SUMMARY
-          fi
-          
-          if [[ "$MFA_PRERELEASE" == "true" ]]; then
-            sed -i "s/MFA_PRERELEASE_PLACEHOLDER/🚧 Pre-release/g" $GITHUB_STEP_SUMMARY
-          else
-            sed -i "s/MFA_PRERELEASE_PLACEHOLDER/✅ Stable/g" $GITHUB_STEP_SUMMARY
-          fi
-
-          # --- BUILD_REPORT.md (Inside install folder) ---
-          cat > install/BUILD_REPORT.md << 'EOF'
-          # Build Report
-          
-          ## Build Information
-          | Component | Details |
-          |-----------|---------|
-          | **Build Date** | `BUILD_DATE_PLACEHOLDER` |
-          | **Build Tag** | `${{ needs.meta.outputs.tag }}` |
-          | **Architecture** | `${{ matrix.arch }}` |
-          | **OS** | `${{ matrix.os }}` |
-          
-          ## Dependencies
-          ### MFAAvalonia
-          | Property | Value |
-          |----------|-------|
-          | **Version** | MFA_VERSION_PLACEHOLDER |
-          | **Release Date** | `MFA_DATE_PLACEHOLDER` |
-          | **Type** | MFA_PRERELEASE_PLACEHOLDER |
-          
-          ## Links
-          - [MFAAvalonia Release](MFA_URL_PLACEHOLDER)
-          
-          ---
-          *Generated by GitHub Actions.*
-          EOF
-          
-          # Replacements for File
-          sed -i "s/BUILD_DATE_PLACEHOLDER/${BUILD_DATE}/g" install/BUILD_REPORT.md
-          sed -i "s/MFA_DATE_PLACEHOLDER/${MFA_DATE}/g" install/BUILD_REPORT.md
-          
-          if [[ -n "$MFA_URL" && "$MFA_URL" != "" ]]; then
-            sed -i "s|MFA_VERSION_PLACEHOLDER|[${MFA_TAG}](${MFA_URL})|g" install/BUILD_REPORT.md
-            sed -i "s|MFA_URL_PLACEHOLDER|${MFA_URL}|g" install/BUILD_REPORT.md
-          else
-            sed -i "s/MFA_VERSION_PLACEHOLDER/${MFA_TAG}/g" install/BUILD_REPORT.md
-            sed -i "s/MFA_URL_PLACEHOLDER/#/g" install/BUILD_REPORT.md
-          fi
-          
-          if [[ "$MFA_PRERELEASE" == "true" ]]; then
-            sed -i "s/MFA_PRERELEASE_PLACEHOLDER/🚧 Pre-release/g" install/BUILD_REPORT.md
-          else
-            sed -i "s/MFA_PRERELEASE_PLACEHOLDER/✅ Stable/g" install/BUILD_REPORT.md
-          fi
-          
-          echo "✅ Build report generated."
+          python ./mk/report.py
 
       - uses: actions/upload-artifact@v4
         with:
@@ -246,28 +151,28 @@ jobs:
     steps:
       - name: Generate Overall Build Summary
         run: |
+          # Bash variable expansion works here
           BUILD_DATE=$(date -u '+%Y-%m-%d %H:%M:%S UTC')
           
-          cat >> $GITHUB_STEP_SUMMARY << 'SUMMARY_EOF'
-          # 🏁 Overall Build Summary
+          # Note: EOF is NOT quoted, so ${VARIABLES} are expanded immediately
+          cat >> $GITHUB_STEP_SUMMARY << EOF
+          # Overall Build Summary
           
-          ## 📊 Build Results
+          ## Build Results
           | Architecture | Status | 
           |--------------|--------|
-          | **aarch64** | ${{ contains(needs.install.result, 'success') && '✅ Success' || '❌ Failed' }} |
-          | **x86_64** | ${{ contains(needs.install.result, 'success') && '✅ Success' || '❌ Failed' }} |
+          | **aarch64** | ${{ contains(needs.install.result, 'success') && '[SUCCESS]' || '[FAILED]' }} |
+          | **x86_64** | ${{ contains(needs.install.result, 'success') && '[SUCCESS]' || '[FAILED]' }} |
           
-          ## 📋 Info
-          - **Tag:** `${{ needs.meta.outputs.tag }}`
-          - **Release:** ${{ needs.meta.outputs.is_release == 'true' && '✅ Yes' || '❌ No' }}
-          - **Date:** `BUILD_DATE_PLACEHOLDER`
+          ## Info
+          - **Tag:** \`${{ needs.meta.outputs.tag }}\`
+          - **Release:** ${{ needs.meta.outputs.is_release == 'true' && '[YES]' || '[NO]' }}
+          - **Date:** ${BUILD_DATE}
           
-          ${{ needs.meta.outputs.is_release == 'true' && '## 🎉 Release Build' || '## 🔧 CI Build' }}
+          ${{ needs.meta.outputs.is_release == 'true' && '## Release Build' || '## CI Build' }}
           
           ---
-          SUMMARY_EOF
-          
-          sed -i "s/BUILD_DATE_PLACEHOLDER/${BUILD_DATE}/g" $GITHUB_STEP_SUMMARY
+          EOF
 
   changelog:
     name: Generate changelog
@@ -317,6 +222,6 @@ jobs:
       - name: Release Summary
         run: |
           cat >> $GITHUB_STEP_SUMMARY << 'EOF'
-          # 🎉 Release Published!
+          # Release Published!
           Release Tag: `${{ needs.meta.outputs.tag }}`
           EOF
