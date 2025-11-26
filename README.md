@@ -20,8 +20,6 @@ MaaGF1 是基于 [MaaFrameork](https://github.com/MaaXYZ/MaaFramework) 的、适
 
 ### 2.2 国际化
 
-MaaGF1目前适配如下的服务器：
-
 1. [国服](https://store.steampowered.com/app/3347970/_/)，及对应的Epic版本
 2. [美服](https://store.steampowered.com/app/3887700/_/)，部分功能适用
 
