@@ -1,9 +1,9 @@
 name: Build and Release
 
 on:
-  release:
-    types: [published]
   push:
+    tags:
+      - "v*"
     branches:
       - "**"
     paths:
@@ -151,7 +151,10 @@ jobs:
     steps:
       - name: Generate Overall Build Summary
         run: |
+          # Bash variable expansion works here
           BUILD_DATE=$(date -u '+%Y-%m-%d %H:%M:%S UTC')
+          
+          # Note: EOF is NOT quoted, so ${VARIABLES} are expanded immediately
           cat >> $GITHUB_STEP_SUMMARY << EOF
           # Overall Build Summary
           
