@@ -177,7 +177,9 @@
             "doc": "⚠️在主界面 或 常驻活动-卷积核界面运行[点击这里浏览器打开操作手册](https://github.com/MaaGF1/MaaGF1/blob/main/manual/0%E5%85%83%E8%B4%AD%E7%89%A9%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C.md)",
             "option": [
                 "0元购关卡"
-            ]
+            ],
+            "repeatable": true,
+            "repeat_count": 9999
         },
         {
             "name": "打捞-人形",
@@ -787,11 +789,8 @@
                 {
                     "name": "莫比乌斯带上的逃亡(普通难度)",
                     "pipeline_override": {
-                        "public二星人形回收_导航栏战斗": {
-                            "post_delay": 400,
-                            "next": [
-                                "逃亡_进入卷积核"
-                            ]
+                        "public_关卡结算点击5": {
+                            "post_delay": 500
                         }
                     }
                 },
@@ -802,12 +801,6 @@
                             "next": [
                                 "黑话_识别假打捞关",
                                 "黑话_滑动1"
-                            ]
-                        },
-                        "public拆人形_导航栏战斗": {
-                            "post_delay": 400,
-                            "next": [
-                                "逃亡_进入卷积核"
                             ]
                         }
                     }

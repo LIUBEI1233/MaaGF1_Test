@@ -2,21 +2,73 @@
 	"!莫比乌斯带上的逃亡": {
 		"recognition": "DirectHit",
 		"action": "DoNothing",
+		"post_delay": 1,
 		"next": [
-			"逃亡_主界面进入战斗",
+			"逃亡_开始作战",
 			"逃亡_进入卷积核",
-			"逃亡_开始作战"
+			"逃亡_桌面点击战斗"
 		]
 	},
-	"逃亡_主界面进入战斗": {
+	"逃亡_桌面点击战斗": {
 		"recognition": "OCR",
-		"roi": [874, 377, 162, 102],
+		"roi": [904, 387, 124, 65],
 		"expected": "战斗",
 		"action": "LongPress",
-		"duration": 20,
+		"duration": 15,
 		"next": [
-			"逃亡_主界面进入战斗",
-			"逃亡_进入卷积核"
+			"逃亡_进入卷积核",
+			"逃亡_常驻活动",
+			"逃亡_桌面点击战斗"
+		]
+	},
+	"逃亡_常驻活动": {
+		"recognition": "OCR",
+		"roi": [0, 310, 265, 410],
+		"expected": "常驻活动",
+		"action": "LongPress",
+		"duration": 20,
+		"post_delay": 1000,
+		"post_wait_freezes": 1,
+		"next": [
+			"逃亡_确认进入常驻",
+			"逃亡_常驻活动"
+		]
+	},
+	"逃亡_确认进入常驻": {
+		"recognition": "OCR",
+		"roi": [182, 95, 136, 624],
+		"expected": "魔方行动",
+		"next": [
+			"逃亡_进入卷积核",
+			"逃亡_点击卷积核",
+			"逃亡_滑动到卷积核"
+		]
+	},
+	"逃亡_滑动到卷积核": {
+		"recognition": "OCR",
+		"roi": [182, 95, 136, 624],
+		"expected": "积核",
+		"inverse": true,
+		"action": "Swipe",
+		"begin": [250, 655, 1, 1],
+		"end": [250, 500, 1, 1],
+		"post_wait_freezes": 50,
+		"next": [
+			"逃亡_点击卷积核",
+			"逃亡_滑动到卷积核"
+		]
+	},
+	"逃亡_点击卷积核": {
+		"doc": "在滑轮菜单中点击",
+		"recognition": "OCR",
+		"roi": [182, 95, 136, 624],
+		"expected": "积核",
+		"action": "LongPress",
+		"duration": 20,
+		"post_delay": 1000,
+		"next": [
+			"逃亡_进入卷积核",
+			"逃亡_点击卷积核"
 		]
 	},
 	"逃亡_进入卷积核": {
@@ -89,9 +141,19 @@
 		"target_offset": [173, -138, 0, 0],
 		"post_delay": 400,
 		"next": [
+			"逃亡_切换难度",
 			"逃亡_进入卷积核关卡",
 			"逃亡_识别假打捞关"
 		]
+	},
+	"逃亡_切换难度": {
+		"is_sub": true,
+		"recognition": "OCR",
+		"roi": [203, 656, 52, 33],
+		"expected": ["困难", "噩梦"],
+		"action": "LongPress",
+		"duration": 10,
+		"next": []
 	},
 	"逃亡_进入卷积核关卡": {
 		"recognition": "OCR",
@@ -113,9 +175,11 @@
 		"action": "LongPress",
 		"duration": 20,
 		"target": [715, 224, 1, 1],
-		"post_delay": 800,
+		"pre_delay": 500,
+		"post_delay": 1000,
 		"next": [
-			"逃亡_选择重装"
+			"逃亡_选择重装",
+			"逃亡_部署梯队"
 		]
 	},
 	"逃亡_选择重装": {
@@ -160,7 +224,8 @@
 		"action": "LongPress",
 		"duration": 15,
 		"pre_delay": 1,
-		"post_delay": 600,
+		"post_delay": 200,
+		"timeout": 120000,
 		"expected": ["结"],
 		"next": [
 			"逃亡_结束回合1",
@@ -170,11 +235,13 @@
 	"逃亡_结束回合1": {
 		"recognition": "OCR",
 		"roi": [416, 34, 64, 55],
-		"expected": "02",
+		"expected": ["02", "2"],
 		"rate_limit": 500,
 		"post_delay": 1,
+		"timeout": 120000,
 		"next": [
-			"逃亡_开始作战"
+			"逃亡_开始作战",
+			"逃亡_进入卷积核"
 		],
 		"interrupt": [
 			"public二星人形回收_人形回收",
