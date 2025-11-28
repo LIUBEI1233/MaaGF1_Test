@@ -41,7 +41,7 @@
 		"expected": "循演",
 		"action": "LongPress",
 		"duration": 20,
-		"target": [1186.172, 60, 33],
+		"target": [1186, 172, 60, 33],
 		"post_delay": 1000,
 		"next": [
 			"循演战役夜战打捞_点击打捞关卡",
