@@ -14,72 +14,71 @@
 		"roi": [0, 597, 135, 121],
 		"expected": ["级"],
 		"action": "LongPress",
-		"duration": 10,
+		"duration": 15,
 		"target": [372, 615, 1, 1],
-		"pre_delay": 500,
+		"pre_delay": 200,
 		"post_delay": 60,
 		"next": [
 			"public_加速结算点击1"
 		]
 	},
 	"public_加速结算点击1": {
-		"target": [372, 615, 1, 1],
-		"post_delay": 60,
-		"pre_delay": 1,
+		"recognition": "DirectHit",
 		"action": "LongPress",
-		"duration": 10,
+		"target": [372, 615, 1, 1],
+		"duration": 15,
+		"pre_delay": 1,
+		"post_delay": 60,
 		"next": [
 			"public_加速结算点击2"
 		]
 	},
 	"public_加速结算点击2": {
-		"target": [372, 615, 1, 1],
-		"post_delay": 60,
-		"pre_delay": 1,
+		"recognition": "DirectHit",
 		"action": "LongPress",
-		"duration": 10,
+		"target": [372, 615, 1, 1],
+		"duration": 15,
+		"pre_delay": 1,
+		"post_delay": 60,
 		"next": [
 			"public_加速结算点击3"
 		]
 	},
 	"public_加速结算点击3": {
-		"target": [372, 615, 1, 1],
-		"post_delay": 60,
-		"pre_delay": 1,
+		"recognition": "DirectHit",
 		"action": "LongPress",
-		"duration": 10,
+		"target": [372, 615, 1, 1],
+		"duration": 15,
+		"pre_delay": 1,
+		"post_delay": 60,
 		"next": [
 			"public_加速结算点击4"
 		]
 	},
 	"public_加速结算点击4": {
-		"target": [372, 615, 1, 1],
-		"post_delay": 60,
-		"pre_delay": 1,
+		"recognition": "DirectHit",
 		"action": "LongPress",
-		"duration": 10,
+		"target": [372, 615, 1, 1],
+		"duration": 15,
+		"pre_delay": 1,
+		"post_delay": 60,
 		"next": [
 			"public_加速结算点击5"
 		]
 	},
 	"public_加速结算点击5": {
+		"recognition": "DirectHit",
+		"action": "LongPress",
 		"target": [372, 615, 1, 1],
-		"post_delay": 60,
+		"duration": 15,
 		"pre_delay": 1,
-		"action": "LongPress",
-		"duration": 10,
-		"next": [
-			"public_加速结算点击10"
-		]
-	},
-	"public_加速结算点击10": {
-		"target": [372, 615, 1, 1],
-		"action": "LongPress",
-		"duration": 10,
 		"next": [
 			"public_加速后等待"
 		],
-		"pre_delay": 1
+		"post_delay": 400
 	},
-	"public_加速后等待": {}
+	"public_加速后等待": {
+		"post_delay": 2000,
+		"next": []
+	}
 }
