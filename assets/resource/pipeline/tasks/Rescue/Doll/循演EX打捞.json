@@ -1,0 +1,192 @@
+{
+	"循演ex": {
+		"recognition": "OCR",
+		"roi": [515, 135, 179, 55],
+		"expected": "循演",
+		"action": "LongPress",
+		"duration": 15,
+		"target": [1079, 174, 21, 22],
+		"post_delay": 1000,
+		"next": [
+			"循演ex_a6",
+			"循演_向下划"
+		]
+	},
+	"循演ex_a6": {
+		"recognition": "OCR",
+		"roi": [644, 235, 51, 482],
+		"expected": "5",
+		"action": "LongPress",
+		"duration": 15,
+		"post_delay": 500,
+		"next": [
+			"循演_进入作战",
+			"循演ex_a6"
+		]
+	},
+	"循演_向下划": {
+		"recognition": "DirectHit",
+		"action": "Swipe",
+		"begin": [790, 586, 1, 1],
+		"end": [787, 288, 1, 1],
+		"duration": 100,
+		"post_delay": 500,
+		"next": [
+			"循演ex_a6",
+			"循演_向下划"
+		]
+	},
+	"循演_进入作战": {
+		"recognition": "OCR",
+		"roi": [956, 568, 140, 52],
+		"expected": "普通",
+		"action": "LongPress",
+		"duration": 15,
+		"pre_delay": 500,
+		"post_delay": 1000,
+		"next": [
+			"循演_部署"
+		]
+	},
+	"循演_部署": {
+		"recognition": "OCR",
+		"roi": [1040, 667, 45, 24],
+		"expected": "点击",
+		"action": "LongPress",
+		"duration": 15,
+		"target": "循演_识别队1",
+		"target_offset": [-27, 34, 1, -13],
+		"post_delay": 500,
+		"next": [
+			"循演_确定部署"
+		]
+	},
+	"循演_确定部署": {
+		"recognition": "OCR",
+		"roi": [1143, 612, 84, 49],
+		"expected": "确定",
+		"action": "LongPress",
+		"duration": 15,
+		"post_delay": 500,
+		"next": [
+			"循演_开始作战"
+		]
+	},
+	"循演_开始作战": {
+		"recognition": "OCR",
+		"roi": [1040, 667, 45, 24],
+		"expected": "点击",
+		"action": "LongPress",
+		"duration": 15,
+		"next": [
+			"循演_识别队1"
+		]
+	},
+	"循演_开始作战1": {
+		"recognition": "OCR",
+		"roi": [1040, 667, 45, 24],
+		"expected": "点击",
+		"next": []
+	},
+	"循演_识别队1": {
+		"recognition": "TemplateMatch",
+		"template": "combat/levelUp/8-1N/map_team1.png",
+		"duration": 15,
+		"next": [
+			"循演_点击队1"
+		]
+	},
+	"循演_点击队1": {
+		"action": "LongPress",
+		"target": "循演_识别队1",
+		"target_offset": [-27, 34, 1, -13],
+		"duration": 15,
+		"post_delay": 500,
+		"rate_limit": 500,
+		"next": [
+			"循演_点击补给",
+			"循演_点击队1"
+		]
+	},
+	"循演_点击补给": {
+		"recognition": "OCR",
+		"roi": [1164, 537, 83, 48],
+		"expected": "补给",
+		"action": "LongPress",
+		"duration": 15,
+		"post_delay": 1000,
+		"next": [
+			"循演_点击计划模式"
+		]
+	},
+	"循演_点击计划模式": {
+		"recognition": "DirectHit",
+		"action": "LongPress",
+		"target": [54, 621, 32, 12],
+		"duration": 15,
+		"next": [
+			"循演_点击计划点1",
+			"循演_点击计划模式"
+		]
+	},
+	"循演_点击计划点1": {
+		"recognition": "OCR",
+		"roi": [1108, 642, 146, 43],
+		"expected": ["执", "计"],
+		"action": "LongPress",
+		"target": "循演_识别队1",
+		"target_offset": [-330, 27, 0, -15],
+		"duration": 15,
+		"next": [
+			"循演_点击计划点2"
+		]
+	},
+	"循演_点击计划点2": {
+		"action": "LongPress",
+		"target": "循演_识别队1",
+		"target_offset": [-540, 27, 0, -15],
+		"duration": 15,
+		"post_delay": 400,
+		"next": [
+			"循演_下一回合"
+		]
+	},
+	"循演_下一回合": {
+		"recognition": "OCR",
+		"roi": [1059, 478, 221, 144],
+		"expected": ["下一回合", "下", "回"],
+		"action": "LongPress",
+		"duration": 15,
+		"next": [
+			"循演_执行计划"
+		]
+	},
+	"循演_执行计划": {
+		"recognition": "DirectHit",
+		"action": "LongPress",
+		"target": [1143, 664, 20, 16],
+		"duration": 15,
+		"post_delay": 7000,
+		"timeout": 90000,
+		"rate_limit": 2000,
+		"next": [
+			"循演_再次作战"
+		],
+		"interrupt": [
+			"public_加速结算进入"
+		]
+	},
+	"循演_再次作战": {
+		"recognition": "OCR",
+		"roi": [371, 608, 91, 36],
+		"expected": ["再次作战"],
+		"next": [
+			"循演ex",
+			"循演_开始作战1"
+		],
+		"interrupt": [
+			"public二星人形回收_人形回收",
+			"public_关卡结算点击1"
+		]
+	}
+}

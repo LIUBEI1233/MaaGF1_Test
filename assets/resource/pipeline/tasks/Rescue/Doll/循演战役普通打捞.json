@@ -80,7 +80,7 @@
 		"expected": "数据接口",
 		"action": "LongPress",
 		"duration": 20,
-		"pre_delay": 1000,
+		"pre_delay": 100,
 		"next": [
 			"循演战役普通打捞_进入打捞关卡",
 			"循演战役普通打捞_点击打捞关卡"
@@ -217,7 +217,7 @@
 		"duration": 20,
 		"target": [1152, 644, 53, 30],
 		"post_delay": 100000,
-		"timeout": 20000,
+		"timeout": 200000,
 		"next": [
 			"循演战役普通打捞_再次作战",
 			"循演战役普通打捞_执行计划"
