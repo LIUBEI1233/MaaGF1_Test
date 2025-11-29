@@ -81,28 +81,58 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests
 
+      - name: Read Configuration
+        id: config
+        shell: bash
+        run: |
+          # Parse the INI file using python
+          repo=$(python -c "import configparser; c = configparser.ConfigParser(); c.read('mk/.conf'); print(c['install']['mfa_repo'])")
+          tag=$(python -c "import configparser; c = configparser.ConfigParser(); c.read('mk/.conf'); print(c['install']['mfa_tag'])")
+          
+          echo "mfa_repo=$repo" >> $GITHUB_OUTPUT
+          echo "mfa_tag=$tag" >> $GITHUB_OUTPUT
+          
+          echo "Configuration Loaded:"
+          echo "  Repo: $repo"
+          echo "  Tag:  $tag"
+
       - name: Get MFAAvalonia release info
         id: mfa_info
         shell: bash
         run: |
-          echo "Getting SweetSmellFox/MFAAvalonia latest release..."
+          REPO="${{ steps.config.outputs.mfa_repo }}"
+          TAG="${{ steps.config.outputs.mfa_tag }}"
           
-          response=$(curl -sX GET "https://api.github.com/repos/SweetSmellFox/MFAAvalonia/releases/latest" --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}')
+          echo "Getting $REPO release info (Target: $TAG)..."
           
-          tag=$(echo "$response" | jq -r '.tag_name // "unknown"')
+          if [ "$TAG" == "latest" ]; then
+            API_URL="https://api.github.com/repos/$REPO/releases/latest"
+          else
+            API_URL="https://api.github.com/repos/$REPO/releases/tags/$TAG"
+          fi
+          
+          response=$(curl -sX GET "$API_URL" --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}')
+          
+          # Check if curl failed or API returned error
+          if echo "$response" | jq -e .message > /dev/null; then
+             echo "Error fetching release info: $(echo "$response" | jq -r .message)"
+             # Fallback logic or exit could go here, currently proceeding with defaults
+          fi
+          
+          tag_name=$(echo "$response" | jq -r '.tag_name // "unknown"')
           date=$(echo "$response" | jq -r '.published_at // "unknown"')
           url=$(echo "$response" | jq -r '.html_url // "unknown"')
           prerelease=$(echo "$response" | jq -r '.prerelease // false')
           
           echo "MFAAvalonia Info:"
-          echo "  Tag: $tag"
+          echo "  Tag: $tag_name"
           echo "  Date: $date"
           
-          tag=${tag:-"No releases"}
+          tag_name=${tag_name:-"No releases"}
           date=${date:-"N/A"}
           url=${url:-""}
           
-          echo "mfa_tag=$tag" >> $GITHUB_OUTPUT
+          echo "mfa_tag=$tag_name" >> $GITHUB_OUTPUT
           echo "mfa_date=$date" >> $GITHUB_OUTPUT
           echo "mfa_url=$url" >> $GITHUB_OUTPUT
           echo "mfa_prerelease=$prerelease" >> $GITHUB_OUTPUT
@@ -110,9 +140,12 @@ jobs:
       - name: Download MFAAvalonia
         uses: robinraju/release-downloader@v1
         with:
-          repository: SweetSmellFox/MFAAvalonia
+          repository: ${{ steps.config.outputs.mfa_repo }}
           fileName: "MFAAvalonia-*-${{ matrix.os }}-${{ (matrix.arch == 'x86_64' && 'x64') || (matrix.arch == 'aarch64' && 'arm64') }}*"
-          latest: true
+          # If config tag is 'latest', set latest=true. Otherwise false.
+          latest: ${{ steps.config.outputs.mfa_tag == 'latest' }}
+          # If config tag is NOT 'latest', use the specific tag.
+          tag: ${{ steps.config.outputs.mfa_tag != 'latest' && steps.config.outputs.mfa_tag || '' }}
           out-file-path: "deps/bin"
           extract: true
 

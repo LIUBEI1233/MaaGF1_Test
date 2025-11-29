@@ -14,7 +14,8 @@
                 "class_regex": ".*",
                 "window_regex": "少女前线",
                 "screencap": 16,
-                "mouse": 1
+                "mouse": 1,
+                "keyboard": 1
             }
         },
         {
