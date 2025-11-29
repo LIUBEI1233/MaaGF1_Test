@@ -175,7 +175,7 @@
             "name": "0元购",
             "entry": "!莫比乌斯带上的逃亡",
             "check": false,
-            "doc": "⚠️在主界面 或 常驻活动-卷积核界面运行[点击这里浏览器打开操作手册](https://github.com/MaaGF1/MaaGF1/blob/main/manual/0%E5%85%83%E8%B4%AD%E7%89%A9%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C.md)",
+            "doc": "⚠️在主界面 或 常驻活动-卷积核界面运行[点击这里浏览器打开操作手册](https://github.com/MaaGF1/docs/blob/main/doc/tutorial/resource/05_blm.md)",
             "option": [
                 "0元购关卡"
             ],
