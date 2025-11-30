@@ -12,7 +12,7 @@
             "type": "Win32",
             "win32": {
                 "class_regex": ".*",
-                "window_regex": "少女前线",
+                "window_regex": "(?i)(少女前线|GIRLS[\\s']*FRONTLINE)",
                 "screencap": 16,
                 "mouse": 1,
                 "keyboard": 1
