@@ -398,13 +398,11 @@
                                 "134部署_确认1队是否已部署",
                                 "134进入_普通作战",
                                 "134进入_点击134",
-                                "134进入_点击作战任务"
-                            ],
-                            "interrupt": [
-                                "134重置_点击获得角色",
-                                "public拆人形_人形回收",
-                                "134重置_单击再次作战",
-                                "public_返回战斗界面"
+                                "134进入_点击作战任务",
+                                "[JumpBack]134重置_点击获得角色",
+                                "[JumpBack]public拆人形_人形回收",
+                                "[JumpBack]134重置_单击再次作战",
+                                "[JumpBack]public_返回战斗界面"
                             ]
                         }
                     }
@@ -460,13 +458,11 @@
                                 "134部署_确认1队是否已部署",
                                 "134进入_普通作战",
                                 "134进入_点击134",
-                                "134进入_点击作战任务"
-                            ],
-                            "interrupt": [
-                                "134重置_点击获得角色",
-                                "public拆人形_人形回收",
-                                "134重置_单击再次作战",
-                                "public_返回战斗界面"
+                                "134进入_点击作战任务",
+                                "[JumpBack]134重置_点击获得角色",
+                                "[JumpBack]public拆人形_人形回收",
+                                "[JumpBack]134重置_单击再次作战",
+                                "[JumpBack]public_返回战斗界面"
                             ]
                         }
                     }
@@ -483,13 +479,11 @@
                                 "134部署_布置完成",
                                 "134进入_普通作战",
                                 "134进入_点击134",
-                                "134进入_点击作战任务"
-                            ],
-                            "interrupt": [
-                                "134重置_点击获得角色",
-                                "public拆人形_人形回收",
-                                "134重置_单击再次作战",
-                                "public_返回战斗界面"
+                                "134进入_点击作战任务",
+                                "[JumpBack]134重置_点击获得角色",
+                                "[JumpBack]public拆人形_人形回收",
+                                "[JumpBack]134重置_单击再次作战",
+                                "[JumpBack]public_返回战斗界面"
                             ]
                         }
                     }
@@ -498,8 +492,7 @@
                     "name": "指定次数（满仓停止）",
                     "pipeline_override": {
                         "134重置_再战连点9": {
-                            "next": [],
-                            "interrupt": []
+                            "next": []
                         }
                     }
                 }
@@ -528,9 +521,10 @@
                     "name": "专属装备强化",
                     "pipeline_override": {
                         "81N_选择装备处理方式": {
-                            "interrupt": [
-                                "public装备强化_装备强化",
-                                "public_返回战斗界面"
+                            "next": [
+                                "81N进入_点击8-1N",
+                                "[JumpBack]public装备强化_装备强化",
+                                "[JumpBack]public_返回战斗界面"
                             ]
                         }
                     }
@@ -539,9 +533,10 @@
                     "name": "拆解（锁上需保留装备）",
                     "pipeline_override": {
                         "81N_选择装备处理方式": {
-                            "interrupt": [
-                                "public拆装备_装备回收",
-                                "public_返回战斗界面"
+                            "next": [
+                                "81N进入_点击8-1N",
+                                "[JumpBack]public拆装备_装备回收",
+                                "[JumpBack]public_返回战斗界面"
                             ]
                         }
                     }
@@ -550,8 +545,7 @@
                     "name": "结束任务",
                     "pipeline_override": {
                         "81N_选择装备处理方式": {
-                            "timeout": 1000,
-                            "interrupt": []
+                            "timeout": 1000
                         }
                     }
                 }
@@ -587,9 +581,10 @@
                     "name": "启用结算加速",
                     "pipeline_override": {
                         "81N战斗_执行计划": {
-                            "interrupt": [
-                                "public_不中断计划",
-                                "public_加速结算进入"
+                            "next": [
+                                "81N战斗_剩余行动01",
+                                "[JumpBack]public_不中断计划",
+                                "[JumpBack]public_加速结算进入"
                             ]
                         },
                         "public_加速后等待": {
@@ -613,9 +608,11 @@
                     "name": "启用结算加速",
                     "pipeline_override": {
                         "134战斗_执行计划": {
-                            "interrupt": [
-                                "public_不中断计划",
-                                "public_加速结算进入"
+                            "next": [
+                                "134重置_提前再次作战",
+                                "134重置_再次作战",
+                                "[JumpBack]public_不中断计划",
+                                "[JumpBack]public_加速结算进入"
                             ]
                         },
                         "public_加速后等待": {
@@ -684,23 +681,19 @@
                     "pipeline_override": {
                         "81N部署_确认1队是否已部署": {
                             "next": [
-                                "81N部署_确认3队是否已部署"
-                            ],
-                            "interrupt": [
-                                "81N部署_选择狗粮"
+                                "81N部署_确认3队是否已部署",
+                                "[JumpBack]81N部署_选择狗粮"
                             ]
                         },
                         "81N部署_确认2队是否已部署": {
                             "recognition": "DirectHit",
                             "next": [
-                                "81N部署_确认3队是否已部署"
+                                "81N部署_确认3队是否已部署",
+                                "[JumpBack]81N部署_选择狗粮"
                             ],
                             "rate_limit": 20,
                             "post_delay": 1,
                             "pre_delay": 1,
-                            "interrupt": [
-                                "81N部署_选择狗粮"
-                            ]
                         },
                         "81N部署_布置完成": {
                             "recognition": "TemplateMatch",
@@ -1609,9 +1602,11 @@
                     "name": "开启",
                     "pipeline_override": {
                         "虚粒子对_执行计划": {
-                            "interrupt": [
-                                "public_不中断计划",
-                                "public_加速结算进入"
+                            "next": [
+                                "虚粒子对_再次作战",
+                                "虚粒子对_执行计划",
+                                "[JumpBack]public_不中断计划",
+                                "[JumpBack]public_加速结算进入"
                             ]
                         }
                     }
@@ -1697,9 +1692,11 @@
                     "name": "开启",
                     "pipeline_override": {
                         "蝴蝶星云_执行计划": {
-                            "interrupt": [
-                                "public_不中断计划",
-                                "public_加速结算进入"
+                            "next": [
+                                "蝴蝶星云_再次作战",
+                                "蝴蝶星云_执行计划",
+                                "[JumpBack]public_不中断计划",
+                                "[JumpBack]public_加速结算进入"
                             ]
                         }
                     }
@@ -1802,9 +1799,11 @@
                     "name": "开启",
                     "pipeline_override": {
                         "零态潮汐_执行计划": {
-                            "interrupt": [
-                                "public_不中断计划",
-                                "public_加速结算进入"
+                            "next": [
+                                "零态潮汐_再次作战",
+                                "零态潮汐_执行计划",
+                                "[JumpBack]public_不中断计划",
+                                "[JumpBack]public_加速结算进入"
                             ]
                         }
                     }
@@ -2128,7 +2127,13 @@
                     "name": "拆解全部",
                     "pipeline_override": {
                         "灰域_出击奇遇": {
-                            "interrupt": "public拆人形_人形回收"
+                            "next": [
+                                "灰域_奇遇代理",
+                                "灰域_出击奇遇",
+                                "灰域_进入灰域",
+                                "[JumpBack]public二星人形回收_人形回收",
+                                "[JumpBack]public拆人形_人形回收"
+                            ]
                         }
                     }
                 }
