@@ -693,7 +693,7 @@
                             ],
                             "rate_limit": 20,
                             "post_delay": 1,
-                            "pre_delay": 1,
+                            "pre_delay": 1
                         },
                         "81N部署_布置完成": {
                             "recognition": "TemplateMatch",
