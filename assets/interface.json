@@ -43,7 +43,7 @@
             "name": "13-4循环",
             "entry": "!134总流程",
             "check": false,
-            "doc": "请在第十三战役-普通界面或者进入13-4地图后的界面运行， **要求地图缩放到最小** ，[点击这里浏览器打开操作手册](https://github.com/MaaGF1/docs/blob/main/doc/tutorial/experience/02_13-4.md)",
+            "doc": "请在第十三战役-普通界面或者进入13-4地图后的界面运行， **要求地图缩放到最小** ，[点击这里浏览器打开操作手册](https://github.com/MaaGF1/docs)",
             "repeatable": true,
             "repeat_count": 1,
             "option": [
@@ -65,7 +65,7 @@
             "name": "8-1N循环",
             "entry": "!81N总流程",
             "check": false,
-            "doc": "请在第八战役-夜战或者进入8-1N地图后的界面运行， **要求地图缩放到最小** ，[点击这里浏览器打开操作手册](https://github.com/MaaGF1/docs/blob/main/doc/tutorial/experience/01_8-1n.md)",
+            "doc": "请在第八战役-夜战或者进入8-1N地图后的界面运行， **要求地图缩放到最小** ，[点击这里浏览器打开操作手册](https://github.com/MaaGF1/docs)",
             "repeatable": true,
             "repeat_count": 1,
             "option": [
@@ -92,7 +92,7 @@
             "name": "跑步机",
             "entry": "!跑步机总流程",
             "check": false,
-            "doc": " **要求地图缩放到最小** ，[点击这里浏览器打开操作手册](https://github.com/MaaGF1/docs/blob/main/doc/tutorial/experience/03_shattered_connexion.md)",
+            "doc": " **要求地图缩放到最小** ，[点击这里浏览器打开操作手册](https://github.com/MaaGF1/docs)",
             "option": [
                 "跑步机修复选择"
             ],
@@ -103,7 +103,7 @@
             "name": "灰域探查",
             "entry": "!开始打灰",
             "check": false,
-            "doc": "在主界面或者刚进入灰域界面执行，[点击这里浏览器打开操作手册](https://github.com/MaaGF1/docs/blob/main/doc/tutorial/resource/01_gray_zone.md)",
+            "doc": "在主界面或者刚进入灰域界面执行，[点击这里浏览器打开操作手册](https://github.com/MaaGF1/docs)",
             "option": [
                 "打灰选择",
                 "打灰地图选择",
@@ -117,7 +117,7 @@
             "name": "基地-兵棋挂机",
             "entry": "=兵棋总流程",
             "check": false,
-            "doc": "请在咖啡馆点击兵棋桌后或兵棋房间内运行，[点击这里浏览器打开操作手册](https://github.com/MaaGF1/docs/blob/main/doc/tutorial/base/01_luffberry_chess.md)",
+            "doc": "请在咖啡馆点击兵棋桌后或兵棋房间内运行，[点击这里浏览器打开操作手册](https://github.com/MaaGF1/docs)",
             "repeatable": true,
             "repeat_count": 1
         },
@@ -136,7 +136,7 @@
             "name": "裂变链接捡垃圾",
             "entry": "!裂变链接捡垃圾",
             "check": false,
-            "doc": "⚠️打开记录缩放，将地图缩放至最小并拉从最左下向右上拉至地图边缘后手动运行一次再开始脚本[点击这里浏览器打开操作手册](https://github.com/MaaGF1/docs/blob/main/doc/tutorial/resource/03_shattered_connexion.md)",
+            "doc": "⚠️打开记录缩放，将地图缩放至最小并拉从最左下向右上拉至地图边缘后手动运行一次再开始脚本[点击这里浏览器打开操作手册](https://github.com/MaaGF1/docs)",
             "option": [
                 "部署梯队选择"
             ],
@@ -161,7 +161,7 @@
             "name": "指挥官后勤",
             "entry": "!指挥官后勤",
             "check": false,
-            "doc": "⚠️打开记录缩放，将地图缩放至最小并拉从最左下向右上拉至地图边缘后手动运行一次再开始脚本[点击这里浏览器打开操作手册](https://github.com/MaaGF1/docs/blob/main/doc/tutorial/resource/02_skk_logistics.md)",
+            "doc": "⚠️打开记录缩放，将地图缩放至最小并拉从最左下向右上拉至地图边缘后手动运行一次再开始脚本[点击这里浏览器打开操作手册](https://github.com/MaaGF1/docs)",
             "option": [
                 "部署梯队选择"
             ],
@@ -175,7 +175,7 @@
             "name": "0元购",
             "entry": "!莫比乌斯带上的逃亡",
             "check": false,
-            "doc": "⚠️在主界面 或 常驻活动-卷积核界面运行[点击这里浏览器打开操作手册](https://github.com/MaaGF1/docs/blob/main/doc/tutorial/resource/05_blm.md)",
+            "doc": "⚠️在主界面 或 常驻活动-卷积核界面运行[点击这里浏览器打开操作手册](https://github.com/MaaGF1/docs)",
             "option": [
                 "0元购关卡"
             ],
@@ -186,7 +186,7 @@
             "name": "打捞-人形",
             "entry": "!常驻人形打捞",
             "check": false,
-            "doc": "[点击这里浏览器打开操作手册](https://github.com/MaaGF1/docs/blob/main/doc/tutorial/rescue/01_doll.md)",
+            "doc": "[点击这里浏览器打开操作手册](https://github.com/MaaGF1/docs)",
             "option": [
                 "选择常驻人形打捞目标"
             ],
@@ -197,7 +197,7 @@
             "name": "打捞-装备",
             "entry": "!夜战打捞",
             "check": false,
-            "doc": "在夜战地图运行，[点击这里浏览器打开操作手册](https://github.com/MaaGF1/docs/blob/main/doc/tutorial/rescue/02_equipment.md)",
+            "doc": "在夜战地图运行，[点击这里浏览器打开操作手册](https://github.com/MaaGF1/docs)",
             "option": [
                 "选择夜战打捞地图"
             ]
@@ -246,7 +246,7 @@
             "name": "Farm-炼金",
             "entry": "!Alchemy_Entry",
             "check": false,
-            "doc": "静默沙盘：[点击这里浏览器打开操作手册](https://github.com/MaaGF1/docs/blob/main/doc/tutorial/resource/04_alchemy.md)\n向你微笑(先辈)通关任意难度向你微笑，将地图缩放至最小即可开启运行，自动部署的梯队须为铁血梯队。\n向你微笑(DLZC)通关任意难度向你微笑，地图缩放到最小，拖动到右下角边缘开始",
+            "doc": "静默沙盘：[点击这里浏览器打开操作手册](https://github.com/MaaGF1/docs)\n向你微笑(先辈)通关任意难度向你微笑，将地图缩放至最小即可开启运行，自动部署的梯队须为铁血梯队。\n向你微笑(DLZC)通关任意难度向你微笑，地图缩放到最小，拖动到右下角边缘开始",
             "option": [
                 "Alchemy_Task_List"
             ],
