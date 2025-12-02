@@ -2,18 +2,18 @@ name: check
 
 on:
   push:
-    branches:
-      - "**"
+    branches: ["**"]
     paths:
       - ".github/workflows/check.yml"
       - "assets/**"
+      - "mk/**"
       - "**.py"
   pull_request:
-    branches:
-      - "**"
+    branches: ["**"]
     paths:
       - ".github/workflows/check.yml"
       - "assets/**"
+      - "mk/**"
       - "**.py"
   workflow_dispatch:
 
@@ -25,12 +25,20 @@ jobs:
         with:
           fetch-depth: 0
 
-      # pip install maafw
+      - name: Read Configuration
+        id: config
+        run: |
+          # Parse the INI file using python to ensure cross-platform compatibility
+          maafw_ver=$(python -c "import configparser; c = configparser.ConfigParser(); c.read('mk/.conf'); print(c['check']['maafw'])")
+          echo "maafw_version=$maafw_ver" >> $GITHUB_OUTPUT
+          echo "Target maafw version: $maafw_ver"
+
       - name: Install maafw
         run: |
             python -m pip install --upgrade pip
-            python -m pip install --upgrade maafw==5.0.1
+            # Install the specific version defined in mk/.conf
+            python -m pip install maafw==${{ steps.config.outputs.maafw_version }}
 
       - name: Check Resource
         run: |
-            python ./check_resource.py ./assets/resource/
+            python ./mk/check.py

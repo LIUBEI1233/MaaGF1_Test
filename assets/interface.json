@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "name": "MaaGF1",
     "version": "v1.6",
-    "url": "https://github.com/LeonNagant/MaaGF1_Test",
+    "url": "https://github.com/MaaGF1/MaaGF1",
     "mirrorchyan_rid": null,
     "mirrorchyan_multiplatform": false,
     "custom_title": "MaaGF1",
@@ -12,9 +12,10 @@
             "type": "Win32",
             "win32": {
                 "class_regex": ".*",
-                "window_regex": "少女前线",
+                "window_regex": "(?i)(少女前线|GIRLS[\\s']*FRONTLINE)",
                 "screencap": 16,
-                "mouse": 1
+                "mouse": 1,
+                "keyboard": 1
             }
         },
         {
@@ -42,7 +43,7 @@
             "name": "13-4循环",
             "entry": "!134总流程",
             "check": false,
-            "doc": "请在第十三战役-普通界面或者进入13-4地图后的界面运行， **要求地图缩放到最小** ，[点击这里浏览器打开操作手册](https://github.com/LeonNagant/MaaGF1_Test/blob/main/manual/13-4%E5%8F%8C%E6%89%93%E6%89%8B%E6%8B%96%E5%B0%B8%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C.md)",
+            "doc": "请在第十三战役-普通界面或者进入13-4地图后的界面运行， **要求地图缩放到最小** ，[点击这里浏览器打开操作手册](https://github.com/MaaGF1/docs)",
             "repeatable": true,
             "repeat_count": 1,
             "option": [
@@ -64,7 +65,7 @@
             "name": "8-1N循环",
             "entry": "!81N总流程",
             "check": false,
-            "doc": "请在第八战役-夜战或者进入8-1N地图后的界面运行， **要求地图缩放到最小** ，[点击这里浏览器打开操作手册](https://github.com/LeonNagant/MaaGF1_Test/blob/main/manual/8-1N%E5%8F%8C%E6%89%93%E6%89%8B%E7%82%B8%E7%8B%97%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C.md)",
+            "doc": "请在第八战役-夜战或者进入8-1N地图后的界面运行， **要求地图缩放到最小** ，[点击这里浏览器打开操作手册](https://github.com/MaaGF1/docs)",
             "repeatable": true,
             "repeat_count": 1,
             "option": [
@@ -91,7 +92,7 @@
             "name": "跑步机",
             "entry": "!跑步机总流程",
             "check": false,
-            "doc": " **要求地图缩放到最小** ，[点击这里浏览器打开操作手册](https://github.com/LeonNagant/MaaGF1_Test/blob/main/manual/%E8%B7%91%E6%AD%A5%E6%9C%BA%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C.md)",
+            "doc": " **要求地图缩放到最小** ，[点击这里浏览器打开操作手册](https://github.com/MaaGF1/docs)",
             "option": [
                 "跑步机修复选择"
             ],
@@ -102,7 +103,7 @@
             "name": "灰域探查",
             "entry": "!开始打灰",
             "check": false,
-            "doc": "在主界面或者刚进入灰域界面执行，[点击这里浏览器打开操作手册](https://github.com/LeonNagant/MaaGF1_Test/blob/main/manual/%E8%87%AA%E5%8A%A8%E6%89%93%E7%81%B0%E5%A5%96%E5%8A%B1%E5%85%B3%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C.md)",
+            "doc": "在主界面或者刚进入灰域界面执行，[点击这里浏览器打开操作手册](https://github.com/MaaGF1/docs)",
             "option": [
                 "打灰选择",
                 "打灰地图选择",
@@ -116,7 +117,7 @@
             "name": "基地-兵棋挂机",
             "entry": "=兵棋总流程",
             "check": false,
-            "doc": "请在咖啡馆点击兵棋桌后或兵棋房间内运行，[点击这里浏览器打开操作手册](https://github.com/LeonNagant/MaaGF1_Test/blob/main/manual/%E5%85%B5%E6%A3%8B%E8%87%AA%E5%8A%A8%E6%8C%82%E6%9C%BA%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C.md)",
+            "doc": "请在咖啡馆点击兵棋桌后或兵棋房间内运行，[点击这里浏览器打开操作手册](https://github.com/MaaGF1/docs)",
             "repeatable": true,
             "repeat_count": 1
         },
@@ -135,7 +136,7 @@
             "name": "裂变链接捡垃圾",
             "entry": "!裂变链接捡垃圾",
             "check": false,
-            "doc": "⚠️打开记录缩放，将地图缩放至最小并拉从最左下向右上拉至地图边缘后手动运行一次再开始脚本[点击这里浏览器打开操作手册](https://github.com/LeonNagant/MaaGF1_Test/blob/main/manual/%E6%8D%A1%E5%9E%83%E5%9C%BE%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C.md)",
+            "doc": "⚠️打开记录缩放，将地图缩放至最小并拉从最左下向右上拉至地图边缘后手动运行一次再开始脚本[点击这里浏览器打开操作手册](https://github.com/MaaGF1/docs)",
             "option": [
                 "部署梯队选择"
             ],
@@ -160,7 +161,7 @@
             "name": "指挥官后勤",
             "entry": "!指挥官后勤",
             "check": false,
-            "doc": "⚠️打开记录缩放，将地图缩放至最小并拉从最左下向右上拉至地图边缘后手动运行一次再开始脚本[点击这里浏览器打开操作手册](https://github.com/isla23/MaaGF1_Test/blob/main/manual/%E6%8C%87%E6%8C%A5%E5%AE%98%E5%90%8E%E5%8B%A4%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C.md)",
+            "doc": "⚠️打开记录缩放，将地图缩放至最小并拉从最左下向右上拉至地图边缘后手动运行一次再开始脚本[点击这里浏览器打开操作手册](https://github.com/MaaGF1/docs)",
             "option": [
                 "部署梯队选择"
             ],
@@ -174,7 +175,7 @@
             "name": "0元购",
             "entry": "!莫比乌斯带上的逃亡",
             "check": false,
-            "doc": "⚠️在主界面 或 常驻活动-卷积核界面运行[点击这里浏览器打开操作手册](https://github.com/MaaGF1/MaaGF1/blob/main/manual/0%E5%85%83%E8%B4%AD%E7%89%A9%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C.md)",
+            "doc": "⚠️在主界面 或 常驻活动-卷积核界面运行[点击这里浏览器打开操作手册](https://github.com/MaaGF1/docs)",
             "option": [
                 "0元购关卡"
             ],
@@ -185,7 +186,7 @@
             "name": "打捞-人形",
             "entry": "!常驻人形打捞",
             "check": false,
-            "doc": "[点击这里浏览器打开操作手册](https://github.com/LeonNagant/MaaGF1_Test/blob/main/manual/%E6%89%93%E6%8D%9E%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C.md)",
+            "doc": "[点击这里浏览器打开操作手册](https://github.com/MaaGF1/docs)",
             "option": [
                 "选择常驻人形打捞目标"
             ],
@@ -196,7 +197,7 @@
             "name": "打捞-装备",
             "entry": "!夜战打捞",
             "check": false,
-            "doc": "在夜战地图运行，[点击这里浏览器打开操作手册](https://github.com/LeonNagant/MaaGF1_Test/blob/main/manual/%E5%A4%9C%E6%88%98%E6%89%93%E6%8D%9E%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C.md)",
+            "doc": "在夜战地图运行，[点击这里浏览器打开操作手册](https://github.com/MaaGF1/docs)",
             "option": [
                 "选择夜战打捞地图"
             ]
@@ -245,7 +246,7 @@
             "name": "Farm-炼金",
             "entry": "!Alchemy_Entry",
             "check": false,
-            "doc": "静默沙盘：[点击这里浏览器打开操作手册](https://github.com/LeonNagant/MaaGF1_Test/blob/main/manual/%E9%9D%99%E9%BB%98%E6%B2%99%E7%9B%98%E5%88%B7%E8%B5%84%E6%BA%90.md)\n向你微笑(先辈)通关任意难度向你微笑，将地图缩放至最小即可开启运行，自动部署的梯队须为铁血梯队。\n向你微笑(DLZC)通关任意难度向你微笑，地图缩放到最小，拖动到右下角边缘开始",
+            "doc": "静默沙盘：[点击这里浏览器打开操作手册](https://github.com/MaaGF1/docs)\n向你微笑(先辈)通关任意难度向你微笑，将地图缩放至最小即可开启运行，自动部署的梯队须为铁血梯队。\n向你微笑(DLZC)通关任意难度向你微笑，地图缩放到最小，拖动到右下角边缘开始",
             "option": [
                 "Alchemy_Task_List"
             ],
@@ -397,13 +398,11 @@
                                 "134部署_确认1队是否已部署",
                                 "134进入_普通作战",
                                 "134进入_点击134",
-                                "134进入_点击作战任务"
-                            ],
-                            "interrupt": [
-                                "134重置_点击获得角色",
-                                "public拆人形_人形回收",
-                                "134重置_单击再次作战",
-                                "public_返回战斗界面"
+                                "134进入_点击作战任务",
+                                "[JumpBack]134重置_点击获得角色",
+                                "[JumpBack]public拆人形_人形回收",
+                                "[JumpBack]134重置_单击再次作战",
+                                "[JumpBack]public_返回战斗界面"
                             ]
                         }
                     }
@@ -459,13 +458,11 @@
                                 "134部署_确认1队是否已部署",
                                 "134进入_普通作战",
                                 "134进入_点击134",
-                                "134进入_点击作战任务"
-                            ],
-                            "interrupt": [
-                                "134重置_点击获得角色",
-                                "public拆人形_人形回收",
-                                "134重置_单击再次作战",
-                                "public_返回战斗界面"
+                                "134进入_点击作战任务",
+                                "[JumpBack]134重置_点击获得角色",
+                                "[JumpBack]public拆人形_人形回收",
+                                "[JumpBack]134重置_单击再次作战",
+                                "[JumpBack]public_返回战斗界面"
                             ]
                         }
                     }
@@ -482,13 +479,11 @@
                                 "134部署_布置完成",
                                 "134进入_普通作战",
                                 "134进入_点击134",
-                                "134进入_点击作战任务"
-                            ],
-                            "interrupt": [
-                                "134重置_点击获得角色",
-                                "public拆人形_人形回收",
-                                "134重置_单击再次作战",
-                                "public_返回战斗界面"
+                                "134进入_点击作战任务",
+                                "[JumpBack]134重置_点击获得角色",
+                                "[JumpBack]public拆人形_人形回收",
+                                "[JumpBack]134重置_单击再次作战",
+                                "[JumpBack]public_返回战斗界面"
                             ]
                         }
                     }
@@ -497,8 +492,7 @@
                     "name": "指定次数（满仓停止）",
                     "pipeline_override": {
                         "134重置_再战连点9": {
-                            "next": [],
-                            "interrupt": []
+                            "next": []
                         }
                     }
                 }
@@ -527,9 +521,10 @@
                     "name": "专属装备强化",
                     "pipeline_override": {
                         "81N_选择装备处理方式": {
-                            "interrupt": [
-                                "public装备强化_装备强化",
-                                "public_返回战斗界面"
+                            "next": [
+                                "81N进入_点击8-1N",
+                                "[JumpBack]public装备强化_装备强化",
+                                "[JumpBack]public_返回战斗界面"
                             ]
                         }
                     }
@@ -538,9 +533,10 @@
                     "name": "拆解（锁上需保留装备）",
                     "pipeline_override": {
                         "81N_选择装备处理方式": {
-                            "interrupt": [
-                                "public拆装备_装备回收",
-                                "public_返回战斗界面"
+                            "next": [
+                                "81N进入_点击8-1N",
+                                "[JumpBack]public拆装备_装备回收",
+                                "[JumpBack]public_返回战斗界面"
                             ]
                         }
                     }
@@ -549,8 +545,7 @@
                     "name": "结束任务",
                     "pipeline_override": {
                         "81N_选择装备处理方式": {
-                            "timeout": 1000,
-                            "interrupt": []
+                            "timeout": 1000
                         }
                     }
                 }
@@ -586,9 +581,10 @@
                     "name": "启用结算加速",
                     "pipeline_override": {
                         "81N战斗_执行计划": {
-                            "interrupt": [
-                                "public_不中断计划",
-                                "public_加速结算进入"
+                            "next": [
+                                "81N战斗_剩余行动01",
+                                "[JumpBack]public_不中断计划",
+                                "[JumpBack]public_加速结算进入"
                             ]
                         },
                         "public_加速后等待": {
@@ -612,9 +608,11 @@
                     "name": "启用结算加速",
                     "pipeline_override": {
                         "134战斗_执行计划": {
-                            "interrupt": [
-                                "public_不中断计划",
-                                "public_加速结算进入"
+                            "next": [
+                                "134重置_提前再次作战",
+                                "134重置_再次作战",
+                                "[JumpBack]public_不中断计划",
+                                "[JumpBack]public_加速结算进入"
                             ]
                         },
                         "public_加速后等待": {
@@ -683,23 +681,19 @@
                     "pipeline_override": {
                         "81N部署_确认1队是否已部署": {
                             "next": [
-                                "81N部署_确认3队是否已部署"
-                            ],
-                            "interrupt": [
-                                "81N部署_选择狗粮"
+                                "81N部署_确认3队是否已部署",
+                                "[JumpBack]81N部署_选择狗粮"
                             ]
                         },
                         "81N部署_确认2队是否已部署": {
                             "recognition": "DirectHit",
                             "next": [
-                                "81N部署_确认3队是否已部署"
+                                "81N部署_确认3队是否已部署",
+                                "[JumpBack]81N部署_选择狗粮"
                             ],
                             "rate_limit": 20,
                             "post_delay": 1,
-                            "pre_delay": 1,
-                            "interrupt": [
-                                "81N部署_选择狗粮"
-                            ]
+                            "pre_delay": 1
                         },
                         "81N部署_布置完成": {
                             "recognition": "TemplateMatch",
@@ -1608,9 +1602,11 @@
                     "name": "开启",
                     "pipeline_override": {
                         "虚粒子对_执行计划": {
-                            "interrupt": [
-                                "public_不中断计划",
-                                "public_加速结算进入"
+                            "next": [
+                                "虚粒子对_再次作战",
+                                "虚粒子对_执行计划",
+                                "[JumpBack]public_不中断计划",
+                                "[JumpBack]public_加速结算进入"
                             ]
                         }
                     }
@@ -1696,9 +1692,11 @@
                     "name": "开启",
                     "pipeline_override": {
                         "蝴蝶星云_执行计划": {
-                            "interrupt": [
-                                "public_不中断计划",
-                                "public_加速结算进入"
+                            "next": [
+                                "蝴蝶星云_再次作战",
+                                "蝴蝶星云_执行计划",
+                                "[JumpBack]public_不中断计划",
+                                "[JumpBack]public_加速结算进入"
                             ]
                         }
                     }
@@ -1801,9 +1799,11 @@
                     "name": "开启",
                     "pipeline_override": {
                         "零态潮汐_执行计划": {
-                            "interrupt": [
-                                "public_不中断计划",
-                                "public_加速结算进入"
+                            "next": [
+                                "零态潮汐_再次作战",
+                                "零态潮汐_执行计划",
+                                "[JumpBack]public_不中断计划",
+                                "[JumpBack]public_加速结算进入"
                             ]
                         }
                     }
@@ -2127,7 +2127,13 @@
                     "name": "拆解全部",
                     "pipeline_override": {
                         "灰域_出击奇遇": {
-                            "interrupt": "public拆人形_人形回收"
+                            "next": [
+                                "灰域_奇遇代理",
+                                "灰域_出击奇遇",
+                                "灰域_进入灰域",
+                                "[JumpBack]public二星人形回收_人形回收",
+                                "[JumpBack]public拆人形_人形回收"
+                            ]
                         }
                     }
                 }
