@@ -118,10 +118,6 @@ case "$1" in
             STATUS_TEXT="[FAILED]"
         fi
         
-        # Since matrix results are passed as a JSON string or combined status, 
-        # the original logic checked `contains(needs.install.result, 'success')`.
-        # Here we assume STATUS_INSTALL is passed as the overall result string.
-        
         cat >> $GITHUB_STEP_SUMMARY << EOF
 # Overall Build Summary
 
@@ -144,12 +140,41 @@ EOF
 
     "zip_assets")
         # Requires env: TAG
-        # Assumes current directory has the assets
+        echo "Starting zip_assets..."
+        
+        if [ -z "$TAG" ]; then
+            echo "Error: TAG environment variable is not set."
+            exit 1
+        fi
+
+        if [ ! -d "assets" ]; then
+            echo "Error: 'assets' directory not found."
+            exit 1
+        fi
+
         cd assets
+        
+        # Enable nullglob to handle cases with no matches gracefully
+        shopt -s nullglob
+        
         for f in *; do
             if [ -d "$f" ]; then
-                echo "Zipping $f..."
-                (cd "$f" && zip -r "../$f-${TAG}.zip" .)
+                echo "Processing artifact: $f"
+                
+                # Check if directory is empty to avoid 'zip error: Nothing to do!'
+                if [ -z "$(ls -A "$f")" ]; then
+                    echo "Warning: Directory '$f' is empty. Skipping."
+                    continue
+                fi
+
+                # Use subshell to avoid cd .. issues
+                (
+                    cd "$f"
+                    echo "Zipping content of $f to ../$f-${TAG}.zip"
+                    zip -r "../$f-${TAG}.zip" .
+                )
+            else
+                echo "Skipping non-directory: $f"
             fi
         done
         ;;
