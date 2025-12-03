@@ -16,7 +16,8 @@ MaaGF1 是基于 [MaaFrameork](https://github.com/MaaXYZ/MaaFramework) 的、适
 ### 2.1 快速上手
 
 1. [下载并运行](https://github.com/MaaGF1/MaaGF1/wiki/Tutorial-Begin)
-2. [用户手册](https://github.com/MaaGF1/docs)
+2. [文档仓库](https://github.com/MaaGF1/docs)
+3. [在线手册](https://maagf1.github.io/docs/) 
 
 ### 2.2 国际化
 
