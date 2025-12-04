@@ -1,4 +1,4 @@
-[![English](https://img.shields.io/badge/English-README-blue)](docs/README.en.md) [![Docs](https://img.shields.io/badge/使用手册-8CA1AF?logo=readthedocs&logoColor=fff)](https://github.com/MaaGF1/docs) [![Wiki](https://img.shields.io/badge/Wiki-018EF5?logo=readme&logoColor=fff)](https://github.com/MaaGF1/MaaGF1/wiki)
+[![English](https://img.shields.io/badge/English-README-blue)](docs/README.en.md) [![Docs_Repo](https://img.shields.io/badge/文档仓库-8CA1AF?logo=readthedocs&logoColor=fff)](https://github.com/MaaGF1/docs) [![Docs_Onlie](https://img.shields.io/badge/在线手册-FFAA00?logo=readthedocs&logoColor=fff)](https://maagf1.github.io/docs/) [![Wiki](https://img.shields.io/badge/Wiki-018EF5?logo=readme&logoColor=fff)](https://github.com/MaaGF1/MaaGF1/wiki)
 
 <p align="center">
   <img src="docs/pic/logo.png" width="200" height="200" alt="LOGO">
@@ -16,7 +16,8 @@ MaaGF1 是基于 [MaaFrameork](https://github.com/MaaXYZ/MaaFramework) 的、适
 ### 2.1 快速上手
 
 1. [下载并运行](https://github.com/MaaGF1/MaaGF1/wiki/Tutorial-Begin)
-2. [用户手册](https://github.com/MaaGF1/docs)
+2. [文档仓库](https://github.com/MaaGF1/docs)
+3. [在线手册](https://maagf1.github.io/docs/) 
 
 ### 2.2 国际化
 
