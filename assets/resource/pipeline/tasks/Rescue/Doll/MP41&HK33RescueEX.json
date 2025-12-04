@@ -135,11 +135,26 @@
 		"expected": ["开始作战"],
 		"action": "LongPress",
 		"duration": 20,
+		"post_wait_freezes": 100,
 		"next": [
 			"MP41打捞_人形回收",
+			"MP41打捞_关闭任务简报",
 			"MP41打捞_选中铁血"
 		]
 	},
+	"MP41打捞_关闭任务简报":{
+    "recognition": "TemplateMatch", 
+    "action": "LongPress",
+    "duration": 20,
+    "template": ["combat/dollRescue/residentRescue/MP41&HK33RescueEX/关闭任务简报.png"],
+    "threshold": 0.6,
+    "roi" : [10,76,274,84], 
+    "post_wait_freezes": 100,
+    "next": [
+        "MP41打捞_选中铁血",
+        "MP41打捞_关闭任务简报"  
+    ]
+},
 	"MP41打捞_选中铁血": {
 		"target": [472, 538, 15, 20],
 		"action": "LongPress",
@@ -147,6 +162,7 @@
 		"roi": [264, 292, 337, 323],
 		"post_delay": 200,
 		"next": [
+			"MP41打捞_关闭任务简报",
 			"MP41打捞_点击补给",
 			"MP41打捞_选中铁血"
 		]
