@@ -1,5 +1,5 @@
 {
-	"!熵增递减": {
+	"!莫比乌斯带上的逃亡": {
 		"recognition": "DirectHit",
 		"action": "DoNothing",
 		"post_delay": 1,
