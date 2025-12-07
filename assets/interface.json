@@ -2257,30 +2257,6 @@
                     }
                 },
                 {
-                    "name": "看门狗测试_正常情况",
-                    "pipeline_override": {
-                        "!CustomServer": {
-                            "next": "!Watchdog_Normal_Test"
-                        }
-                    }
-                },
-                {
-                    "name": "看门狗测试_超时情况",
-                    "pipeline_override": {
-                        "!CustomServer": {
-                            "next": "!Watchdog_Timeout_Test"
-                        }
-                    }
-                },
-                {
-                    "name": "看门狗测试_更新超时阈值",
-                    "pipeline_override": {
-                        "!CustomServer": {
-                            "next": "!Watchdog_Update_Test"
-                        }
-                    }
-                },
-                {
                     "name": "去除窗口装饰",
                     "pipeline_override": {
                         "!CustomServer": {
@@ -2317,14 +2293,6 @@
                     "pipeline_override": {
                         "!CustomServer": {
                             "next": "!Unit_Test_Notify_Wechat_Task"
-                        }
-                    }
-                },
-                {
-                    "name": "单元测试_看门狗",
-                    "pipeline_override": {
-                        "!CustomServer": {
-                            "next": "!Unit_Test_Watchdog_Task"
                         }
                     }
                 }
