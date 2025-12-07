@@ -2257,22 +2257,6 @@
                     }
                 },
                 {
-                    "name": "去除窗口装饰",
-                    "pipeline_override": {
-                        "!CustomServer": {
-                            "next": "!Borderless_Optimize_Task"
-                        }
-                    }
-                },
-                {
-                    "name": "恢复窗口装饰",
-                    "pipeline_override": {
-                        "!CustomServer": {
-                            "next": "!Borderless_Revert_Task"
-                        }
-                    }
-                },
-                {
                     "name": "单元测试_默认外部通知",
                     "pipeline_override": {
                         "!CustomServer": {
