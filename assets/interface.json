@@ -28,7 +28,7 @@
         "child_args": [
             "{PROJECT_DIR}/agent/main.py"
         ]
-        },
+    },
     "resource": [
         {
             "name": "官服",
