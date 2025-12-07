@@ -1,19 +1,33 @@
-from .include import *
 import json
 import requests
 import threading
 import weakref
-from typing import Optional, Dict, Any
 import gc
-
-# Load config.py
+import time
 import sys
 import os
+from typing import Optional, Dict, Any
+
+# MaaFramework Imports
+from maa.agent.agent_server import AgentServer
+from maa.custom_action import CustomAction
+from maa.context import Context
+
+# Load config.py
 parent_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, parent_dir)
 from utils import (get_telegram_config, is_telegram_configured, 
                    get_wechat_config, is_wechat_configured,
                    get_default_ext_notify, get_available_notifiers)
+
+#################### Global Variables ####################
+
+# Default Counter
+Task_Counter = 0
+
+# Log Control
+Enable_MaaLog_Debug = 0
+Enable_MaaLog_Info = 0
 
 ################################################################################ Part 0 : Logging Functions ################################################################################
 
