@@ -125,7 +125,9 @@
 		]
 	},
 	"LS_点击计划模式": {
-		"recognition": "DirectHit",
+		"recognition": "OCR",
+		"roi": [1106, 641, 58, 43],
+		"expected": "END",
 		"action": "LongPress",
 		"target": [54, 621, 32, 12],
 		"duration": 15,
