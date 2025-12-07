@@ -23,6 +23,12 @@
             "type": "Adb"
         }
     ],
+    "agent": {
+        "child_exec": "C://Users//96921//miniconda3//python.exe",
+        "child_args": [
+            "{PROJECT_DIR}/agent/main.py"
+        ]
+        },
     "resource": [
         {
             "name": "官服",
