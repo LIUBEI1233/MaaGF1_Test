@@ -142,7 +142,7 @@ try:
     print("Starting to import custom modules...")
     import my_reco
     import action
-    # 注意：action 模块现在只包含 log 和 borderless，不再包含 watchdog
+    # 注意：action 模块现在只包含 log，不再包含 watchdog
     print("Custom modules imported successfully")
     
 except Exception as e:

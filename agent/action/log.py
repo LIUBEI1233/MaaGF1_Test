@@ -20,6 +20,12 @@ from utils import (get_telegram_config, is_telegram_configured,
                    get_wechat_config, is_wechat_configured,
                    get_default_ext_notify, get_available_notifiers)
 
+# Try import matlab engine
+try:
+    from .matlab import get_matlab_engine
+except ImportError:
+    get_matlab_engine = None
+
 #################### Global Variables ####################
 
 # Default Counter
@@ -297,7 +303,19 @@ class _SingletonHandler:
         """Process special parameters"""
         global Task_Counter
         
-        processed = {}
+        # 1. Start with Matlab variables as the base context
+        # This allows "{Index}" in the message to work without explicit 'parameters' mapping
+        try:
+            if get_matlab_engine:
+                # Copy to avoid modifying the engine's storage directly
+                processed = get_matlab_engine().variables.copy()
+            else:
+                processed = {}
+        except Exception:
+            processed = {}
+
+        # 2. Process explicit parameters from JSON
+        # (This allows JSON params to override Matlab vars or use special tokens like Task_Counter)
         for key, value in parameters.items():
             if isinstance(value, str):
                 if value == "{Task_Counter}":
@@ -305,20 +323,31 @@ class _SingletonHandler:
                 elif value == "{increment_Task_Counter}":
                     Task_Counter += 1
                     processed[key] = Task_Counter
+                # Check if value matches a variable in Matlab engine (e.g. "my_val": "{Index}")
+                elif value.startswith("{") and value.endswith("}"):
+                    var_name = value[1:-1]
+                    # If the var exists in our base processed (which has matlab vars), use it
+                    if var_name in processed:
+                        processed[key] = processed[var_name]
+                    else:
+                        processed[key] = value
                 else:
                     processed[key] = value
             else:
                 processed[key] = value
-        
+
         return processed
     
     def _format_message(self, template: str, parameters: dict) -> str:
         """Format message"""
         try:
             processed = self._process_parameters(parameters)
+            # Use safe formatting to avoid crash if key is missing? 
+            # Standard .format() will raise KeyError if key is missing, which is caught below.
             return template.format(**processed)
         except Exception as e:
-            MaaLog_Debug(f"Message format error: {e}")
+            # Fallback: if format fails (e.g. missing key), return raw template
+            # MaaLog_Debug(f"Message format error: {e}")
             return template
     
     def _handle_message_routing(self, parsed_param, default_handler, string_handler, dict_handler):

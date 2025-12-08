@@ -1,0 +1,45 @@
+{
+    "!Timer_01_Start": {
+        "action": "Custom",
+        "custom_action": "matlab_calculate",
+        "custom_action_param": {
+            "syntax": "Start_Time = _get_time"
+        },
+        "next": [
+            "Timer_02_Log_Start"
+        ]
+    },
+    "Timer_02_Log_Start": {
+        "action": "Custom",
+        "custom_action": "parametric_extnotify",
+        "custom_action_param": {
+            "message": "Timer started, waiting for 60 seconds timeout..."
+        },
+        "next": [
+            "Timer_03_Wait_Loop"
+        ]
+    },
+    "Timer_03_Wait_Loop": {
+        "action": "Custom",
+        "custom_action": "matlab_calculate",
+        "custom_action_param": {
+            "syntax": "_get_time - Start_Time > 60",
+            "true": "Timer_05_Timeout_End",
+            "false": "Timer_04_Do_Nothing"
+        }
+    },
+    "Timer_04_Do_Nothing": {
+        "doc": "Simulate a blocking wait or other tasks",
+        "post_delay": 2000,
+        "next": [
+            "Timer_03_Wait_Loop"
+        ]
+    },
+    "Timer_05_Timeout_End": {
+        "action": "Custom",
+        "custom_action": "parametric_extnotify",
+        "custom_action_param": {
+            "message": "60 seconds have passed. Task finished."
+        }
+    }
+}

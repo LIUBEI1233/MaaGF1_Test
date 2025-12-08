@@ -1,0 +1,50 @@
+{
+    "!Fibo_01_Init": {
+        "action": "Custom",
+        "custom_action": "matlab_calculate",
+        "custom_action_param": {
+            "syntax": "A = 0; B = 1; Index = 0; Max_Count = 10"
+        },
+        "next": [
+            "Fibo_02_Check_Loop"
+        ]
+    },
+    "Fibo_02_Check_Loop": {
+        "action": "Custom",
+        "custom_action": "matlab_calculate",
+        "custom_action_param": {
+            "syntax": "Index < Max_Count",
+            "true": "Fibo_03_Log_Current",
+            "false": "Fibo_05_End"
+        }
+    },
+    "Fibo_03_Log_Current": {
+        "action": "Custom",
+        "custom_action": "parametric_extnotify",
+        "custom_action_param": {
+            "type": "info",
+            "message": "Fibonacci Sequence [{Index}]: {B}"
+        },
+        "next": [
+            "Fibo_04_Calculate_Next"
+        ]
+    },
+    "Fibo_04_Calculate_Next": {
+        "action": "Custom",
+        "custom_action": "matlab_calculate",
+        "custom_action_param": {
+            "syntax": "Temp = A + B; A = B; B = Temp; Index = Index + 1"
+        },
+        "next": [
+            "Fibo_02_Check_Loop"
+        ]
+    },
+    "Fibo_05_End": {
+        "action": "Custom",
+        "custom_action": "parametric_extnotify",
+        "custom_action_param": {
+            "type": "info",
+            "message": "Fibonacci Calculation Completed."
+        }
+    }
+}

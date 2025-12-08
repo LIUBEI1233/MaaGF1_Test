@@ -2279,6 +2279,22 @@
                             "next": "!Unit_Test_Notify_Wechat_Task"
                         }
                     }
+                },
+                {
+                    "name": "MAT_斐波拉契数列",
+                    "pipeline_override": {
+                        "!CustomServer": {
+                            "next": "!Fibo_01_Init"
+                        }
+                    }
+                },
+                {
+                    "name": "MAT_阻塞60秒",
+                    "pipeline_override": {
+                        "!CustomServer": {
+                            "next": "!Timer_01_Start"
+                        }
+                    }
                 }
             ]
         }
