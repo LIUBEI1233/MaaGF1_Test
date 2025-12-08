@@ -70,6 +70,17 @@
 		"duration": 500,
 		"pre_delay": 1000,
 		"post_delay": 3000,
+		"next": [
+			"public二星人形回收_判断是否进入战斗菜单",
+			"public二星人形回收_导航栏战斗"
+		]
+	},
+	"public二星人形回收_判断是否进入战斗菜单": {
+		"recognition": "OCR",
+		"roi": [319, 34, 70, 42],
+		"expected": ["co", "CO"],
+		"action": "DoNothing",
+		"post_delay": 2000,
 		"next": []
 	}
 }

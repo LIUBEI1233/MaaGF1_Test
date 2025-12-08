@@ -177,7 +177,8 @@
             "check": false,
             "doc": "⚠️在主界面 或 常驻活动-卷积核界面运行[点击这里浏览器打开操作手册](https://github.com/MaaGF1/docs)",
             "option": [
-                "0元购关卡"
+                "0元购关卡",
+                "拆解N次后返回"
             ],
             "repeatable": true,
             "repeat_count": 9999
@@ -843,6 +844,22 @@
                     }
                 }
             ]
+        },
+        "拆解N次后返回": {
+            "name": "拆解N次后返回基地",
+            "type": "input",
+            "inputs": [
+                {
+                    "name": "拆解N次后返回基地",
+                    "default": "99999",
+                    "pipeline_type": "int"
+                }
+            ],
+            "pipeline_override": {
+                "逃亡_进入卷积核": {
+                    "max_hit": "{拆解N次后返回基地}"
+                }
+            }
         },
         "循演普通_选择打捞关卡": {
             "cases": [

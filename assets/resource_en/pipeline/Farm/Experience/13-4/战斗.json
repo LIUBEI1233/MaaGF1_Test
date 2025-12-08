@@ -1,0 +1,97 @@
+{
+	"134战斗_开始作战": {
+		"roi": [1008, 635, 92, 27],
+		"expected": ["START"]
+	},
+	"134战斗_点击2队单vv准备补给": {
+		"duration": 15
+	},
+	"134战斗_开始作战假点击": {
+		"recognition": "OCR",
+		"roi": [700, 613, 169, 52],
+		"expected": ["一键", "修复"],
+		"target": [1147, 627, 31, 18],
+		"action": "LongPress",
+		"duration": 20,
+		"next": [
+			"134战斗_开始作战"
+		]
+	},
+	"134战斗_点击补给": {
+		"roi": [1161, 547, 119, 33],
+		"expected": "RESUPPLY"
+	},
+	"134战斗_点击1队图标": {
+		"duration": 10
+	},
+	"134战斗_出现妖精技能释放": {
+		"roi": [1155, 135, 58, 19],
+		"expected": "COMMAN"
+	},
+	"134战斗_点击1队取消": {
+		"roi": [1074, 601, 181, 73],
+		"expected": ["CANCEL"]
+	},
+	"134战斗_点击计划模式": {
+		"duration": 15
+	},
+	"134战斗_巡游者": {
+		"duration": 15,
+		"post_delay": 300,
+		"rate_limit": 600
+	},
+	"134战斗_巡游者_确认": {
+		"threshold": 0.6,
+		"next": [
+			"134战斗_钢狮"
+		]
+	},
+	"134战斗_胡蜂": {
+		"duration": 15,
+		"post_delay": 300,
+		"rate_limit": 600
+	},
+	"134战斗_钢狮": {
+		"duration": 15,
+		"post_delay": 300,
+		"rate_limit": 600
+	},
+	"134战斗_钢狮_确认": {
+		"threshold": 0.6
+	},
+	"134战斗_下一回合": {
+		"target": [1162, 544, 28, 18],
+		"action": "LongPress",
+		"duration": 20,
+		"post_delay": 600,
+		"rate_limit": 600,
+		"threshold": 0.8,
+		"next": [
+			"134战斗_下一回合_确认",
+			"134战斗_下一回合"
+		]
+	},
+	"134战斗_下一回合_确认": {
+		"expected": ["CANCE"]
+	},
+	"134战斗_执行计划": {
+		"duration": 15,
+		"timeout": 60000,
+		"next": [
+			"134战斗_再次作战",
+			"[JumpBack]public_加速结算进入"
+		]
+	},
+	"134战斗_再次作战": {
+		"recognition": "OCR",
+		"roi": [412, 293, 115, 36],
+		"expected": "LOSSES",
+		"next": [
+			"134部署_弹药检查new",
+			"134进入_点击134",
+			"[JumpBack]public拆人形_人形回收",
+			"[JumpBack]public_关卡结算点击1",
+			"[JumpBack]public拆人形_导航栏战斗"
+		]
+	}
+}
