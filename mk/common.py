@@ -3,7 +3,6 @@ import sys
 from pathlib import Path
 
 # Define mk directory and project root directory
-# Assuming structure: root/mk/common.py
 MK_DIR = Path(__file__).parent.resolve()
 PROJECT_ROOT = MK_DIR.parent
 
@@ -13,6 +12,7 @@ DEPS_BIN_DIR = PROJECT_ROOT / "deps" / "bin"
 DIST_DIR = PROJECT_ROOT / "install"
 TOOLS_DIR = PROJECT_ROOT / "tools"
 AGENT_DIR = PROJECT_ROOT / "agent"
+AGENT_MK_DIR = AGENT_DIR / "mk"
 DOCS_FILES = ["README.md", "LICENSE", "CHANGES.md"]
 
 def add_path():
