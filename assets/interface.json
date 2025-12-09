@@ -183,6 +183,17 @@
             "repeat_count": 9999
         },
         {
+            "name": "Advanced 0元购",
+            "entry": "!莫比乌斯带上的ad逃亡",
+            "check": false,
+            "doc": "[color:tomato]在 主界面/战斗菜单 启动,局内地图缩放要求同`0元购`[/color]",
+            "option": [
+                "N分钟后返回基地"
+            ],
+            "repeatable": true,
+            "repeat_count": 9999
+        },
+        {
             "name": "打捞-人形",
             "entry": "!常驻人形打捞",
             "check": false,
@@ -843,6 +854,24 @@
                     }
                 }
             ]
+        },
+        "N分钟后返回基地": {
+            "name": "N分钟后返回基地",
+            "type": "input",
+            "inputs": [
+                {
+                    "name": "N分钟后返回基地",
+                    "default": "99999",
+                    "pipeline_type": "int"
+                }
+            ],
+            "pipeline_override": {
+                "ad逃亡_识别卷积核": {
+                    "custom_action_param": {
+                        "syntax": "Start_Time = _get_time; T = {N分钟后返回基地}"
+                    }
+                }
+            }
         },
         "循演普通_选择打捞关卡": {
             "cases": [
