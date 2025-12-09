@@ -183,11 +183,11 @@
             "repeat_count": 9999
         },
         {
-            "name":"Advanced 0元购",
-            "entry":"!莫比乌斯带上的ad逃亡",
+            "name": "Advanced 0元购",
+            "entry": "!莫比乌斯带上的ad逃亡",
             "check": false,
-            "doc":"[color:tomato]在 主界面/战斗菜单 启动,局内地图缩放要求同`0元购`[/color]",
-            "option":[
+            "doc": "[color:tomato]在 主界面/战斗菜单 启动,局内地图缩放要求同`0元购`[/color]",
+            "option": [
                 "N分钟后返回基地"
             ],
             "repeatable": true,
@@ -867,10 +867,9 @@
             ],
             "pipeline_override": {
                 "ad逃亡_识别卷积核": {
-                    "custom_action_param": 
-                    {
-			            "syntax": "Start_Time = _get_time; T = {N分钟后返回基地}"
-		            }
+                    "custom_action_param": {
+                        "syntax": "Start_Time = _get_time; T = {N分钟后返回基地}"
+                    }
                 }
             }
         },
