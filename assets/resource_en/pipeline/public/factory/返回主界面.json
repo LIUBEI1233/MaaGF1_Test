@@ -20,7 +20,9 @@
 		"recognition": "OCR",
 		"roi": [911, 238, 141, 85],
 		"expected": ["研发", "RE"],
-		"next": []
+		"next": [
+			"桌面进入工厂"
+		]
 	},
 	"返回主界面_ESC": {
 		"action": "Key",

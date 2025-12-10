@@ -1,4 +1,14 @@
 {
+	"桌面进入工厂": {
+		"recognition": "OCR",
+		"expected": "FACTORY",
+		"action": "LongPress",
+		"duration": 10,
+		"next": [
+			"妖精重建",
+			"桌面进入工厂"
+		]
+	},
 	"妖精重建": {
 		"recognition": "OCR",
 		"roi": [107, 560, 35, 34],
