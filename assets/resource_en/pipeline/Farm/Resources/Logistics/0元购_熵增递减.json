@@ -1,10 +1,36 @@
 {
-	"!莫比乌斯带上的逃亡": {
+	"!熵增递减": {
 		"recognition": "DirectHit",
 		"action": "DoNothing",
+		"pre_delay": 1,
 		"post_delay": 1,
 		"next": [
 			"熵增_开始作战",
+			"熵增_进入熵增递减"
+		]
+	},
+	"熵增_桌面点击战斗": {
+		"recognition": "OCR",
+		"roi": [910, 398, 138, 58],
+		"expected": "COMBAT",
+		"action": "LongPress",
+		"duration": 15,
+		"next": [
+			"熵增_识别熵增",
+			"熵增_桌面点击战斗"
+		]
+	},
+	"熵增_识别熵增": {
+		"recognition": "OCR",
+		"roi": [671, 295, 248, 49],
+		"expected": "RE",
+		"action": "Custom",
+		"custom_action": "matlab_calculate",
+		"custom_action_param": {
+			"syntax": "Start_Time = _get_time; T = 120"
+		},
+		"post_delay": 1,
+		"next": [
 			"熵增_进入熵增递减"
 		]
 	},
@@ -28,7 +54,7 @@
 		"post_delay": 800,
 		"rate_limit": 2500,
 		"next": [
-			"熵增_进入卷积核关卡",
+			"熵增_进入熵增关卡",
 			"[JumpBack]熵增_切换关卡"
 		]
 	},
@@ -41,7 +67,7 @@
 		"post_delay": 500,
 		"next": []
 	},
-	"熵增_进入卷积核关卡": {
+	"熵增_进入熵增关卡": {
 		"recognition": "OCR",
 		"roi": [1015, 395, 57, 25],
 		"expected": "AUTO",
@@ -51,7 +77,7 @@
 		"post_delay": 1500,
 		"next": [
 			"熵增_开始作战",
-			"熵增_进入卷积核关卡"
+			"熵增_进入熵增关卡"
 		]
 	},
 	"熵增_开始作战": {
@@ -111,11 +137,10 @@
 	},
 	"熵增_执行计划": {
 		"recognition": "OCR",
-		"roi": [1128, 667, 108, 38],
-		"expected": "PLAN",
+		"roi": [1101, 623, 162, 85],
+		"expected": ["EXE", "CUTE"],
 		"action": "LongPress",
 		"duration": 15,
-		"target": [1142, 650, 58, 40],
 		"post_delay": 5000,
 		"rate_limit": 2000,
 		"next": [
@@ -136,14 +161,13 @@
 		"roi": [979, 647, 111, 62],
 		"expected": "00",
 		"action": "DoNothing",
-		"rate_limit": 1500,
-		"post_delay": 700,
-		"pre_delay": 700,
+		"rate_limit": 500,
+		"post_delay": 1,
 		"timeout": 120000,
 		"next": [
 			"熵增_开始作战1",
 			"熵增_进入熵增递减",
-			"[JumpBack]public_support_二星人形回收_人形回收",
+			"[JumpBack]public_全回收_人形回收",
 			"[JumpBack]public_关卡结算点击1"
 		]
 	}

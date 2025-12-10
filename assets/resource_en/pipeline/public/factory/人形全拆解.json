@@ -1,0 +1,65 @@
+{
+	"public_全回收_人形回收": {
+		"recognition": "OCR",
+		"roi": [631, 309, 81, 40],
+		"expected": "Retire",
+		"action": "LongPress",
+		"duration": 10,
+		"post_delay": 200,
+		"next": [
+			"public_全回收_回收角色",
+			"public_全回收_人形回收"
+		]
+	},
+	"public_全回收_回收角色": {
+		"recognition": "OCR",
+		"roi": [335, 211, 76, 29],
+		"expected": "T-DOLL",
+		"action": "LongPress",
+		"duration": 10,
+		"post_delay": 700,
+		"next": [
+			"public_全回收_智能选择",
+			"public_全回收_回收角色"
+		]
+	},
+	"public_全回收_智能选择": {
+		"recognition": "OCR",
+		"roi": [1093, 593, 174, 106],
+		"expected": ["SELECT", "OK"],
+		"action": "LongPress",
+		"duration": 10,
+		"post_delay": 200,
+		"next": [
+			"public_全回收_智能选择",
+			"public_全回收_确认回收"
+		]
+	},
+	"public_全回收_确认回收": {
+		"recognition": "OCR",
+		"roi": [1062, 201, 109, 39],
+		"expected": "Manpower",
+		"action": "LongPress",
+		"duration": 10,
+		"target": [1096, 575, 110, 50],
+		"post_delay": 1500,
+		"timeout": 2000,
+		"next": [
+			"public_全回收_确认回收"
+		]
+	},
+	"public_全回收_回收角色1": {
+		"recognition": "OCR",
+		"roi": [335, 211, 76, 29],
+		"expected": "T-DOLL",
+		"action": "LongPress",
+		"duration": 10,
+		"next": []
+	},
+	"public_全回收_判断进入全拆解": {
+		"recognition": "OCR",
+		"roi": [1093, 593, 174, 106],
+		"expected": ["SELECT"],
+		"next": []
+	}
+}
