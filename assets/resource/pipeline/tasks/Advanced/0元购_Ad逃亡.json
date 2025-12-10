@@ -2,9 +2,9 @@
 	"!莫比乌斯带上的ad逃亡": {
 		"recognition": "DirectHit",
 		"action": "DoNothing",
+		"pre_delay": 1,
 		"post_delay": 1,
 		"next": [
-			"ad逃亡_识别卷积核",
 			"ad逃亡_计算时间",
 			"ad逃亡_桌面点击战斗"
 		]
@@ -239,8 +239,8 @@
 		"pre_delay": 1,
 		"post_delay": 1,
 		"next": [
-			"ad逃亡_结束回合",
-			"ad逃亡_开始作战"
+			"ad逃亡_结束回合1",
+			"[JumpBack]ad逃亡_结束回合"
 		]
 	},
 	"ad逃亡_开始作战1": {
@@ -258,17 +258,13 @@
 		"action": "LongPress",
 		"duration": 15,
 		"pre_delay": 1,
-		"post_delay": 200,
-		"timeout": 120000,
-		"next": [
-			"ad逃亡_结束回合1",
-			"ad逃亡_结束回合"
-		]
+		"post_delay": 1,
+		"next": []
 	},
 	"ad逃亡_结束回合1": {
 		"recognition": "OCR",
 		"roi": [416, 34, 64, 55],
-		"expected": ["02", "2"],
+		"expected": ["2"],
 		"rate_limit": 500,
 		"post_delay": 1,
 		"timeout": 120000,
