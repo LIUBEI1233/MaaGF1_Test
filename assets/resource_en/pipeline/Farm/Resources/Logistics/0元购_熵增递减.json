@@ -6,7 +6,7 @@
 		"post_delay": 1,
 		"next": [
 			"熵增_开始作战",
-			"熵增_进入熵增递减"
+			"熵增_识别熵增"
 		]
 	},
 	"熵增_桌面点击战斗": {
@@ -24,17 +24,14 @@
 		"recognition": "OCR",
 		"roi": [671, 295, 248, 49],
 		"expected": "RE",
-		"action": "Custom",
-		"custom_action": "matlab_calculate",
-		"custom_action_param": {
-			"syntax": "Start_Time = _get_time; T = 120"
-		},
 		"post_delay": 1,
 		"next": [
-			"熵增_进入熵增递减"
+			"逃亡_进入卷积核",
+			"!返回主界面"
 		]
 	},
-	"熵增_进入熵增递减": {
+	"逃亡_进入卷积核": {
+		"max_hit": 10,
 		"recognition": "OCR",
 		"roi": [962, 237, 179, 127],
 		"expected": "TOUCH",
@@ -43,7 +40,7 @@
 		"pre_delay": 1500,
 		"post_delay": 1500,
 		"next": [
-			"熵增_进入熵增递减",
+			"逃亡_进入卷积核",
 			"熵增_进入活动"
 		]
 	},
@@ -166,7 +163,7 @@
 		"timeout": 120000,
 		"next": [
 			"熵增_开始作战1",
-			"熵增_进入熵增递减",
+			"逃亡_进入卷积核",
 			"[JumpBack]public_全回收_人形回收",
 			"[JumpBack]public_关卡结算点击1"
 		]

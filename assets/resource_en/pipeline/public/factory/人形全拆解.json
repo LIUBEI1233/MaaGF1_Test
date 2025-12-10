@@ -45,6 +45,7 @@
 		"post_delay": 1500,
 		"timeout": 60000,
 		"next": [
+			"public_全回收_回收角色1",
 			"public_全回收_确认回收"
 		]
 	},
@@ -56,7 +57,8 @@
 		"duration": 10,
 		"post_delay": 2000,
 		"next": [
-			"public_全回收_进入全拆解"
+			"public_全回收_进入全拆解",
+			"public二星人形回收_导航栏战斗"
 		]
 	},
 	"public_全回收_进入全拆解": {
@@ -129,7 +131,8 @@
 		"post_delay": 1500,
 		"timeout": 60000,
 		"next": [
-			"public_全回收_确认回收"
+			"public_全回收_确认回收",
+			"public_全回收_确认回收1"
 		]
 	},
 	"public_全回收_确认回收1_1": {
@@ -142,7 +145,8 @@
 		"post_delay": 1500,
 		"timeout": 60000,
 		"next": [
-			"public二星人形回收_进入导航栏"
+			"public二星人形回收_进入导航栏",
+			"public_全回收_确认回收1_1"
 		]
 	}
 }
