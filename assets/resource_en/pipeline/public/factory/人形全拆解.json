@@ -58,7 +58,7 @@
 		"post_delay": 2000,
 		"next": [
 			"public_全回收_进入全拆解",
-			"public二星人形回收_导航栏战斗"
+			"public二星人形回收_进入导航栏"
 		]
 	},
 	"public_全回收_进入全拆解": {
@@ -72,6 +72,7 @@
 	"public_点击1": {
 		"action": "LongPress",
 		"target": [80, 248, 49, 29],
+		"duration": 10,
 		"next": [
 			"public_点击2"
 		]
@@ -79,6 +80,7 @@
 	"public_点击2": {
 		"action": "LongPress",
 		"target": [261, 234, 53, 33],
+		"duration": 10,
 		"next": [
 			"public_点击3"
 		]
@@ -86,6 +88,7 @@
 	"public_点击3": {
 		"action": "LongPress",
 		"target": [429, 246, 63, 33],
+		"duration": 10,
 		"next": [
 			"public_点击4"
 		]
@@ -93,6 +96,7 @@
 	"public_点击4": {
 		"action": "LongPress",
 		"target": [610, 240, 62, 33],
+		"duration": 10,
 		"next": [
 			"public_点击5"
 		]
@@ -100,6 +104,7 @@
 	"public_点击5": {
 		"action": "LongPress",
 		"target": [768, 236, 70, 35],
+		"duration": 10,
 		"next": [
 			"public_点击6"
 		]
@@ -107,6 +112,7 @@
 	"public_点击6": {
 		"action": "LongPress",
 		"target": [944, 236, 61, 28],
+		"duration": 10,
 		"next": []
 	},
 	"public_全回收_智能选择1": {
@@ -131,7 +137,7 @@
 		"post_delay": 1500,
 		"timeout": 60000,
 		"next": [
-			"public_全回收_确认回收",
+			"public_全回收_确认回收1_1",
 			"public_全回收_确认回收1"
 		]
 	},

@@ -24,14 +24,15 @@
 		"recognition": "OCR",
 		"roi": [671, 295, 248, 49],
 		"expected": "RE",
+		"action": "LongPress",
+		"duration": 10,
 		"post_delay": 1,
 		"next": [
-			"逃亡_进入卷积核",
+			"熵增_进入卷积核",
 			"!返回主界面"
 		]
 	},
-	"逃亡_进入卷积核": {
-		"max_hit": 10,
+	"熵增_进入卷积核": {
 		"recognition": "OCR",
 		"roi": [962, 237, 179, 127],
 		"expected": "TOUCH",
@@ -40,7 +41,7 @@
 		"pre_delay": 1500,
 		"post_delay": 1500,
 		"next": [
-			"逃亡_进入卷积核",
+			"熵增_进入卷积核",
 			"熵增_进入活动"
 		]
 	},
@@ -81,23 +82,24 @@
 		"recognition": "OCR",
 		"roi": [1008, 635, 92, 27],
 		"expected": "START",
-		"action": "LongPress",
-		"duration": 15,
-		"pre_delay": 400,
-		"post_delay": 400,
+		"pre_delay": 1,
+		"post_delay": 1,
 		"next": [
-			"熵增_点击计划模式",
-			"熵增_开始作战"
+			"逃亡_进入卷积核"
 		]
 	},
-	"熵增_开始作战1": {
+	"逃亡_进入卷积核": {
+		"max_hit": 10,
 		"recognition": "OCR",
 		"roi": [1008, 635, 92, 27],
 		"expected": "START",
-		"action": "DoNothing",
+		"action": "LongPress",
+		"duration": 10,
 		"pre_delay": 1,
-		"post_delay": 1,
-		"next": []
+		"post_delay": 500,
+		"next": [
+			"熵增_点击计划模式"
+		]
 	},
 	"熵增_点击计划模式": {
 		"recognition": "OCR",
@@ -162,8 +164,8 @@
 		"post_delay": 1,
 		"timeout": 120000,
 		"next": [
-			"熵增_开始作战1",
-			"逃亡_进入卷积核",
+			"熵增_开始作战",
+			"熵增_进入卷积核",
 			"[JumpBack]public_全回收_人形回收",
 			"[JumpBack]public_关卡结算点击1"
 		]
