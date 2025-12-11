@@ -3,7 +3,7 @@
 		"rate_limit": 2500,
 		"next": [
 			"返回主界面_识别主界面",
-			"[[JumpBack]后勤",
+			"[JumpBack]后勤",
 			"[JumpBack]返回主界面_ESC"
 		]
 	},
