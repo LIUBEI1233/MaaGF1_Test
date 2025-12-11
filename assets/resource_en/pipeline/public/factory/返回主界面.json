@@ -11,12 +11,14 @@
 		"expected": ["研发", "RE"],
 		"post_delay": 5000,
 		"next": [
-			"返回主界面_识别主界面1",
+			"准备继续任务",
 			"[JumpBack]后勤"
 		]
 	},
-	"返回主界面_识别主界面1": {
-		"focus": {"Node.Recognition.Succeeded": "继续任务"},
+	"准备继续任务": {
+		"focus": {
+			"Node.Recognition.Succeeded": "{准备继续任务} goooooo"
+		},
 		"recognition": "OCR",
 		"roi": [911, 238, 141, 85],
 		"expected": ["研发", "RE"],

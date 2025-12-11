@@ -113,7 +113,10 @@
 		"action": "LongPress",
 		"target": [944, 236, 61, 28],
 		"duration": 10,
-		"next": []
+		"post_delay": 500,
+		"next": [
+			"public_全回收_智能选择1"
+		]
 	},
 	"public_全回收_智能选择1": {
 		"recognition": "OCR",
@@ -121,10 +124,10 @@
 		"expected": ["OK"],
 		"action": "LongPress",
 		"duration": 10,
-		"post_delay": 200,
+		"post_delay": 1200,
 		"next": [
-			"public_全回收_智能选择",
-			"public_全回收_确认回收"
+			"public_全回收_确认回收1",
+			"public_全回收_智能选择1"
 		]
 	},
 	"public_全回收_确认回收1": {

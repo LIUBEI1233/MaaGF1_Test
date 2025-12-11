@@ -1,7 +1,8 @@
 {
 	"桌面进入工厂": {
 		"recognition": "OCR",
-		"expected": "FACTORY",
+		"roi": [1073, 261, 135, 55],
+		"expected": "FA",
 		"action": "LongPress",
 		"duration": 10,
 		"next": [

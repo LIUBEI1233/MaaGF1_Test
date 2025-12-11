@@ -83,9 +83,10 @@
 		"roi": [1008, 635, 92, 27],
 		"expected": "START",
 		"pre_delay": 1,
-		"post_delay": 1,
+		"post_delay": 200,
 		"next": [
-			"逃亡_进入卷积核"
+			"逃亡_进入卷积核",
+			"!返回主界面"
 		]
 	},
 	"逃亡_进入卷积核": {
@@ -94,11 +95,12 @@
 		"roi": [1008, 635, 92, 27],
 		"expected": "START",
 		"action": "LongPress",
-		"duration": 10,
-		"pre_delay": 1,
-		"post_delay": 500,
+		"duration": 15,
+		"target": true,
+		"post_delay": 1000,
 		"next": [
-			"熵增_点击计划模式"
+			"熵增_点击计划模式",
+			"逃亡_进入卷积核"
 		]
 	},
 	"熵增_点击计划模式": {
