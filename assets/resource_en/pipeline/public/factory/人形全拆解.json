@@ -4,7 +4,7 @@
 		"roi": [631, 309, 81, 40],
 		"expected": "Retire",
 		"action": "LongPress",
-		"duration": 10,
+		"duration": 15,
 		"post_delay": 200,
 		"next": [
 			"public_全回收_回收角色",
@@ -16,7 +16,7 @@
 		"roi": [335, 211, 76, 29],
 		"expected": "T-DOLL",
 		"action": "LongPress",
-		"duration": 10,
+		"duration": 15,
 		"post_delay": 700,
 		"next": [
 			"public_全回收_智能选择",
@@ -28,7 +28,7 @@
 		"roi": [1093, 593, 174, 106],
 		"expected": ["SELECT", "OK"],
 		"action": "LongPress",
-		"duration": 10,
+		"duration": 15,
 		"post_delay": 200,
 		"next": [
 			"public_全回收_智能选择",
@@ -40,7 +40,7 @@
 		"roi": [1062, 201, 109, 39],
 		"expected": "Manpower",
 		"action": "LongPress",
-		"duration": 10,
+		"duration": 15,
 		"target": [1096, 575, 110, 50],
 		"post_delay": 1500,
 		"timeout": 60000,
@@ -54,7 +54,7 @@
 		"roi": [335, 211, 76, 29],
 		"expected": "T-DOLL",
 		"action": "LongPress",
-		"duration": 10,
+		"duration": 15,
 		"post_delay": 2000,
 		"next": [
 			"public_全回收_进入全拆解",
@@ -72,7 +72,7 @@
 	"public_点击1": {
 		"action": "LongPress",
 		"target": [80, 248, 49, 29],
-		"duration": 10,
+		"duration": 15,
 		"next": [
 			"public_点击2"
 		]
@@ -80,7 +80,7 @@
 	"public_点击2": {
 		"action": "LongPress",
 		"target": [261, 234, 53, 33],
-		"duration": 10,
+		"duration": 15,
 		"next": [
 			"public_点击3"
 		]
@@ -88,7 +88,7 @@
 	"public_点击3": {
 		"action": "LongPress",
 		"target": [429, 246, 63, 33],
-		"duration": 10,
+		"duration": 15,
 		"next": [
 			"public_点击4"
 		]
@@ -96,7 +96,7 @@
 	"public_点击4": {
 		"action": "LongPress",
 		"target": [610, 240, 62, 33],
-		"duration": 10,
+		"duration": 15,
 		"next": [
 			"public_点击5"
 		]
@@ -104,7 +104,7 @@
 	"public_点击5": {
 		"action": "LongPress",
 		"target": [768, 236, 70, 35],
-		"duration": 10,
+		"duration": 15,
 		"next": [
 			"public_点击6"
 		]
@@ -112,7 +112,7 @@
 	"public_点击6": {
 		"action": "LongPress",
 		"target": [944, 236, 61, 28],
-		"duration": 10,
+		"duration": 15,
 		"post_delay": 500,
 		"next": [
 			"public_全回收_智能选择1"
@@ -123,7 +123,7 @@
 		"roi": [1093, 593, 174, 106],
 		"expected": ["OK"],
 		"action": "LongPress",
-		"duration": 10,
+		"duration": 15,
 		"post_delay": 1200,
 		"next": [
 			"public_全回收_确认回收1",
@@ -135,7 +135,7 @@
 		"roi": [1062, 201, 109, 39],
 		"expected": "Core",
 		"action": "LongPress",
-		"duration": 10,
+		"duration": 15,
 		"target": [1096, 575, 110, 50],
 		"post_delay": 1500,
 		"timeout": 60000,
@@ -149,8 +149,7 @@
 		"roi": [760, 608, 71, 43],
 		"expected": ["OK", "ok"],
 		"action": "LongPress",
-		"duration": 10,
-		"target": [1096, 575, 110, 50],
+		"duration": 15,
 		"post_delay": 1500,
 		"timeout": 60000,
 		"next": [
