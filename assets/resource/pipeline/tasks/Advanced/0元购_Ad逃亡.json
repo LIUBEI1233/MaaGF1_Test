@@ -234,13 +234,14 @@
 	"ad逃亡_开始作战": {
 		"recognition": "DirectHit",
 		"action": "LongPress",
-		"target": [1002, 604, 277, 115],
+		"target": [1120, 660, 0, 0],
 		"duration": 15,
-		"pre_delay": 1,
-		"post_delay": 1,
+		"pre_delay": 500,
+		"post_delay": 500,
 		"next": [
 			"ad逃亡_结束回合1",
-			"[JumpBack]ad逃亡_结束回合"
+			"[JumpBack]ad逃亡_结束回合_OCR"
+			// "[JumpBack]ad逃亡_开始作战"
 		]
 	},
 	"ad逃亡_开始作战1": {
@@ -251,14 +252,20 @@
 		"post_delay": 1,
 		"next": []
 	},
-	"ad逃亡_结束回合": {
+	"ad逃亡_结束回合_OCR": {
 		"recognition": "OCR",
-		"roi": [1002, 604, 277, 115],
-		"expected": ["结"],
+		"roi": [416, 34, 64, 55],
+		"expected": ["01"],
+		"action": "DoNothing",
+		"next": [
+			"ad逃亡_结束回合_点击结束"
+		]
+	},
+	"ad逃亡_结束回合_点击结束": {
+		"recognition": "DirectHit",
 		"action": "LongPress",
+		"target": [1120, 660, 0, 0],
 		"duration": 15,
-		"pre_delay": 1,
-		"post_delay": 1,
 		"next": []
 	},
 	"ad逃亡_结束回合1": {
