@@ -73,6 +73,16 @@
 		"action": "LongPress",
 		"target": [80, 248, 49, 29],
 		"duration": 15,
+		"post_delay": 500,
+		"next": [
+			"piblic_全拆解判断是否还有人形",
+			"public二星人形回收_进入导航栏"
+		]
+	},
+	"piblic_全拆解判断是否还有人形": {
+		"recognition": "OCR",
+		"roi": [1093, 593, 174, 106],
+		"expected": ["OK"],
 		"next": [
 			"public_点击2"
 		]

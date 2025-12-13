@@ -97,10 +97,9 @@
 		"action": "LongPress",
 		"duration": 15,
 		"target": true,
-		"post_delay": 1000,
+		"post_delay": 1500,
 		"next": [
-			"熵增_点击计划模式",
-			"逃亡_进入卷积核"
+			"熵增_点击计划模式"
 		]
 	},
 	"熵增_点击计划模式": {
@@ -110,6 +109,7 @@
 		"action": "LongPress",
 		"target": [54, 621, 32, 12],
 		"duration": 15,
+		"post_delay": 400,
 		"next": [
 			"熵增_点击计划点1",
 			"熵增_点击计划模式"
