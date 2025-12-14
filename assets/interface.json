@@ -870,6 +870,9 @@
                     "custom_action_param": {
                         "syntax": "Start_Time = _get_time; T = {N分钟后返回基地}"
                     }
+                },
+                "public_关卡结算点击5":{
+                    "post_delay": 300
                 }
             }
         },
