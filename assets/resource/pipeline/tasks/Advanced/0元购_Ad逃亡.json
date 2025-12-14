@@ -236,7 +236,7 @@
 		"action": "LongPress",
 		"target": [1120, 660, 0, 0],
 		"duration": 15,
-		"pre_delay": 100,
+		"pre_delay": 1,
 		"post_delay": 100,
 		"next": [
 			"ad逃亡_结束回合1",
@@ -257,7 +257,6 @@
 		"action": "LongPress",
 		"target": [1120, 660, 0, 0],
 		"duration": 15,
-		"pre_delay": 100,
 		"next": []
 	},
 	"ad逃亡_结束回合1": {
