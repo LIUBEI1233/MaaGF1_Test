@@ -234,13 +234,14 @@
 	"ad逃亡_开始作战": {
 		"recognition": "DirectHit",
 		"action": "LongPress",
-		"target": [1002, 604, 277, 115],
+		"target": [1120, 660, 0, 0],
 		"duration": 15,
 		"pre_delay": 1,
 		"post_delay": 100,
 		"next": [
 			"ad逃亡_结束回合1",
 			"[JumpBack]ad逃亡_结束回合"
+			// "[JumpBack]ad逃亡_开始作战"
 		]
 	},
 	"ad逃亡_开始作战1": {
