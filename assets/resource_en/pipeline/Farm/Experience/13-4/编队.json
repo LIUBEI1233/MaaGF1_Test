@@ -1,0 +1,59 @@
+{
+	"134编队_点击队伍编成": {
+		"roi": [141, 588, 231, 83],
+		"expected": ["FORMATION"],
+		"duration": 15
+	},
+	"134编队_选择2队": {
+		"recognition": "OCR",
+		"expected": "FORMATION",
+		"duration": 15,
+		"next": [
+			"134编队_选择2队打手"
+		]
+	},
+	"134编队_选择2队打手": {
+		"duration": 15,
+		"post_delay": 500,
+		"next": [
+			"134编队_显示全部"
+		]
+	},
+	"134编队_显示全部": {
+		"roi": [1104, 242, 85, 30],
+		"expected": "FILTER",
+		"duration": 15,
+		"post_delay": 500,
+		"next": [
+			"134编队_选择收藏角色",
+			"134编队_显示全部"
+		]
+	},
+	"134编队_选择收藏角色": {
+		"roi": [915, 124, 35, 19],
+		"expected": "Show",
+		"duration": 15
+	},
+	"134编队_选择收藏角色确认": {
+		"roi": [859, 613, 258, 107],
+		"expected": "CONFIRM",
+		"duration": 15
+	},
+	"134编队_点击队伍中的打手": {
+		"duration": 15
+	},
+	"134编队_点击1队打手": {
+		"duration": 15
+	},
+	"134编队_确定": {
+		"roi": [1094, 591, 153, 93],
+		"expected": ["OK", "ok"],
+		"duration": 15,
+		"post_delay": 600
+	},
+	"134编队_返回地图": {
+		"duration": 15,
+		"pre_delay": 500,
+		"post_delay": 2000
+	}
+}

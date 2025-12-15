@@ -1,0 +1,187 @@
+{
+	"public_support_二星人形回收_人形回收": {
+		"recognition": "OCR",
+		"roi": [631, 309, 81, 40],
+		"expected": "Retire",
+		"action": "LongPress",
+		"duration": 10,
+		"post_delay": 200,
+		"next": [
+			"public_support_二星人形回收_回收角色",
+			"public_support_二星人形回收_人形回收"
+		]
+	},
+	"public_support_二星人形回收_回收角色": {
+		"recognition": "OCR",
+		"roi": [335, 211, 76, 29],
+		"expected": "T-DOLL",
+		"action": "LongPress",
+		"duration": 10,
+		"post_delay": 700,
+		"next": [
+			"public_support_二星人形回收_智能选择",
+			"public_support_二星人形回收_回收角色"
+		]
+	},
+	"public_support_二星人形回收_智能选择": {
+		"recognition": "OCR",
+		"roi": [1093, 593, 174, 106],
+		"expected": ["SELECT", "OK"],
+		"action": "LongPress",
+		"duration": 10,
+		"post_delay": 200,
+		"next": [
+			"public_support_二星人形回收_智能选择",
+			"public_support_二星人形回收_确认回收"
+		]
+	},
+	"public_support_二星人形回收_确认回收": {
+		"recognition": "OCR",
+		"roi": [1062, 201, 109, 39],
+		"expected": "Manpower",
+		"action": "LongPress",
+		"duration": 10,
+		"target": [1096, 575, 110, 50],
+		"post_delay": 1500,
+		"timeout": 2000,
+		"next": [
+			"妖精重建",
+			"public_support_二星人形回收_确认回收"
+		]
+	},
+	"妖精重建": {
+		"recognition": "OCR",
+		"roi": [107, 560, 35, 34],
+		"expected": "FA",
+		"action": "LongPress",
+		"duration": 10,
+		"post_delay": 2500,
+		"next": [
+			"重建完成",
+			"public_support_返回基地"
+		]
+	},
+	"重建完成": {
+		"recognition": "OCR",
+		"roi": [999, 166, 247, 327],
+		"expected": "00:00'00",
+		"action": "LongPress",
+		"duration": 10,
+		"next": [
+			"收重建"
+		]
+	},
+	"收重建": {
+		"action": "LongPress",
+		"target": "重建完成",
+		"duration": 10,
+		"post_delay": 600,
+		"rate_limit": 2000,
+		"next": [
+			"再建",
+			"收重建"
+		]
+	},
+	"再建": {
+		"recognition": "OCR",
+		"roi": [277, 640, 79, 26],
+		"expected": "START",
+		"action": "LongPress",
+		"duration": 10,
+		"post_delay": 1500,
+		"next": [
+			"public_support_返回基地"
+		]
+	},
+	"public_support_返回基地": {
+		"recognition": "TemplateMatch",
+		"roi": [45, 12, 123, 87],
+		"template": "storage/返回基地.png",
+		"action": "LongPress",
+		"duration": 10,
+		"pre_delay": 800,
+		"post_delay": 4000,
+		"next": [
+			"public_support_返回基地",
+			"弹窗",
+			"public_support_在基地等待5秒"
+		]
+	},
+	"弹窗": {
+		"recognition": "OCR",
+		"expected": "Event",
+		"roi": [173, 0, 201, 140],
+		"action": "LongPress",
+		"duration": 10,
+		"target": [19, 18, 78, 53],
+		"next": [
+			"点掉弹窗"
+		]
+	},
+	"点掉弹窗": {
+		"action": "LongPress",
+		"target": "弹窗",
+		"target_offset": [-150, 5, 1, 1],
+		"post_delay": 2000,
+		"next": [
+			"public_support_在基地等待5秒",
+			"点掉弹窗"
+		]
+	},
+	"public_support_在基地等待5秒": {
+		"recognition": "TemplateMatch",
+		"roi": [19, 168, 47, 49],
+		"template": "storage/基地判断图.png",
+		"pre_delay": 1000,
+		"post_delay": 5000,
+		"timeout": 20000,
+		"action": "DoNothing",
+		"next": [
+			"收菜",
+			"点击战斗"
+		]
+	},
+	"收菜": {
+		"recognition": "OCR",
+		"roi": [318, 17, 181, 59],
+		"expected": "support",
+		"action": "LongPress",
+		"duration": 10,
+		"target": [1107, 670, 38, 16],
+		"post_delay": 500,
+		"next": [
+			"再次后勤"
+		]
+	},
+	"再次后勤": {
+		"recognition": "OCR",
+		"roi": [736, 482, 69, 37],
+		"expected": "OK",
+		"action": "LongPress",
+		"duration": 10,
+		"post_delay": 4000,
+		"next": [
+			"收菜",
+			"点击战斗"
+		]
+	},
+	"点击战斗": {
+		"recognition": "TemplateMatch",
+		"roi": [19, 168, 47, 49],
+		"template": "storage/基地判断图.png",
+		"target": [906, 398, 144, 60],
+		"action": "LongPress",
+		"duration": 10,
+		"post_delay": 2000,
+		"next": [
+			"识别进入了战斗菜单",
+			"点击战斗"
+		]
+	},
+	"识别进入了战斗菜单": {
+		"recognition": "OCR",
+		"roi": [320, 33, 69, 44],
+		"expected": "CO",
+		"next": []
+	}
+}

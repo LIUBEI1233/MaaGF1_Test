@@ -1,0 +1,36 @@
+{
+	"134部署_部署1队": {
+		"duration": 15
+	},
+	"134部署_部署1队确定": {
+		"roi": [1071, 592, 192, 88],
+		"expected": ["CANCEL", "OK", "ok"]
+	},
+	"134部署_部署2队": {
+		"duration": 15
+	},
+	"134部署_部署2队_点击2队": {
+		"roi": [188, 438, 105, 31],
+		"expected": "Vector",
+		"duration": 15,
+		"action": "DoNothing"
+	},
+	"134部署_部署2队确定": {
+		"roi": [1071, 592, 192, 88],
+		"expected": ["CANCEL", "OK", "ok"],
+		"duration": 15
+	},
+	"134部署_重装机场选择梯队": {
+		"roi": [208, 60, 143, 27],
+		"expected": "CHOOSE",
+		"action": "LongPress",
+		"duration": 15
+	},
+	"134部署_弹药检查": {
+		"duration": 15
+	},
+	"134部署_无弹药不编成": {
+		"expected": ["CANCEL"],
+		"duration": 15
+	}
+}

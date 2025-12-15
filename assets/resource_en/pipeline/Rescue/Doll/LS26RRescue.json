@@ -1,0 +1,175 @@
+{
+	"FIXED_POINT": {
+		"recognition": "OCR",
+		"roi": [1015, 289, 75, 27],
+		"expected": "TOUCH",
+		"action": "LongPress",
+		"duration": 15,
+		"post_delay": 1000,
+		"next": [
+			"LS_Cpt.∞",
+			"FIXED_POINT",
+			"LS_点击打捞关"
+		]
+	},
+	"LS_Cpt.∞": {
+		"recognition": "OCR",
+		"roi": [1072, 300, 60, 41],
+		"expected": "8",
+		"action": "LongPress",
+		"duration": 15,
+		"post_delay": 500,
+		"next": [
+			"LS_进入作战",
+			"LS_Cpt.∞"
+		]
+	},
+	"LS_点击打捞关": {
+		"recognition": "OCR",
+		"roi": [339, 327, 176, 122],
+		"expected": "eflective",
+		"action": "LongPress",
+		"duration": 10,
+		"post_delay": 500,
+		"next": [
+			"LS_进入作战",
+			"LS_点击打捞关"
+		]
+	},
+	"LS_进入作战": {
+		"recognition": "OCR",
+		"roi": [1144, 413, 60, 18],
+		"expected": "START",
+		"action": "LongPress",
+		"duration": 15,
+		"pre_delay": 500,
+		"post_delay": 1500,
+		"next": [
+			"LS_部署"
+		]
+	},
+	"LS_部署": {
+		"recognition": "OCR",
+		"roi": [1008, 635, 92, 27],
+		"expected": ["START"],
+		"action": "LongPress",
+		"duration": 15,
+		"target": "LS_识别队1",
+		"target_offset": [-27, 34, 1, -13],
+		"post_delay": 500,
+		"next": [
+			"LS_确定部署"
+		]
+	},
+	"LS_确定部署": {
+		"recognition": "OCR",
+		"roi": [1071, 592, 192, 88],
+		"expected": ["CANCEL", "OK", "ok"],
+		"action": "LongPress",
+		"duration": 15,
+		"post_delay": 500,
+		"next": [
+			"LS_开始作战"
+		]
+	},
+	"LS_开始作战": {
+		"recognition": "OCR",
+		"roi": [1008, 635, 92, 27],
+		"expected": ["START"],
+		"action": "LongPress",
+		"duration": 15,
+		"pre_delay": 500,
+		"next": [
+			"LS_点击队1"
+		]
+	},
+	"LS_开始作战1": {
+		"recognition": "OCR",
+		"roi": [1040, 667, 45, 24],
+		"expected": "START",
+		"pre_delay": 1,
+		"post_delay": 1,
+		"next": []
+	},
+	"LS_识别队1": {
+		"recognition": "TemplateMatch",
+		"template": "combat/levelUp/8-1N/map_team1.png",
+		"next": [
+			"LS_开始作战"
+		]
+	},
+	"LS_点击队1": {
+		"recognition": "OCR",
+		"roi": [1103, 648, 59, 32],
+		"expected": "END",
+		"action": "LongPress",
+		"target": "LS_识别队1",
+		"target_offset": [-27, 34, 1, -13],
+		"duration": 15,
+		"post_delay": 500,
+		"rate_limit": 500,
+		"next": [
+			"LS_点击补给",
+			"LS_点击队1"
+		]
+	},
+	"LS_点击补给": {
+		"recognition": "OCR",
+		"roi": [1161, 547, 119, 33],
+		"expected": "RESUPPLY",
+		"action": "LongPress",
+		"duration": 15,
+		"post_delay": 1000,
+		"next": [
+			"LS_点击计划模式"
+		]
+	},
+	"LS_点击计划模式": {
+		"recognition": "OCR",
+		"roi": [1106, 641, 58, 43],
+		"expected": "END",
+		"action": "LongPress",
+		"target": [54, 621, 32, 12],
+		"duration": 15,
+		"next": [
+			"LS_点击计划点1",
+			"LS_点击计划模式"
+		]
+	},
+	"LS_点击计划点1": {
+		"recognition": "OCR",
+		"roi": [1101, 623, 162, 85],
+		"expected": ["EXE", "CUTE"],
+		"action": "LongPress",
+		"target": "LS_识别队1",
+		"target_offset": [-302, 71, 0, -15],
+		"duration": 15,
+		"next": [
+			"LS_执行计划"
+		]
+	},
+	"LS_执行计划": {
+		"recognition": "DirectHit",
+		"action": "LongPress",
+		"target": [1143, 664, 20, 16],
+		"duration": 15,
+		"post_delay": 7000,
+		"timeout": 90000,
+		"rate_limit": 2000,
+		"next": [
+			"LS_再次作战",
+			"[JumpBack]public_加速结算进入"
+		]
+	},
+	"LS_再次作战": {
+		"recognition": "OCR",
+		"roi": [371, 608, 91, 36],
+		"expected": ["Repeat"],
+		"next": [
+			"FIXED_POINT",
+			"LS_开始作战",
+			"[JumpBack]public二星人形回收_人形回收",
+			"[JumpBack]public_关卡结算点击1"
+		]
+	}
+}

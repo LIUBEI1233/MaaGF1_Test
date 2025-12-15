@@ -1,0 +1,9 @@
+{
+	"134进入_点击134": {
+		"template": "combat/levelUp/13-4/run134.png"
+	},
+	"134进入_普通作战": {
+		"roi": [946, 590, 83, 23],
+		"expected": "NORMAL"
+	}
+}
