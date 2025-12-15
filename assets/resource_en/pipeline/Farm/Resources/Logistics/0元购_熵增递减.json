@@ -1,0 +1,150 @@
+{
+	"!莫比乌斯带上的逃亡": {
+		"recognition": "DirectHit",
+		"action": "DoNothing",
+		"post_delay": 1,
+		"next": [
+			"熵增_开始作战",
+			"熵增_进入熵增递减"
+		]
+	},
+	"熵增_进入熵增递减": {
+		"recognition": "OCR",
+		"roi": [962, 237, 179, 127],
+		"expected": "TOUCH",
+		"action": "LongPress",
+		"duration": 10,
+		"pre_delay": 1500,
+		"post_delay": 1500,
+		"next": [
+			"熵增_进入熵增递减",
+			"熵增_进入活动"
+		]
+	},
+	"熵增_进入活动": {
+		"recognition": "OCR",
+		"roi": [61, 608, 86, 34],
+		"expected": "urren",
+		"post_delay": 800,
+		"rate_limit": 2500,
+		"next": [
+			"熵增_进入卷积核关卡",
+			"[JumpBack]熵增_切换关卡"
+		]
+	},
+	"熵增_切换关卡": {
+		"recognition": "DirectHit",
+		"action": "LongPress",
+		"target": [481, 704, 21, 10],
+		"duration": 10,
+		"pre_delay": 500,
+		"post_delay": 500,
+		"next": []
+	},
+	"熵增_进入卷积核关卡": {
+		"recognition": "OCR",
+		"roi": [1015, 395, 57, 25],
+		"expected": "AUTO",
+		"action": "LongPress",
+		"duration": 15,
+		"target": [1149, 401, 59, 29],
+		"post_delay": 1500,
+		"next": [
+			"熵增_开始作战",
+			"熵增_进入卷积核关卡"
+		]
+	},
+	"熵增_开始作战": {
+		"recognition": "OCR",
+		"roi": [1008, 635, 92, 27],
+		"expected": "START",
+		"action": "LongPress",
+		"duration": 15,
+		"pre_delay": 400,
+		"post_delay": 400,
+		"next": [
+			"熵增_点击计划模式",
+			"熵增_开始作战"
+		]
+	},
+	"熵增_开始作战1": {
+		"recognition": "OCR",
+		"roi": [1008, 635, 92, 27],
+		"expected": "START",
+		"action": "DoNothing",
+		"pre_delay": 1,
+		"post_delay": 1,
+		"next": []
+	},
+	"熵增_点击计划模式": {
+		"recognition": "OCR",
+		"roi": [1106, 641, 58, 43],
+		"expected": "END",
+		"action": "LongPress",
+		"target": [54, 621, 32, 12],
+		"duration": 15,
+		"next": [
+			"熵增_点击计划点1",
+			"熵增_点击计划模式"
+		]
+	},
+	"熵增_点击计划点1": {
+		"recognition": "OCR",
+		"roi": [1101, 623, 162, 85],
+		"expected": ["EXE", "CUTE"],
+		"action": "LongPress",
+		"duration": 15,
+		"target": [428, 140, 17, 18],
+		"next": [
+			"熵增_点击计划点2"
+		]
+	},
+	"熵增_点击计划点2": {
+		"recognition": "DirectHit",
+		"action": "LongPress",
+		"target": [553, 482, 17, 18],
+		"duration": 15,
+		"post_delay": 500,
+		"next": [
+			"熵增_执行计划"
+		]
+	},
+	"熵增_执行计划": {
+		"recognition": "OCR",
+		"roi": [1128, 667, 108, 38],
+		"expected": "PLAN",
+		"action": "LongPress",
+		"duration": 15,
+		"target": [1142, 650, 58, 40],
+		"post_delay": 5000,
+		"rate_limit": 2000,
+		"next": [
+			"熵增_结束回合",
+			"熵增_执行计划"
+		]
+	},
+	"熵增_结束回合": {
+		"recognition": "OCR",
+		"roi": [409, 30, 83, 63],
+		"expected": "02",
+		"next": [
+			"熵增_结束回合1"
+		]
+	},
+	"熵增_结束回合1": {
+		"recognition": "OCR",
+		"roi": [979, 647, 111, 62],
+		"expected": "00",
+		"action": "DoNothing",
+		"rate_limit": 1500,
+		"post_delay": 700,
+		"pre_delay": 700,
+		"timeout": 120000,
+		"next": [
+			"熵增_开始作战1",
+			"熵增_进入熵增递减",
+			"[JumpBack]public_support_二星人形回收_人形回收",
+			"[JumpBack]public_关卡结算点击1"
+		]
+	}
+}

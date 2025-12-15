@@ -11,7 +11,7 @@
 	},
 	"public_加速结算进入": {
 		"recognition": "ColorMatch",
-		"roi": [12, 630, 14, 47],
+		"roi": [17, 640, 5, 15],
 		"upper": [88, 86, 85],
 		"lower": [88, 86, 85],
 		"action": "LongPress",
