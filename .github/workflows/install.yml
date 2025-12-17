@@ -1,4 +1,4 @@
-name: install
+name: Build and Release
 
 on:
   push:
@@ -9,6 +9,7 @@ on:
     paths:
       - ".github/workflows/install.yml"
       - "assets/**"
+      - "mk/**"
       - "**.py"
   pull_request:
     branches:
@@ -16,8 +17,14 @@ on:
     paths:
       - ".github/workflows/install.yml"
       - "assets/**"
+      - "mk/**"
       - "**.py"
   workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: read
+  pull-requests: read
 
 jobs:
   meta:
@@ -26,25 +33,13 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+      
       - id: set_tag
-        run: |
-          is_release=${{ startsWith(github.ref, 'refs/tags/v') }}
-          tag=$(git describe --tags --match "v*" ${{ github.ref }} || true)
-          if [[ $tag != v* ]]; then
-            tag=$(curl -sX GET "https://api.github.com/repos/${{ github.repository }}/releases/latest" --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' | awk '/tag_name/{print $4}' FS='["]')
-            if [[ $tag != v* ]]; then
-              tag="v0.0.0"
-            fi
-            tag=$(date "+$tag-%y%m%d-$(git rev-parse --short HEAD)")
-          fi
-          if ! $($is_release) ; then
-            prefix=${tag%-*-*}
-            suffix=${tag#$prefix-}
-            tag="$prefix-ci.$suffix"
-          fi
+        name: Calculate Tag and Release Info
+        run: bash mk/ci.sh set_tag
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-          echo tag=$tag | tee -a $GITHUB_OUTPUT
-          echo is_release=$is_release | tee -a $GITHUB_OUTPUT
     outputs:
       tag: ${{ steps.set_tag.outputs.tag }}
       is_release: ${{ steps.set_tag.outputs.is_release }}
@@ -55,7 +50,7 @@ jobs:
     strategy:
       matrix:
         os: [win]
-        arch: [aarch64, x86_64]
+        arch: [x86_64, aarch64]
       fail-fast: false
 
     steps:
@@ -64,7 +59,7 @@ jobs:
           submodules: true
 
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
@@ -72,67 +67,66 @@ jobs:
         shell: bash
         run: |
           python -m pip install --upgrade pip
-          
-          pip install pyinstaller
-          pip install MaaFw
-          pip install Pillow
-          pip install numpy
           pip install requests
-          pip install pywin32
-          pip install pygetwindow
-          
-          echo "=== Installed packages ==="
-          pip list | grep -E "(MaaFw|Pillow|numpy|requests|pywin32|pyinstaller)"
 
-      - name: Download MaaFramework
-        uses: robinraju/release-downloader@v1
-        with:
-          repository: MaaXYZ/MaaFramework
-          fileName: "MAA-${{ matrix.os }}-${{ matrix.arch }}*"
-          latest: true
-          out-file-path: "deps"
-          extract: true
+      - name: Read Config and Get Dependencies Info
+        id: deps_info
+        shell: bash
+        run: bash mk/ci.sh get_deps
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Download MFAAvalonia
-        if: matrix.os != 'android'
-        id: download_mfa
         uses: robinraju/release-downloader@v1
         with:
-          repository: SweetSmellFox/MFAAvalonia
-          fileName: "MFAAvalonia-*-${{ (matrix.os == 'win' && 'win') || (matrix.os == 'macos' && 'osx') || (matrix.os == 'linux' && 'linux') }}-${{ (matrix.arch == 'x86_64' && 'x64') || (matrix.arch == 'aarch64' && 'arm64') }}*"
-          latest: true
-          out-file-path: "MFA"
+          repository: ${{ steps.deps_info.outputs.mfa_repo }}
+          fileName: "MFAAvalonia-*-${{ matrix.os }}-${{ (matrix.arch == 'x86_64' && 'x64') || (matrix.arch == 'aarch64' && 'arm64') }}*"
+          latest: ${{ steps.deps_info.outputs.config_mfa_tag == 'latest' }}
+          tag: ${{ steps.deps_info.outputs.config_mfa_tag != 'latest' && steps.deps_info.outputs.config_mfa_tag || '' }}
+          out-file-path: "deps/bin"
           extract: true
 
       - name: Clean up MFAAvalonia archive
-        if: matrix.os != 'android'
+        shell: bash
+        run: find deps/bin -name "*.zip" -type f -delete
+
+      - name: Run Install Script
         shell: bash
         run: |
-          ARCHIVE_FILE_PATH="${{ fromJson(steps.download_mfa.outputs.downloaded_files)[0] }}"
-          rm -f "${ARCHIVE_FILE_PATH}"
-          echo "Archive cleanup command executed for MFAAvalonia."
+          python ./mk/install.py ${{ needs.meta.outputs.tag }}
 
-      - name: Install
+      - name: Generate Build Report
         shell: bash
+        env:
+          BUILD_TAG: ${{ needs.meta.outputs.tag }}
+          BUILD_ARCH: ${{ matrix.arch }}
+          BUILD_OS: ${{ matrix.os }}
+          IS_RELEASE: ${{ needs.meta.outputs.is_release }}
+          MFA_TAG: ${{ steps.deps_info.outputs.mfa_tag }}
+          MFA_DATE: ${{ steps.deps_info.outputs.mfa_date }}
+          MFA_URL: ${{ steps.deps_info.outputs.mfa_url }}
+          MFA_PRERELEASE: ${{ steps.deps_info.outputs.mfa_prerelease }}
         run: |
-          python ./install.py ${{ needs.meta.outputs.tag }}
-
-          if [[ "${{ matrix.os }}" != "android" ]]; then
-            if [ -d "MFA" ]; then
-              echo "Copying MFA files to install directory..."
-              mkdir -p install
-              cp -r MFA/* install/ 2>/dev/null || true
-            else
-              echo "MFA directory not found, skipping copy."
-            fi
-          else
-            echo "Skipping copy MFA for Android."
-          fi
+          python ./mk/report.py
 
       - uses: actions/upload-artifact@v4
         with:
           name: MaaGF1-GUI-${{ needs.meta.outputs.tag }}-${{ matrix.arch }}
           path: "install"
+
+  build-summary:
+    if: always()
+    needs: [meta, install]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Generate Overall Build Summary
+        run: bash mk/ci.sh summary
+        env:
+          TAG: ${{ needs.meta.outputs.tag }}
+          IS_RELEASE: ${{ needs.meta.outputs.is_release }}
+          STATUS_INSTALL: ${{ needs.install.result }}
 
   changelog:
     name: Generate changelog
@@ -157,28 +151,32 @@ jobs:
 
   release:
     if: ${{ needs.meta.outputs.is_release == 'true' }}
-    needs: [install, changelog]
+    needs: [install, changelog, meta]
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
+
       - uses: actions/download-artifact@v4
         with:
+          pattern: MaaGF1-GUI-*
           path: assets
+          merge-multiple: false
 
-      - run: |
-          cd assets
-          for f in *; do
-            (cd $f && zip -r ../$f-${{ needs.meta.outputs.tag }}.zip .)
-          done
+      - name: Zip Assets
+        run: bash mk/ci.sh zip_assets
+        env:
+          TAG: ${{ needs.meta.outputs.tag }}
 
       - uses: softprops/action-gh-release@v2
         with:
-          files: assets/*
+          files: assets/*.zip
           tag_name: ${{ needs.meta.outputs.tag }}
           body: ${{ needs.changelog.outputs.release_body }}
           draft: false
-
-      - uses: softprops/action-gh-release@v2
-        with:
-          files: assets/*
-          tag_name: ${{ needs.meta.outputs.tag }}
           generate_release_notes: true
+          prerelease: ${{ contains(needs.meta.outputs.tag, '-alpha') || contains(needs.meta.outputs.tag, '-beta') || contains(needs.meta.outputs.tag, '-rc') || contains(needs.meta.outputs.tag, '-pre') || contains(needs.meta.outputs.tag, '-dev') }}
+
+      - name: Release Summary
+        run: bash mk/ci.sh release_summary
+        env:
+          TAG: ${{ needs.meta.outputs.tag }}

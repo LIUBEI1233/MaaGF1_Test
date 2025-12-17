@@ -7,7 +7,7 @@
                 "/assets/resource/**/*.jsonc",
                 "/install/resource/**/*.jsonc"
             ],
-            "url": "/deps/tools/pipeline.schema.json"
+            "url": "http://json-schema.org/draft-07/schema#"
         },
         {
             "fileMatch": [
@@ -34,5 +34,7 @@
     },
     "[python]": {
         "editor.defaultFormatter": "ms-python.black-formatter"
-    }
+    },
+    "editor.defaultFormatter": "SwordofMorning.maapipeline-format",
+    "editor.formatOnSave": false
 }

@@ -1,0 +1,76 @@
+{
+	"public二星装备回收_装备回收": {
+		"recognition": "OCR",
+		"expected": ["装备", "装", "备"],
+		"roi": [488, 112, 175, 267],
+		"action": "LongPress",
+		"duration": 10,
+		"post_delay": 200,
+		"next": [
+			"public二星装备回收_回收装备",
+			"public二星装备回收_装备回收",
+			"public二星装备回收_智能选择"
+		]
+	},
+	"public二星装备回收_回收装备": {
+		"recognition": "OCR",
+		"roi": [488, 112, 175, 267],
+		"expected": ["装备", "装", "备"],
+		"action": "LongPress",
+		"duration": 10,
+		"post_delay": 200,
+		"next": [
+			"public二星装备回收_智能选择",
+			"public二星装备回收_回收装备"
+		]
+	},
+	"public二星装备回收_智能选择": {
+		"recognition": "OCR",
+		"roi": [1093, 593, 174, 106],
+		"expected": ["智能选择", "确定"],
+		"action": "LongPress",
+		"duration": 10,
+		"post_delay": 200,
+		"next": [
+			"public二星装备回收_智能选择",
+			"public二星装备回收_确认回收"
+		]
+	},
+	"public二星装备回收_确认回收": {
+		"recognition": "OCR",
+		"roi": [1062, 203, 89, 110],
+		"expected": ["人力"],
+		"action": "LongPress",
+		"duration": 10,
+		"target": [1096, 575, 110, 50],
+		"post_delay": 200,
+		"timeout": 2000,
+		"next": [
+			"public二星装备回收_进入导航栏",
+			"public二星装备回收_确认回收"
+		]
+	},
+	"public二星装备回收_进入导航栏": {
+		"recognition": "TemplateMatch",
+		"roi": [124, 18, 120, 105],
+		"template": "storage/navi.png",
+		"action": "LongPress",
+		"duration": 20,
+		"pre_delay": 800,
+		"post_wait_freezes": 200,
+		"next": [
+			"public二星装备回收_导航栏战斗",
+			"public二星装备回收_进入导航栏"
+		]
+	},
+	"public二星装备回收_导航栏战斗": {
+		"recognition": "TemplateMatch",
+		"roi": [80, 150, 150, 200],
+		"template": "storage/navi_combat.png",
+		"action": "LongPress",
+		"duration": 500,
+		"pre_delay": 1000,
+		"post_delay": 3000,
+		"next": []
+	}
+}

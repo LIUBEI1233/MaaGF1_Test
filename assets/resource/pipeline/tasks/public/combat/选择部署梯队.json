@@ -1,74 +1,60 @@
-{   "!public梯队部署":{
-        "next":[
-            "public梯队部署_选择梯队",
-            "public梯队部署_滑动梯队"
-        ],
-        "interrupt":"public梯队部署_切换梯队"
-},
-    "public梯队部署_切换梯队": {
-        "recognition": "OCR",
-        "roi" : [150,29,639,111],
-        "expected": "梯队",
-        "action": "LongPress",
-        "duration": 10,
-        "post_delay":500
-    },
-    "public梯队部署_选择梯队": {
-        "recognition": "OCR",
-        "roi" : [53,7,89,707],
-        "action": "LongPress",
-        "duration": 10,
-        "post_delay":1000,
-        "next": [
-            "public梯队部署_检测梯队人形",
-            "public梯队部署_选择梯队"
-        ]
-    },
-    "public梯队部署_滑动梯队": {
-        "recognition": "OCR",
-        "roi" : [160,588,187,91],
-        "expected": "队伍编成",
-        "action": "Swipe",
-        "begin": [
-            75,
-            695,
-            1,
-            1
-        ],
-        "end": [
-            79,
-            60,
-            1,
-            1
-        ],
-        "post_delay":1000,
-        "next": [
-            "public梯队部署_选择梯队"
-        ]
-    },
-    "public梯队部署_检测梯队人形": {
-        "recognition": "OCR",
-        "roi" : [150,426,186,60],
-        "expected" : "布伦·坦",
-        "next": [
-            "public梯队部署_确认部署"
-        ]
-    },
-    "public梯队部署_确认部署": {
-        "recognition": "OCR",
-        "roi": [
-            1125,
-            603,
-            120,
-            68
-        ],
-        "expected": "确定",
-        "action": "LongPress",
-        "duration": 10,
-        "post_delay": 500,
-        "timeout": 1000,
-        "next": [
-            "public梯队部署_确认部署"
-        ]
-    }
+{
+	"!public梯队部署": {
+		"next": [
+			"public梯队部署_选择梯队",
+			"public梯队部署_滑动梯队",
+			"[JumpBack]public梯队部署_切换梯队"
+		]
+	},
+	"public梯队部署_切换梯队": {
+		"recognition": "OCR",
+		"roi": [150, 29, 639, 111],
+		"expected": "梯队",
+		"action": "LongPress",
+		"duration": 10,
+		"post_delay": 500
+	},
+	"public梯队部署_选择梯队": {
+		"recognition": "OCR",
+		"roi": [53, 7, 89, 707],
+		"action": "LongPress",
+		"duration": 10,
+		"post_delay": 1000,
+		"next": [
+			"public梯队部署_检测梯队人形",
+			"public梯队部署_选择梯队"
+		]
+	},
+	"public梯队部署_滑动梯队": {
+		"recognition": "OCR",
+		"roi": [160, 588, 187, 91],
+		"expected": "队伍编成",
+		"action": "Swipe",
+		"begin": [75, 695, 1, 1],
+		"end": [79, 60, 1, 1],
+		"post_delay": 1000,
+		"next": [
+			"public梯队部署_选择梯队"
+		]
+	},
+	"public梯队部署_检测梯队人形": {
+		"recognition": "OCR",
+		"roi": [150, 426, 186, 60],
+		"expected": "布伦·坦",
+		"next": [
+			"public梯队部署_确认部署"
+		]
+	},
+	"public梯队部署_确认部署": {
+		"recognition": "OCR",
+		"roi": [1125, 603, 120, 68],
+		"expected": "确定",
+		"action": "LongPress",
+		"duration": 10,
+		"post_delay": 500,
+		"timeout": 1000,
+		"next": [
+			"public梯队部署_确认部署"
+		]
+	}
 }

@@ -1,375 +1,247 @@
 {
-    "public拆装备_装备回收": {
-        "recognition": "OCR",
-        "expected": "装备回收",
-        "roi": [
-            191,
-            296,
-            891,
-            59
-        ],
-        "action": "LongPress",
-        "duration": 20,
-        "next": [
-            "!装备回收总流程"
-        ]
-    },
-    "!装备回收总流程": {
-        "recognition": "OCR",
-        "expected": [
-            "资源回收"
-        ],
-        "action": "LongPress",
-        "duration": 20,
-        "post_delay": 800,
-        "next": [
-            "public拆装备_智能选择点击选择装备"
-        ]
-    },
-    "public拆装备_智能选择点击选择装备": {
-        "recognition": "TemplateMatch",
-        "roi": [
-            518,
-            183,
-            83,
-            52
-        ],
-        "template": "storage/选择装备.png",
-        "action": "LongPress",
-        "duration": 20,
-        "post_delay": 1000,
-        "next": [
-            "public拆装备_智能选择",
-            "public拆装备_智能选择点击选择装备",
-            "public拆装备_无装备可选"
-        ]
-    },
-    "public拆装备_白屏处理": {
-        "recognition": "OCR",
-        "roi": [
-            1097,
-            589,
-            160,
-            83
-        ],
-        "expected": [
-            "智能选择"
-        ],
-        "next": "public拆装备_进入导航栏"
-    },
-    "public拆装备_智能选择": {
-        "recognition": "OCR",
-        "roi": [
-            1097,
-            589,
-            160,
-            83
-        ],
-        "expected": [
-            "智能选择"
-        ],
-        "action": "LongPress",
-        "duration": 20,
-        "post_delay": 400,
-        "next": [
-            "public拆装备_智能选择装备拆解选择确定"
-        ]
-    },
-    "public拆装备_智能选择装备拆解选择确定": {
-        "recognition": "OCR",
-        "roi": [
-            1089,
-            577,
-            181,
-            128
-        ],
-        "expected": [
-            "确定"
-        ],
-        "action": "LongPress",
-        "duration": 20,
-        "next": [
-            "public拆装备_智能选择回收"
-        ]
-    },
-    "public拆装备_智能选择回收": {
-        "recognition": "OCR",
-        "roi": [
-            1025,
-            551,
-            213,
-            107
-        ],
-        "expected": [
-            "回收"
-        ],
-        "action": "LongPress",
-        "duration": 20,
-        "post_delay": 1500,
-        "post_wait_freezes": 1,
-        "next": [
-            "public拆装备_手动选择点击选择装备"
-        ]
-    },
-    "public拆装备_手动选择点击选择装备": {
-        "target": [
-            499,
-            184,
-            77,
-            56
-        ],
-        "action": "LongPress",
-        "duration": 20,
-        "post_delay": 1000,
-        "next": [
-            "public拆装备_手动选择",
-            "public拆装备_无装备可选",
-            "public拆装备_手动选择点击选择装备"
-        ]
-    },
-    "public拆装备_手动选择": {
-        "recognition": "OCR",
-        "expected": [
-            "智能选择"
-        ],
-        "next": [
-            "public拆装备_手动选择1"
-        ]
-    },
-    "public拆装备_手动选择1": {
-        "action": "LongPress",
-        "duration": 20,
-        "target": [
-            80,
-            270,
-            48,
-            24
-        ],
-        "next": [
-            "public拆装备_手动选择2"
-        ]
-    },
-    "public拆装备_手动选择2": {
-        "action": "LongPress",
-        "duration": 20,
-        "target": [
-            250,
-            270,
-            48,
-            24
-        ],
-        "next": [
-            "public拆装备_手动选择3"
-        ]
-    },
-    "public拆装备_手动选择3": {
-        "action": "LongPress",
-        "duration": 20,
-        "target": [
-            420,
-            270,
-            48,
-            24
-        ],
-        "next": [
-            "public拆装备_手动选择4"
-        ]
-    },
-    "public拆装备_手动选择4": {
-        "action": "LongPress",
-        "duration": 20,
-        "target": [
-            590,
-            270,
-            48,
-            24
-        ],
-        "next": [
-            "public拆装备_手动选择5"
-        ]
-    },
-    "public拆装备_手动选择5": {
-        "action": "LongPress",
-        "duration": 20,
-        "target": [
-            760,
-            270,
-            48,
-            24
-        ],
-        "next": [
-            "public拆装备_手动选择6"
-        ]
-    },
-    "public拆装备_手动选择6": {
-        "action": "LongPress",
-        "duration": 20,
-        "target": [
-            930,
-            270,
-            48,
-            24
-        ],
-        "next": [
-            "public拆装备_手动选择7"
-        ]
-    },
-    "public拆装备_手动选择7": {
-        "action": "LongPress",
-        "duration": 20,
-        "target": [
-            80,
-            520,
-            48,
-            24
-        ],
-        "next": [
-            "public拆装备_手动选择8"
-        ]
-    },
-    "public拆装备_手动选择8": {
-        "action": "LongPress",
-        "duration": 20,
-        "target": [
-            250,
-            520,
-            48,
-            24
-        ],
-        "next": [
-            "public拆装备_手动选择9"
-        ]
-    },
-    "public拆装备_手动选择9": {
-        "action": "LongPress",
-        "duration": 20,
-        "target": [
-            420,
-            520,
-            48,
-            24
-        ],
-        "next": [
-            "public拆装备_手动选择10"
-        ]
-    },
-    "public拆装备_手动选择10": {
-        "action": "LongPress",
-        "duration": 20,
-        "target": [
-            590,
-            520,
-            48,
-            24
-        ],
-        "next": [
-            "public拆装备_手动选择11"
-        ]
-    },
-    "public拆装备_手动选择11": {
-        "action": "LongPress",
-        "duration": 20,
-        "target": [
-            760,
-            520,
-            48,
-            24
-        ],
-        "next": [
-            "public拆装备_手动选择12"
-        ]
-    },
-    "public拆装备_手动选择12": {
-        "action": "LongPress",
-        "duration": 20,
-        "target": [
-            930,
-            520,
-            48,
-            24
-        ],
-        "next": [
-            "public拆装备_手动选择装备拆解选择确定",
-            "public拆装备_白屏处理"
-        ]
-    },
-    "public拆装备_手动选择装备拆解选择确定": {
-        "recognition": "OCR",
-        "expected": [
-            "确定"
-        ],
-        "action": "LongPress",
-        "duration": 20,
-        "next": [
-            "public拆装备_手动选择回收"
-        ]
-    },
-    "public拆装备_手动选择回收": {
-        "recognition": "OCR",
-        "roi": [
-            1025,
-            551,
-            213,
-            107
-        ],
-        "expected": [
-            "回收"
-        ],
-        "action": "LongPress",
-        "duration": 20,
-        "next": [
-            "public拆装备_回收确定"
-        ]
-    },
-    "public拆装备_回收确定": {
-        "recognition": "TemplateMatch",
-        "template": "storage/retire_confirm.png",
-        "action": "LongPress",
-        "duration": 20,
-        "post_wait_freezes": 500,
-        "next": [
-            "public拆装备_手动选择点击选择装备"
-        ]
-    },
-    "public拆装备_无装备可选": {
-        "recognition": "OCR",
-        "expected": [
-            "没有"
-        ],
-        "next": [
-            "public_进入导航栏"
-        ]
-    },
-    "public拆装备_进入导航栏": {
-        "recognition": "TemplateMatch",
-        "roi": [
-            124,
-            18,
-            120,
-            105
-        ],
-        "template": "storage/navi.png",
-        "action": "LongPress",
-        "duration": 20,
-        "pre_delay": 800,
-        "post_wait_freezes": 200,
-        "next": [
-            "public拆装备_导航栏战斗",
-            "public拆装备_进入导航栏"
-        ]
-    },
-    "public拆装备_导航栏战斗": {
-        "recognition": "TemplateMatch",
-        "roi": [
-            80,
-            150,
-            150,
-            200
-        ],
-        "template": "storage/navi_combat.png",
-        "action": "LongPress",
-        "duration": 500,
-        "pre_delay": 1000,
-        "next": []
-    }
+	"public拆装备_装备回收": {
+		"recognition": "OCR",
+		"expected": "装备回收",
+		"roi": [194, 264, 897, 155],
+		"action": "LongPress",
+		"duration": 20,
+		"next": [
+			"!装备回收总流程"
+		]
+	},
+	"!装备回收总流程": {
+		"recognition": "OCR",
+		"expected": ["资源回收"],
+		"action": "LongPress",
+		"duration": 20,
+		"post_delay": 800,
+		"next": [
+			"public拆装备_智能选择点击选择装备"
+		]
+	},
+	"public拆装备_智能选择点击选择装备": {
+		"recognition": "TemplateMatch",
+		"roi": [518, 183, 83, 52],
+		"template": "storage/选择装备.png",
+		"action": "LongPress",
+		"duration": 20,
+		"post_delay": 1000,
+		"next": [
+			"public拆装备_智能选择",
+			"public拆装备_智能选择点击选择装备",
+			"public拆装备_无装备可选"
+		]
+	},
+	"public拆装备_白屏处理": {
+		"recognition": "OCR",
+		"roi": [1097, 589, 160, 83],
+		"expected": ["智能选择"],
+		"next": "public拆装备_进入导航栏"
+	},
+	"public拆装备_智能选择": {
+		"recognition": "OCR",
+		"roi": [1097, 589, 160, 83],
+		"expected": ["智能选择"],
+		"action": "LongPress",
+		"duration": 20,
+		"post_delay": 400,
+		"next": [
+			"public拆装备_智能选择装备拆解选择确定"
+		]
+	},
+	"public拆装备_智能选择装备拆解选择确定": {
+		"recognition": "OCR",
+		"roi": [1089, 577, 181, 128],
+		"expected": ["确定"],
+		"action": "LongPress",
+		"duration": 20,
+		"next": [
+			"public拆装备_智能选择回收"
+		]
+	},
+	"public拆装备_智能选择回收": {
+		"recognition": "OCR",
+		"roi": [1025, 551, 213, 107],
+		"expected": ["回收"],
+		"action": "LongPress",
+		"duration": 20,
+		"post_delay": 1500,
+		"post_wait_freezes": 1,
+		"next": [
+			"public拆装备_手动选择点击选择装备"
+		]
+	},
+	"public拆装备_手动选择点击选择装备": {
+		"target": [499, 184, 77, 56],
+		"action": "LongPress",
+		"duration": 20,
+		"post_delay": 1000,
+		"next": [
+			"public拆装备_手动选择",
+			"public拆装备_无装备可选",
+			"public拆装备_手动选择点击选择装备"
+		]
+	},
+	"public拆装备_手动选择": {
+		"recognition": "OCR",
+		"expected": ["智能选择"],
+		"next": [
+			"public拆装备_手动选择1"
+		]
+	},
+	"public拆装备_手动选择1": {
+		"action": "LongPress",
+		"duration": 20,
+		"target": [80, 270, 48, 24],
+		"next": [
+			"public拆装备_手动选择2"
+		]
+	},
+	"public拆装备_手动选择2": {
+		"action": "LongPress",
+		"duration": 20,
+		"target": [250, 270, 48, 24],
+		"next": [
+			"public拆装备_手动选择3"
+		]
+	},
+	"public拆装备_手动选择3": {
+		"action": "LongPress",
+		"duration": 20,
+		"target": [420, 270, 48, 24],
+		"next": [
+			"public拆装备_手动选择4"
+		]
+	},
+	"public拆装备_手动选择4": {
+		"action": "LongPress",
+		"duration": 20,
+		"target": [590, 270, 48, 24],
+		"next": [
+			"public拆装备_手动选择5"
+		]
+	},
+	"public拆装备_手动选择5": {
+		"action": "LongPress",
+		"duration": 20,
+		"target": [760, 270, 48, 24],
+		"next": [
+			"public拆装备_手动选择6"
+		]
+	},
+	"public拆装备_手动选择6": {
+		"action": "LongPress",
+		"duration": 20,
+		"target": [930, 270, 48, 24],
+		"next": [
+			"public拆装备_手动选择7"
+		]
+	},
+	"public拆装备_手动选择7": {
+		"action": "LongPress",
+		"duration": 20,
+		"target": [80, 520, 48, 24],
+		"next": [
+			"public拆装备_手动选择8"
+		]
+	},
+	"public拆装备_手动选择8": {
+		"action": "LongPress",
+		"duration": 20,
+		"target": [250, 520, 48, 24],
+		"next": [
+			"public拆装备_手动选择9"
+		]
+	},
+	"public拆装备_手动选择9": {
+		"action": "LongPress",
+		"duration": 20,
+		"target": [420, 520, 48, 24],
+		"next": [
+			"public拆装备_手动选择10"
+		]
+	},
+	"public拆装备_手动选择10": {
+		"action": "LongPress",
+		"duration": 20,
+		"target": [590, 520, 48, 24],
+		"next": [
+			"public拆装备_手动选择11"
+		]
+	},
+	"public拆装备_手动选择11": {
+		"action": "LongPress",
+		"duration": 20,
+		"target": [760, 520, 48, 24],
+		"next": [
+			"public拆装备_手动选择12"
+		]
+	},
+	"public拆装备_手动选择12": {
+		"action": "LongPress",
+		"duration": 20,
+		"target": [930, 520, 48, 24],
+		"next": [
+			"public拆装备_手动选择装备拆解选择确定",
+			"public拆装备_白屏处理"
+		]
+	},
+	"public拆装备_手动选择装备拆解选择确定": {
+		"recognition": "OCR",
+		"expected": ["确定"],
+		"action": "LongPress",
+		"duration": 20,
+		"next": [
+			"public拆装备_手动选择回收"
+		]
+	},
+	"public拆装备_手动选择回收": {
+		"recognition": "OCR",
+		"roi": [1025, 551, 213, 107],
+		"expected": ["回收"],
+		"action": "LongPress",
+		"duration": 20,
+		"next": [
+			"public拆装备_回收确定"
+		]
+	},
+	"public拆装备_回收确定": {
+		"recognition": "TemplateMatch",
+		"template": "storage/retire_confirm.png",
+		"action": "LongPress",
+		"duration": 20,
+		"post_wait_freezes": 500,
+		"next": [
+			"public拆装备_手动选择点击选择装备"
+		]
+	},
+	"public拆装备_无装备可选": {
+		"recognition": "OCR",
+		"expected": ["没有"],
+		"next": [
+			"public_进入导航栏"
+		]
+	},
+	"public拆装备_进入导航栏": {
+		"recognition": "TemplateMatch",
+		"roi": [124, 18, 120, 105],
+		"template": "storage/navi.png",
+		"action": "LongPress",
+		"duration": 20,
+		"pre_delay": 800,
+		"post_wait_freezes": 200,
+		"next": [
+			"public拆装备_导航栏战斗",
+			"public拆装备_进入导航栏"
+		]
+	},
+	"public拆装备_导航栏战斗": {
+		"recognition": "TemplateMatch",
+		"roi": [80, 150, 150, 200],
+		"template": "storage/navi_combat.png",
+		"action": "LongPress",
+		"duration": 500,
+		"pre_delay": 1000,
+		"next": []
+	}
 }

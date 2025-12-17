@@ -1,0 +1,161 @@
+{
+	"public装备强化_装备强化": {
+		"recognition": "OCR",
+		"roi": [789, 457, 178, 137],
+		"expected": "Move",
+		"action": "LongPress",
+		"duration": 20,
+		"next": [
+			"!装备强化总流程"
+		]
+	},
+	"!装备强化总流程": {
+		"recognition": "OCR",
+		"roi": [299, 8, 171, 85],
+		"expected": "RESEA",
+		"post_delay": 500,
+		"next": [
+			"public装备强化_选择强化的装备"
+		]
+	},
+	"public装备强化_点击装备强化": {
+		"recognition": "OCR",
+		"roi": [5, 185, 180, 100],
+		"expected": "EQUIPMENT",
+		"action": "LongPress",
+		"duration": 20,
+		"next": [
+			"public装备强化_选择强化的装备"
+		]
+	},
+	"public装备强化_选择强化的装备": {
+		"action": "LongPress",
+		"duration": 20,
+		"target": [266, 323, 117, 142],
+		"post_delay": 500,
+		"next": [
+			"public装备强化_选择排序方式"
+		]
+	},
+	"public装备强化_选择排序方式": {
+		"recognition": "OCR",
+		"roi": [1106, 118, 72, 38],
+		"expected": "SORT",
+		"action": "LongPress",
+		"duration": 20,
+		"post_delay": 500,
+		"next": [
+			"public装备强化_排序完成"
+		]
+	},
+	"public装备强化_排序完成": {
+		"recognition": "OCR",
+		"roi": [923, 207, 159, 48],
+		"expected": "ENHANCEM",
+		"action": "LongPress",
+		"duration": 20,
+		"post_delay": 500,
+		"next": [
+			"public装备强化_选择高级装备"
+		]
+	},
+	"public装备强化_选择高级装备": {
+		"recognition": "TemplateMatch",
+		"template": [
+			"storage/Geqip1.png",
+			"storage/Geqip2.png"
+		],
+		"order_by": "Random",
+		"index": 2,
+		"post_delay": 500,
+		"pre_delay": 500,
+		"threshold": 0.6,
+		"action": "LongPress",
+		"duration": 20,
+		"green_mask": true,
+		"next": [
+			"public装备强化_选择低级装备",
+			"public装备强化_选择高级装备"
+		]
+	},
+	"public装备强化_选择低级装备": {
+		"target": [513, 185, 48, 46],
+		"action": "LongPress",
+		"duration": 20,
+		"next": [
+			"public装备强化_强制点击至无智能选择",
+			"public装备强化_选择低级装备"
+		]
+	},
+	"public装备强化_强制点击至无智能选择": {
+		"recognition": "OCR",
+		"roi": [1094, 464, 171, 118],
+		"expected": ["SMART"],
+		"action": "LongPress",
+		"duration": 20,
+		"post_delay": 50,
+		"next": [
+			"public装备强化_强制点击至无智能选择",
+			"public装备强化_装备强化选择确定"
+		]
+	},
+	"public装备强化_装备强化选择确定": {
+		"recognition": "OCR",
+		"roi": [1088, 590, 177, 121],
+		"expected": ["OK", "ok"],
+		"action": "LongPress",
+		"duration": 20,
+		"post_delay": 500,
+		"next": [
+			"public装备强化_装备强化确定"
+		]
+	},
+	"public装备强化_装备强化确定": {
+		"recognition": "OCR",
+		"roi": [1088, 599, 177, 79],
+		"expected": ["OK", "ok"],
+		"post_delay": 500,
+		"action": "LongPress",
+		"duration": 20,
+		"next": [
+			"public装备强化_装备强化最终确定",
+			"public装备强化_进入导航栏"
+		]
+	},
+	"public装备强化_装备强化最终确定": {
+		"recognition": "OCR",
+		"roi": [680, 587, 180, 76],
+		"expected": ["OK", "ok"],
+		"action": "LongPress",
+		"duration": 20,
+		"post_wait_freezes": 500,
+		"next": [
+			"public_进入导航栏",
+			"public装备强化_装备强化最终确定"
+		]
+	},
+	"public装备强化_进入导航栏": {
+		"recognition": "TemplateMatch",
+		"roi": [124, 18, 120, 105],
+		"template": "storage/navi.png",
+		"action": "LongPress",
+		"duration": 20,
+		"pre_delay": 500,
+		"post_delay": 500,
+		"post_wait_freezes": 200,
+		"next": [
+			"public装备强化_导航栏战斗",
+			"public装备强化_进入导航栏"
+		]
+	},
+	"public装备强化_导航栏战斗": {
+		"recognition": "TemplateMatch",
+		"roi": [80, 150, 150, 200],
+		"template": "storage/navi_combat.png",
+		"action": "LongPress",
+		"duration": 20,
+		"pre_delay": 1000,
+		"post_delay": 1000,
+		"next": []
+	}
+}

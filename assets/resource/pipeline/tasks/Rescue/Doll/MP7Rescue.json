@@ -1,0 +1,500 @@
+{
+	"!塌缩点-MP7打捞": {
+		"recognition": "DirectHit",
+		"action": "DoNothing",
+		"pre_delay": 100,
+		"post_delay": 500,
+		"next": [
+			"塌缩点-再点火IV点击大撤退",
+			"塌缩点-再点火IV开始作战"
+		]
+	},
+	"塌缩点-再点火IV点击大撤退": {
+		"recognition": "OCR",
+		"roi": [528, 118, 194, 80],
+		"expected": "塌缩点",
+		"pre_delay": 500,
+		"action": "LongPress",
+		"duration": 20,
+		"target": [975, 172, 25, 25],
+		"post_delay": 500,
+		"next": [
+			"塌缩点-再点火IV进入作战",
+			"塌缩点-再点火IV点击大撤退"
+		]
+	},
+	"塌缩点-再点火IV进入作战": {
+		"recognition": "TemplateMatch",
+		"roi": [917, 141, 132, 86],
+		"template": "combat/dollRescue/residentRescue/MP7Rescue/CH.01.png",
+		"pre_delay": 500,
+		"action": "LongPress",
+		"duration": 20,
+		"target": [1073, 500, 65, 20],
+		"post_delay": 500,
+		"next": [
+			"塌缩点-再点火IV缩小地图0"
+		]
+	},
+	"塌缩点-再点火IV缩小地图0": {
+		"recognition": "DirectHit",
+		"action": "Command",
+		"exec": "powershell",
+		"args": [
+			"-ExecutionPolicy",
+			"Bypass",
+			"-File",
+			"{RESOURCE_DIR}/../tools/scroll.ps1",
+			"-ScrollCount",
+			"100",
+			"-Direction",
+			"down"
+		],
+		"pre_delay": 1000,
+		"post_delay": 1000,
+		"next": [
+			"塌缩点-再点火IV拖动地图0"
+		]
+	},
+	"塌缩点-再点火IV拖动地图0": {
+		"recognition": "DirectHit",
+		"pre_delay": 500,
+		"action": "Swipe",
+		"duration": 100,
+		"begin": [841, 603, 1, 1],
+		"end": [841, 229, 1, 1],
+		"post_delay": 500,
+		"next": [
+			"塌缩点-点击再点火IV",
+			"塌缩点-再点火IV缩小地图0"
+		]
+	},
+	"塌缩点-点击再点火IV": {
+		"recognition": "OCR",
+		"roi": [1115, 539, 90, 72],
+		"expected": "再点火",
+		"pre_delay": 500,
+		"action": "LongPress",
+		"duration": 20,
+		"target": [1091, 518, 12, 12],
+		"post_delay": 500,
+		"next": [
+			"塌缩点-再点火IV确认出击"
+		]
+	},
+	"塌缩点-再点火IV确认出击": {
+		"recognition": "OCR",
+		"roi": [892, 367, 91, 31],
+		"expected": "确认出击",
+		"pre_delay": 500,
+		"action": "LongPress",
+		"duration": 20,
+		"post_delay": 500,
+		"target": [896, 368, 50, 25],
+		"next": [
+			"塌缩点-再点火IV缩小地图1"
+		]
+	},
+	"塌缩点-再点火IV缩小地图1": {
+		"recognition": "TemplateMatch",
+		"template": "combat/dollRescue/residentRescue/MP7Rescue/Round00.png",
+		"roi": [408, 0, 73, 83],
+		"threshold": 0.7,
+		"action": "Command",
+		"exec": "powershell",
+		"args": [
+			"-ExecutionPolicy",
+			"Bypass",
+			"-File",
+			"{RESOURCE_DIR}/../tools/scroll.ps1",
+			"-ScrollCount",
+			"100",
+			"-Direction",
+			"down"
+		],
+		"post_delay": 1000,
+		"next": [
+			"塌缩点-再点火IV拖动地图1"
+		]
+	},
+	"塌缩点-再点火IV拖动地图1": {
+		"recognition": "DirectHit",
+		"action": "Swipe",
+		"begin": [1158, 549, 1, 1],
+		"end": [791, 170, 1, 1],
+		"duration": 200,
+		"post_delay": 200,
+		"next": [
+			"塌缩点-再点火IV点击指挥部0",
+			"塌缩点-再点火IV缩小地图1"
+		]
+	},
+	"塌缩点-再点火IV点击指挥部0": {
+		"recognition": "TemplateMatch",
+		"template": "combat/dollRescue/residentRescue/MP7Rescue/Ready.png",
+		"roi": [851, 459, 100, 102],
+		"pre_delay": 200,
+		"action": "LongPress",
+		"duration": 20,
+		"target": [449, 370, 10, 10],
+		"post_delay": 200,
+		"next": [
+			"塌缩点-再点火IV部署梯队1",
+			"塌缩点-再点火IV点击指挥部0"
+		]
+	},
+	"塌缩点-再点火IV部署梯队1": {
+		"recognition": "OCR",
+		"roi": [1141, 612, 86, 50],
+		"expected": "确定",
+		"action": "LongPress",
+		"duration": 20,
+		"pre_delay": 200,
+		"target": [1141, 612, 86, 50],
+		"post_delay": 200,
+		"next": [
+			"塌缩点-再点火IV开始作战"
+		]
+	},
+	"塌缩点-再点火IV开始作战": {
+		"recognition": "OCR",
+		"roi": [1041, 624, 90, 45],
+		"expected": "开始",
+		"pre_delay": 200,
+		"action": "LongPress",
+		"duration": 20,
+		"target": [1041, 626, 178, 65],
+		"post_delay": 200,
+		"next": [
+			"塌缩点-再点火IV点击指挥部1"
+		]
+	},
+	"塌缩点-再点火IV点击指挥部1": {
+		"recognition": "DirectHit",
+		"pre_delay": 200,
+		"action": "LongPress",
+		"duration": 20,
+		"target": [449, 370, 10, 10],
+		"post_delay": 200,
+		"next": [
+			"塌缩点-再点火IV补给梯队1",
+			"塌缩点-再点火IV点击指挥部1"
+		]
+	},
+	"塌缩点-再点火IV补给梯队1": {
+		"recognition": "OCR",
+		"roi": [1159, 533, 89, 56],
+		"expected": "补给",
+		"pre_delay": 200,
+		"action": "LongPress",
+		"duration": 20,
+		"target": [1159, 533, 89, 56],
+		"post_delay": 400,
+		"next": [
+			"塌缩点-再点火IV梯队1向右下一步"
+		]
+	},
+	"塌缩点-再点火IV梯队1向右下一步": {
+		"recognition": "OCR",
+		"roi": [1161, 118, 46, 24],
+		"expected": "妖精",
+		"pre_delay": 200,
+		"action": "LongPress",
+		"duration": 20,
+		"target": [530, 465, 10, 10],
+		"post_delay": 10000,
+		"next": [
+			"塌缩点-再点火IV点击指挥部2",
+			"[JumpBack]public_加速结算进入"
+		]
+	},
+	"塌缩点-再点火IV点击指挥部2": {
+		"recognition": "TemplateMatch",
+		"template": "combat/dollRescue/residentRescue/MP7Rescue/ActionPoint01.png",
+		"roi": [981, 619, 98, 100],
+		"pre_delay": 200,
+		"action": "LongPress",
+		"duration": 20,
+		"target": [449, 370, 10, 10],
+		"post_delay": 200,
+		"next": [
+			"塌缩点-再点火IV部署梯队2",
+			"塌缩点-再点火IV点击指挥部2"
+		]
+	},
+	"塌缩点-再点火IV部署梯队2": {
+		"recognition": "OCR",
+		"roi": [1141, 612, 86, 50],
+		"expected": "确定",
+		"action": "LongPress",
+		"duration": 20,
+		"pre_delay": 200,
+		"target": [1141, 612, 86, 50],
+		"post_delay": 200,
+		"next": [
+			"塌缩点-再点火IV点击指挥部3"
+		]
+	},
+	"塌缩点-再点火IV点击指挥部3": {
+		"recognition": "DirectHit",
+		"pre_delay": 200,
+		"action": "LongPress",
+		"duration": 20,
+		"target": [449, 370, 10, 10],
+		"post_delay": 200,
+		"next": [
+			"塌缩点-再点火IV补给梯队2",
+			"塌缩点-再点火IV点击指挥部3"
+		]
+	},
+	"塌缩点-再点火IV补给梯队2": {
+		"recognition": "OCR",
+		"roi": [1159, 533, 89, 56],
+		"expected": "补给",
+		"pre_delay": 200,
+		"action": "LongPress",
+		"duration": 20,
+		"target": [1159, 533, 89, 56],
+		"post_delay": 400,
+		"next": [
+			"塌缩点-再点火IV点击1梯0"
+		]
+	},
+	"塌缩点-再点火IV点击1梯0": {
+		"recognition": "DirectHit",
+		"pre_delay": 200,
+		"action": "LongPress",
+		"duration": 20,
+		"target": [530, 465, 10, 10],
+		"post_delay": 200,
+		"next": [
+			"塌缩点-再点火IV梯队换位"
+		]
+	},
+	"塌缩点-再点火IV梯队换位": {
+		"recognition": "OCR",
+		"roi": [360, 447, 108, 52],
+		"expected": "换位",
+		"pre_delay": 200,
+		"action": "LongPress",
+		"duration": 20,
+		"post_delay": 1500,
+		"target": [400, 462, 63, 20],
+		"next": [
+			"塌缩点-再点火IV点击计划模式"
+		]
+	},
+	"塌缩点-再点火IV点击计划模式": {
+		"recognition": "OCR",
+		"roi": [1161, 118, 46, 24],
+		"expected": "妖精",
+		"pre_delay": 200,
+		"action": "LongPress",
+		"duration": 20,
+		"target": [43, 620, 55, 16],
+		"post_delay": 400,
+		"next": [
+			"塌缩点-再点火IV计划1"
+		]
+	},
+	"塌缩点-再点火IV计划1": {
+		"recognition": "TemplateMatch",
+		"template": "combat/dollRescue/residentRescue/MP7Rescue/PP0.png",
+		"roi": [983, 621, 105, 98],
+		"action": "LongPress",
+		"duration": 20,
+		"target": [660, 278, 10, 10],
+		"post_delay": 400,
+		"next": [
+			"塌缩点-再点火IV计划2"
+		]
+	},
+	"塌缩点-再点火IV计划2": {
+		"recognition": "TemplateMatch",
+		"template": "combat/dollRescue/residentRescue/MP7Rescue/PP-2.png",
+		"roi": [982, 623, 104, 96],
+		"action": "LongPress",
+		"duration": 20,
+		"target": [533, 383, 10, 10],
+		"post_delay": 400,
+		"next": [
+			"塌缩点-再点火IV点击1梯1"
+		]
+	},
+	"塌缩点-再点火IV点击1梯1": {
+		"recognition": "TemplateMatch",
+		"template": "combat/dollRescue/residentRescue/MP7Rescue/PP-4.png",
+		"roi": [982, 620, 106, 99],
+		"action": "LongPress",
+		"duration": 20,
+		"target": [449, 370, 10, 10],
+		"post_delay": 400,
+		"next": [
+			"塌缩点-再点火IV选择1梯"
+		]
+	},
+	"塌缩点-再点火IV选择1梯": {
+		"recognition": "OCR",
+		"roi": [530, 353, 98, 49],
+		"expected": "选择",
+		"pre_delay": 200,
+		"action": "LongPress",
+		"duration": 20,
+		"target": [531, 368, 51, 19],
+		"post_delay": 400,
+		"next": [
+			"塌缩点-再点火IV计划3"
+		]
+	},
+	"塌缩点-再点火IV计划3": {
+		"recognition": "TemplateMatch",
+		"template": "combat/dollRescue/residentRescue/MP7Rescue/PP-4.png",
+		"roi": [982, 620, 106, 99],
+		"action": "LongPress",
+		"duration": 20,
+		"target": [351, 342, 10, 10],
+		"post_delay": 400,
+		"next": [
+			"塌缩点-再点火IV点击2梯"
+		]
+	},
+	"塌缩点-再点火IV点击2梯": {
+		"recognition": "TemplateMatch",
+		"template": "combat/dollRescue/residentRescue/MP7Rescue/PP-6.png",
+		"roi": [982, 622, 104, 97],
+		"action": "LongPress",
+		"duration": 20,
+		"target": [530, 465, 10, 10],
+		"post_delay": 400,
+		"next": [
+			"塌缩点-再点火IV选择2梯"
+		]
+	},
+	"塌缩点-再点火IV选择2梯": {
+		"recognition": "OCR",
+		"roi": [609, 451, 102, 48],
+		"expected": "选择",
+		"pre_delay": 200,
+		"action": "LongPress",
+		"duration": 20,
+		"target": [617, 464, 54, 20],
+		"post_delay": 400,
+		"next": [
+			"塌缩点-再点火IV2梯点击指挥部"
+		]
+	},
+	"塌缩点-再点火IV2梯点击指挥部": {
+		"recognition": "TemplateMatch",
+		"template": "combat/dollRescue/residentRescue/MP7Rescue/PP-6.png",
+		"roi": [982, 622, 104, 97],
+		"action": "LongPress",
+		"duration": 20,
+		"target": [449, 370, 10, 10],
+		"post_delay": 400,
+		"next": [
+			"塌缩点-再点火IV2梯移动到指挥部"
+		]
+	},
+	"塌缩点-再点火IV2梯移动到指挥部": {
+		"recognition": "OCR",
+		"roi": [279, 349, 109, 53],
+		"expected": "移动",
+		"pre_delay": 200,
+		"action": "LongPress",
+		"duration": 20,
+		"target": [328, 370, 50, 20],
+		"post_delay": 400,
+		"next": [
+			"塌缩点-再点火IV点击下一回合"
+		]
+	},
+	"塌缩点-再点火IV点击下一回合": {
+		"recognition": "TemplateMatch",
+		"template": "combat/dollRescue/residentRescue/MP7Rescue/PP-7.png",
+		"roi": [983, 619, 103, 100],
+		"action": "LongPress",
+		"duration": 20,
+		"target": [1154, 538, 40, 20],
+		"post_delay": 400,
+		"next": [
+			"塌缩点-执行计划"
+		]
+	},
+	"塌缩点-执行计划": {
+		"recognition": "OCR",
+		"roi": [971, 524, 104, 52],
+		"expected": "取消",
+		"pre_delay": 200,
+		"action": "LongPress",
+		"duration": 20,
+		"target": [1157, 645, 40, 30],
+		"post_delay": 270000,
+		"timeout": 30000,
+		"next": [
+			"塌缩点-再点火IV点击指挥部4",
+			"[JumpBack]public_加速结算进入"
+		]
+	},
+	"塌缩点-再点火IV点击指挥部4": {
+		"recognition": "DirectHit",
+		"pre_delay": 200,
+		"action": "LongPress",
+		"duration": 20,
+		"target": [449, 370, 10, 10],
+		"post_delay": 200,
+		"next": [
+			"塌缩点-再点火IV撤离梯队",
+			"塌缩点-再点火IV点击指挥部4"
+		]
+	},
+	"塌缩点-再点火IV撤离梯队": {
+		"recognition": "OCR",
+		"roi": [956, 609, 95, 57],
+		"expected": "撤离",
+		"action": "LongPress",
+		"duration": 20,
+		"target": [959, 622, 73, 29],
+		"post_delay": 500,
+		"next": [
+			"塌缩点-再点火IV确认撤离梯队"
+		]
+	},
+	"塌缩点-再点火IV确认撤离梯队": {
+		"recognition": "OCR",
+		"roi": [719, 467, 99, 57],
+		"expected": "确定",
+		"action": "LongPress",
+		"duration": 20,
+		"target": [719, 467, 99, 57],
+		"post_delay": 500,
+		"next": [
+			"塌缩点-再点火IV终止作战"
+		]
+	},
+	"塌缩点-再点火IV终止作战": {
+		"recognition": "DirectHit",
+		"pre_delay": 200,
+		"action": "LongPress",
+		"duration": 20,
+		"target": [292, 20, 40, 40],
+		"post_delay": 400,
+		"next": [
+			"塌缩点-再点火IV重新作战",
+			"塌缩点-再点火IV终止作战"
+		]
+	},
+	"塌缩点-再点火IV重新作战": {
+		"recognition": "OCR",
+		"roi": [463, 218, 131, 51],
+		"expected": "重新作战",
+		"action": "LongPress",
+		"duration": 20,
+		"target": [463, 477, 47, 33],
+		"post_delay": 2500,
+		"next": [
+			"塌缩点-再点火IV开始作战",
+			"塌缩点-再点火IV点击大撤退",
+			"[JumpBack]public二星人形回收_人形回收"
+		]
+	}
+}

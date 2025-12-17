@@ -2,7 +2,9 @@
 # Configurable parameters
 param(
     [int]$ScrollCount = 100,           # Number of scroll operations
-    [string]$Direction = "down"        # Scroll direction: "up" or "down"
+    [string]$Direction = "down",       # Scroll direction: "up" or "down"
+    [int]$MouseX = -1,                 # Mouse X position relative to window (-1 for center)
+    [int]$MouseY = -1                  # Mouse Y position relative to window (-1 for center)
 )
 
 try {
@@ -49,7 +51,6 @@ public class MouseWheelHelper {
     }
     
     # Set wheel delta based on direction
-    # For down direction, use uint representation of negative value
     $wheelDelta = if ($Direction -eq "up") { 
         [uint32]120 
     } else { 
@@ -57,9 +58,8 @@ public class MouseWheelHelper {
     }
     
     Write-Host "Searching for game window..."
-    Write-Host "Wheel delta: $wheelDelta (Direction: $Direction)"
     
-    # Method 1: Find by window title
+    # Find game window
     $gameWindowTitles = @("少女前线", "Girls' Frontline", "GirlsFrontline")
     $gameWindow = [System.IntPtr]::Zero
     $foundTitle = ""
@@ -74,7 +74,7 @@ public class MouseWheelHelper {
         }
     }
     
-    # Method 2: Find by process name if method 1 failed
+    # Find by process name if method 1 failed
     if ($gameWindow -eq [System.IntPtr]::Zero) {
         $processes = Get-Process -Name "GrilsFrontLine" -ErrorAction SilentlyContinue
         if ($processes) {
@@ -95,20 +95,29 @@ public class MouseWheelHelper {
         exit 1
     }
     
-    # Verify window visibility
-    $isVisible = [MouseWheelHelper]::IsWindowVisible($gameWindow)
-    if (-not $isVisible) {
-        Write-Host "Warning: Game window is not visible"
-    }
-    
-    # Get window position and calculate center
+    # Get window position and size
     $rect = New-Object MouseWheelHelper+RECT
     $rectResult = [MouseWheelHelper]::GetWindowRect($gameWindow, [ref]$rect)
-    if ($rectResult) {
-        $centerX = ($rect.Left + $rect.Right) / 2
-        $centerY = ($rect.Top + $rect.Bottom) / 2
-        Write-Host "Window center: ($centerX, $centerY)"
+    if (-not $rectResult) {
+        Write-Host "Error: Failed to get window rect"
+        exit 1
     }
+    
+    # Calculate target mouse position
+    if ($MouseX -ge 0 -and $MouseY -ge 0) {
+        # Use specified coordinates (relative to window)
+        $targetX = $rect.Left + $MouseX
+        $targetY = $rect.Top + $MouseY
+        Write-Host "Using specified mouse position: ($MouseX, $MouseY) relative to window"
+    } else {
+        # Use window center
+        $targetX = ($rect.Left + $rect.Right) / 2
+        $targetY = ($rect.Top + $rect.Bottom) / 2
+        Write-Host "Using window center: ($targetX, $targetY)"
+    }
+    
+    Write-Host "Window position: Left=$($rect.Left), Top=$($rect.Top), Right=$($rect.Right), Bottom=$($rect.Bottom)"
+    Write-Host "Absolute mouse position: ($targetX, $targetY)"
     
     # Activate game window
     Write-Host "Activating game window..."
@@ -118,26 +127,22 @@ public class MouseWheelHelper {
     }
     Start-Sleep -Milliseconds 500
     
-    # Verify activation
-    $currentForeground = [MouseWheelHelper]::GetForegroundWindow()
-    $isActivated = ($currentForeground -eq $gameWindow)
-    if (-not $isActivated) {
-        Write-Host "Warning: Window activation failed, continuing anyway..."
-    }
-    
-    # Set mouse position to window center
-    [System.Windows.Forms.Cursor]::Position = New-Object System.Drawing.Point($centerX, $centerY)
+    # Set mouse position to target position
+    Write-Host "Moving mouse to target position..."
+    [System.Windows.Forms.Cursor]::Position = New-Object System.Drawing.Point($targetX, $targetY)
     Start-Sleep -Milliseconds 200
     
     # Perform mouse wheel operations
     Write-Host "Executing $ScrollCount scroll operations ($Direction)..."
     for ($i = 0; $i -lt $ScrollCount; $i++) {
         [MouseWheelHelper]::mouse_event([MouseWheelHelper]::MOUSEEVENTF_WHEEL, 0, 0, $wheelDelta, [System.UIntPtr]::Zero)
-        Write-Host "Scroll $($i + 1)/$ScrollCount completed"
+        if (($i + 1) % 10 -eq 0) {
+            Write-Host "Scroll $($i + 1)/$ScrollCount completed"
+        }
         Start-Sleep -Milliseconds 1
     }
     
-    Write-Host "All operations completed successfully"
+    Write-Host "All $ScrollCount scroll operations completed successfully"
     
 }
 catch {

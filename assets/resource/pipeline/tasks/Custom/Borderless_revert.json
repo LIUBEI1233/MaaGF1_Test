@@ -1,15 +1,15 @@
 {
-    "!Borderless_Revert_Task": {
-        "next": [
-            "Borderless_Revert_Node"
-        ]
-    },
-    "Borderless_Revert_Node": {
-        "recognition": "DirectHit",
-        "action": "Custom",
-        "custom_action": "borderless_revert",
-        "custom_action_param": {},
-        "pre_delay": 500,
-        "post_delay": 1000
-    }
+	"!Borderless_Revert_Task": {
+		"next": [
+			"Borderless_Revert_Node"
+		]
+	},
+	"Borderless_Revert_Node": {
+		"recognition": "DirectHit",
+		"action": "Custom",
+		"custom_action": "borderless_revert",
+		"custom_action_param": {},
+		"pre_delay": 500,
+		"post_delay": 1000
+	}
 }

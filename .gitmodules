@@ -1,3 +1,6 @@
 [submodule "assets/MaaCommonAssets"]
 	path = assets/MaaCommonAssets
 	url = https://github.com/MaaXYZ/MaaCommonAssets
+[submodule "tools/maapipeline-format"]
+	path = tools/maapipeline-format
+	url = git@github.com:MaaGF1/MaaPipeline-Format.git

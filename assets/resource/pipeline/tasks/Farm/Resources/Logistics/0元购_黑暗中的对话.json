@@ -1,0 +1,105 @@
+{
+	"黑话_滑动1": {
+		"doc": "在活动界面缩放",
+		"recognition": "OCR",
+		"roi": [110, 575, 142, 57],
+		"expected": "卷积核",
+		"action": "Command",
+		"exec": "powershell",
+		"args": [
+			"-ExecutionPolicy",
+			"Bypass",
+			"-File",
+			"{RESOURCE_DIR}/../tools/scroll.ps1",
+			"-ScrollCount",
+			"40",
+			"-Direction",
+			"down",
+			"-MouseX",
+			"1200",
+			"-MouseY",
+			"700"
+		],
+		"post_delay": 1400,
+		"next": [
+			"黑话_滑动2"
+		]
+	},
+	"黑话_滑动2": {
+		"action": "Swipe",
+		"begin": [181, 460, 1, 1],
+		"end": [969, 706, 1, 1],
+		"duration": 100,
+		"next": [
+			"黑话_滑动3"
+		]
+	},
+	"黑话_滑动3": {
+		"action": "Swipe",
+		"begin": [1142, 634, 1, 1],
+		"end": [951, 681, 1, 1],
+		"duration": 50,
+		"post_delay": 400,
+		"next": [
+			"黑话_识别假打捞关",
+			"黑话_滑动3"
+		]
+	},
+	"黑话_识别假打捞关": {
+		"recognition": "TemplateMatch",
+		"roi": [32, 152, 1144, 38],
+		"template": [
+			"combat/resourceRecovery/卷积核/0元购.png",
+			"combat/resourceRecovery/卷积核/0元购1.png"
+		],
+		"action": "LongPress",
+		"target_offset": [-32, -29, 0, 0],
+		"duration": 15,
+		"post_delay": 400,
+		"next": [
+			"黑话_进入卷积核关卡",
+			"黑话_识别假打捞关"
+		]
+	},
+	"黑话_进入卷积核关卡": {
+		"recognition": "OCR",
+		"roi": [895, 139, 340, 157],
+		"expected": "黑暗中的对话",
+		"action": "LongPress",
+		"duration": 15,
+		"target": [1120, 391, 92, 38],
+		"post_delay": 1000,
+		"next": [
+			"黑话_开始作战",
+			"黑话_进入卷积核关卡"
+		]
+	},
+	"黑话_开始作战": {
+		"recognition": "OCR",
+		"roi": [1002, 604, 277, 115],
+		"action": "LongPress",
+		"duration": 15,
+		"expected": "点击指挥",
+		"pre_delay": 1,
+		"post_delay": 1000,
+		"timeout": 90000,
+		"next": [
+			"黑话_结束回合1",
+			"黑话_开始作战"
+		]
+	},
+	"黑话_结束回合1": {
+		"recognition": "OCR",
+		"roi": [416, 34, 64, 55],
+		"expected": "02",
+		"rate_limit": 500,
+		"post_delay": 1,
+		"timeout": 90000,
+		"next": [
+			"逃亡_进入卷积核",
+			"黑话_开始作战",
+			"[JumpBack]public二星人形回收_人形回收",
+			"[JumpBack]public_关卡结算点击1"
+		]
+	}
+}

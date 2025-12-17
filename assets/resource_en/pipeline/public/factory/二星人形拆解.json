@@ -1,0 +1,86 @@
+{
+	"public二星人形回收_人形回收": {
+		"recognition": "OCR",
+		"roi": [631, 309, 81, 40],
+		"expected": "Retire",
+		"action": "LongPress",
+		"duration": 10,
+		"post_delay": 200,
+		"next": [
+			"public二星人形回收_回收角色",
+			"public二星人形回收_人形回收"
+		]
+	},
+	"public二星人形回收_回收角色": {
+		"recognition": "OCR",
+		"roi": [335, 211, 76, 29],
+		"expected": "T-DOLL",
+		"action": "LongPress",
+		"duration": 10,
+		"post_delay": 200,
+		"next": [
+			"public二星人形回收_智能选择",
+			"public二星人形回收_回收角色"
+		]
+	},
+	"public二星人形回收_智能选择": {
+		"recognition": "OCR",
+		"roi": [1093, 593, 174, 106],
+		"expected": ["SELECT", "OK"],
+		"action": "LongPress",
+		"duration": 10,
+		"post_delay": 200,
+		"next": [
+			"public二星人形回收_智能选择",
+			"public二星人形回收_确认回收"
+		]
+	},
+	"public二星人形回收_确认回收": {
+		"recognition": "OCR",
+		"roi": [1062, 201, 109, 39],
+		"expected": "Manpower",
+		"action": "LongPress",
+		"duration": 10,
+		"target": [1096, 575, 110, 50],
+		"post_delay": 200,
+		"timeout": 2000,
+		"next": [
+			"public二星人形回收_进入导航栏",
+			"public二星人形回收_确认回收"
+		]
+	},
+	"public二星人形回收_进入导航栏": {
+		"recognition": "TemplateMatch",
+		"roi": [124, 18, 120, 105],
+		"template": "storage/navi.png",
+		"action": "LongPress",
+		"duration": 20,
+		"pre_delay": 800,
+		"post_wait_freezes": 200,
+		"next": [
+			"public二星人形回收_导航栏战斗",
+			"public二星人形回收_进入导航栏"
+		]
+	},
+	"public二星人形回收_导航栏战斗": {
+		"recognition": "TemplateMatch",
+		"roi": [80, 150, 150, 200],
+		"template": "storage/navi_combat.png",
+		"action": "LongPress",
+		"duration": 500,
+		"pre_delay": 1000,
+		"post_delay": 3000,
+		"next": [
+			"public二星人形回收_判断是否进入战斗菜单",
+			"public二星人形回收_导航栏战斗"
+		]
+	},
+	"public二星人形回收_判断是否进入战斗菜单": {
+		"recognition": "OCR",
+		"roi": [319, 34, 70, 42],
+		"expected": ["co", "CO"],
+		"action": "DoNothing",
+		"post_delay": 2000,
+		"next": []
+	}
+}

@@ -1,107 +1,107 @@
 {
-    "!Watchdog_Normal_Test": {
-        "next": [
-            "Feed_Watchdog_1"
-        ]
-    },
-    "Feed_Watchdog_1": {
-        "recognition": "DirectHit",
-        "action": "Custom",
-        "custom_action": "watchdog_feed",
-        "custom_action_param": {
-            "timeout_ms": 10000,
-            "info": "正常测试看门狗 - 10秒超时 - 第1次喂狗"
-        },
-        "pre_delay": 100,
-        "post_delay": 500,
-        "next": [
-            "Notify_Status_1"
-        ]
-    },
-    "Notify_Status_1": {
-        "recognition": "DirectHit",
-        "action": "Custom",
-        "custom_action": "parametric_extnotify",
-        "custom_action_param": {
-            "message": "看门狗测试进度：第1次喂狗完成（自动启动），状态：{status}，当前次数：{count}",
-            "parameters": {
-                "status": "正常",
-                "count": "{increment_Task_Counter}"
-            }
-        },
-        "pre_delay": 100,
-        "post_delay": 2000,
-        "next": [
-            "Feed_Watchdog_2"
-        ]
-    },
-    "Feed_Watchdog_2": {
-        "recognition": "DirectHit",
-        "action": "Custom",
-        "custom_action": "watchdog_feed",
-        "custom_action_param": {
-            "info": "第2次喂狗"
-        },
-        "pre_delay": 2000,
-        "post_delay": 500,
-        "next": [
-            "Notify_Status_2"
-        ]
-    },
-    "Notify_Status_2": {
-        "recognition": "DirectHit",
-        "action": "Custom",
-        "custom_action": "parametric_extnotify",
-        "custom_action_param": {
-            "message": "看门狗测试进度：第2次喂狗完成，状态：{status}，当前次数：{count}",
-            "parameters": {
-                "status": "正常",
-                "count": "{increment_Task_Counter}"
-            }
-        },
-        "pre_delay": 100,
-        "post_delay": 2000,
-        "next": [
-            "Feed_Watchdog_3"
-        ]
-    },
-    "Feed_Watchdog_3": {
-        "recognition": "DirectHit",
-        "action": "Custom",
-        "custom_action": "watchdog_feed",
-        "custom_action_param": {
-            "info": "第3次喂狗"
-        },
-        "pre_delay": 2000,
-        "post_delay": 500,
-        "next": [
-            "Stop_Watchdog"
-        ]
-    },
-    "Stop_Watchdog": {
-        "recognition": "DirectHit",
-        "action": "Custom",
-        "custom_action": "watchdog_stop",
-        "custom_action_param": {
-            "info": "正常测试完成，手动停止看门狗"
-        },
-        "pre_delay": 100,
-        "post_delay": 500,
-        "next": [
-            "Final_Notify"
-        ]
-    },
-    "Final_Notify": {
-        "recognition": "DirectHit",
-        "action": "Custom",
-        "custom_action": "parametric_extnotify",
-        "custom_action_param": {
-            "message": "看门狗正常测试完成！总计执行：{count}个步骤",
-            "parameters": {
-                "count": "{increment_Task_Counter}"
-            }
-        },
-        "pre_delay": 100,
-        "post_delay": 100
-    }
+	"!Watchdog_Normal_Test": {
+		"next": [
+			"Feed_Watchdog_1"
+		]
+	},
+	"Feed_Watchdog_1": {
+		"recognition": "DirectHit",
+		"action": "Custom",
+		"custom_action": "watchdog_feed",
+		"custom_action_param": {
+			"timeout_ms": 10000,
+			"info": "正常测试看门狗 - 10秒超时 - 第1次喂狗"
+		},
+		"pre_delay": 100,
+		"post_delay": 500,
+		"next": [
+			"Notify_Status_1"
+		]
+	},
+	"Notify_Status_1": {
+		"recognition": "DirectHit",
+		"action": "Custom",
+		"custom_action": "parametric_extnotify",
+		"custom_action_param": {
+			"message": "看门狗测试进度：第1次喂狗完成（自动启动），状态：{status}，当前次数：{count}",
+			"parameters": {
+				"status": "正常",
+				"count": "{increment_Task_Counter}"
+			}
+		},
+		"pre_delay": 100,
+		"post_delay": 2000,
+		"next": [
+			"Feed_Watchdog_2"
+		]
+	},
+	"Feed_Watchdog_2": {
+		"recognition": "DirectHit",
+		"action": "Custom",
+		"custom_action": "watchdog_feed",
+		"custom_action_param": {
+			"info": "第2次喂狗"
+		},
+		"pre_delay": 2000,
+		"post_delay": 500,
+		"next": [
+			"Notify_Status_2"
+		]
+	},
+	"Notify_Status_2": {
+		"recognition": "DirectHit",
+		"action": "Custom",
+		"custom_action": "parametric_extnotify",
+		"custom_action_param": {
+			"message": "看门狗测试进度：第2次喂狗完成，状态：{status}，当前次数：{count}",
+			"parameters": {
+				"status": "正常",
+				"count": "{increment_Task_Counter}"
+			}
+		},
+		"pre_delay": 100,
+		"post_delay": 2000,
+		"next": [
+			"Feed_Watchdog_3"
+		]
+	},
+	"Feed_Watchdog_3": {
+		"recognition": "DirectHit",
+		"action": "Custom",
+		"custom_action": "watchdog_feed",
+		"custom_action_param": {
+			"info": "第3次喂狗"
+		},
+		"pre_delay": 2000,
+		"post_delay": 500,
+		"next": [
+			"Stop_Watchdog"
+		]
+	},
+	"Stop_Watchdog": {
+		"recognition": "DirectHit",
+		"action": "Custom",
+		"custom_action": "watchdog_stop",
+		"custom_action_param": {
+			"info": "正常测试完成，手动停止看门狗"
+		},
+		"pre_delay": 100,
+		"post_delay": 500,
+		"next": [
+			"Final_Notify"
+		]
+	},
+	"Final_Notify": {
+		"recognition": "DirectHit",
+		"action": "Custom",
+		"custom_action": "parametric_extnotify",
+		"custom_action_param": {
+			"message": "看门狗正常测试完成！总计执行：{count}个步骤",
+			"parameters": {
+				"count": "{increment_Task_Counter}"
+			}
+		},
+		"pre_delay": 100,
+		"post_delay": 100
+	}
 }

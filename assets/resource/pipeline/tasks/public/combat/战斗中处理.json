@@ -1,134 +1,74 @@
 {
-    "public_不中断计划": {
-        "recognition": "OCR",
-        "expected": [
-            "中断"
-        ],
-        "rate_limit": 1000,
-        "action": "LongPress",
-        "duration": 100,
-        "post_delay": 800,
-        "target": [
-            467,
-            480,
-            118,
-            24
-        ],
-        "next": []
-    },
-    "public_加速结算进入": {
-        "recognition": "OCR",
-        "roi": [
-            0,
-            597,
-            135,
-            121
-        ],
-        "expected": [
-            "级"
-        ],
-        "action": "LongPress",
-        "duration": 10,
-        "target": [
-            372,
-            615,
-            1,
-            1
-        ],
-        "pre_delay": 500,
-        "post_delay": 60,
-        "next": [
-            "public_加速结算点击1"
-        ]
-    },
-    "public_加速结算点击1": {
-        "target": [
-            372,
-            615,
-            1,
-            1
-        ],
-        "post_delay": 60,
-        "pre_delay": 1,
-        "action": "LongPress",
-        "duration": 10,
-        "next": [
-            "public_加速结算点击2"
-        ]
-    },
-    "public_加速结算点击2": {
-        "target": [
-            372,
-            615,
-            1,
-            1
-        ],
-        "post_delay": 60,
-        "pre_delay": 1,
-        "action": "LongPress",
-        "duration": 10,
-        "next": [
-            "public_加速结算点击3"
-        ]
-    },
-    "public_加速结算点击3": {
-        "target": [
-            372,
-            615,
-            1,
-            1
-        ],
-        "post_delay": 60,
-        "pre_delay": 1,
-        "action": "LongPress",
-        "duration": 10,
-        "next": [
-            "public_加速结算点击4"
-        ]
-    },
-    "public_加速结算点击4": {
-        "target": [
-            372,
-            615,
-            1,
-            1
-        ],
-        "post_delay": 60,
-        "pre_delay": 1,
-        "action": "LongPress",
-        "duration": 10,
-        "next": [
-            "public_加速结算点击5"
-        ]
-    },
-    "public_加速结算点击5": {
-        "target": [
-            372,
-            615,
-            1,
-            1
-        ],
-        "post_delay": 60,
-        "pre_delay": 1,
-        "action": "LongPress",
-        "duration": 10,
-        "next": [
-            "public_加速结算点击10"
-        ]
-    },
-    "public_加速结算点击10": {
-        "target": [
-            372,
-            615,
-            1,
-            1
-        ],
-        "action": "LongPress",
-        "duration": 10,
-        "next": [
-            "public_加速后等待"
-        ],
-        "pre_delay": 1
-    },
-    "public_加速后等待": {}
+	"public_不中断计划": {
+		"recognition": "OCR",
+		"expected": ["中断"],
+		"rate_limit": 1000,
+		"action": "LongPress",
+		"duration": 10,
+		"post_delay": 800,
+		"target": [467, 480, 118, 24],
+		"next": []
+	},
+	"public_加速结算进入": {
+		"recognition": "ColorMatch",
+		"roi": [17, 640, 5, 15],
+		"upper": [88, 86, 85],
+		"lower": [88, 86, 85],
+		"action": "LongPress",
+		"duration": 10,
+		"target": [372, 615, 1, 1],
+		"pre_delay": 600,
+		"post_delay": 60,
+		"next": [
+			"public_加速结算点击1"
+		]
+	},
+	"public_加速结算点击1": {
+		"recognition": "DirectHit",
+		"action": "LongPress",
+		"target": [372, 615, 1, 1],
+		"duration": 10,
+		"pre_delay": 10,
+		"post_delay": 60,
+		"next": [
+			"public_加速结算点击2"
+		]
+	},
+	"public_加速结算点击2": {
+		"recognition": "DirectHit",
+		"action": "LongPress",
+		"target": [372, 615, 1, 1],
+		"duration": 10,
+		"pre_delay": 10,
+		"post_delay": 60,
+		"next": [
+			"public_加速结算点击3"
+		]
+	},
+	"public_加速结算点击3": {
+		"recognition": "DirectHit",
+		"action": "LongPress",
+		"target": [372, 615, 1, 1],
+		"duration": 10,
+		"pre_delay": 10,
+		"post_delay": 60,
+		"next": [
+			"public_加速结算点击4"
+		]
+	},
+	"public_加速结算点击4": {
+		"recognition": "DirectHit",
+		"action": "LongPress",
+		"target": [472, 615, 1, 1],
+		"duration": 10,
+		"pre_delay": 10,
+		"next": [
+			"public_加速后等待"
+		],
+		"post_delay": 400
+	},
+	"public_加速后等待": {
+		"post_delay": 2000,
+		"next": []
+	}
 }

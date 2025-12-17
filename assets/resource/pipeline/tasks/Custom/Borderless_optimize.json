@@ -1,24 +1,24 @@
 {
-    "!Borderless_Optimize_Task": {
-        "next": [
-            "Borderless_Optimize_Node"
-        ]
-    },
-    "Borderless_Optimize_Node": {
-        "recognition": "DirectHit",
-        "action": "Custom",
-        "custom_action": "borderless_optimize",
-        "custom_action_param": {
-            "target_width": 1280,
-            "target_height": 720,
-            "window_pattern": null,
-            "dpi_aware": true,
-            "force_dpi": null,
-            "disable_dwm": true,
-            "topmost": false,
-            "precise_positioning": true
-        },
-        "pre_delay": 500,
-        "post_delay": 1000
-    }
+	"!Borderless_Optimize_Task": {
+		"next": [
+			"Borderless_Optimize_Node"
+		]
+	},
+	"Borderless_Optimize_Node": {
+		"recognition": "DirectHit",
+		"action": "Custom",
+		"custom_action": "borderless_optimize",
+		"custom_action_param": {
+			"target_width": 1280,
+			"target_height": 720,
+			"window_pattern": null,
+			"dpi_aware": true,
+			"force_dpi": null,
+			"disable_dwm": true,
+			"topmost": false,
+			"precise_positioning": true
+		},
+		"pre_delay": 500,
+		"post_delay": 1000
+	}
 }

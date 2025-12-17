@@ -1,0 +1,117 @@
+{
+	"!刘氏步枪打捞": {
+		"next": [
+			"刘氏步枪打捞_开始作战"
+		]
+	},
+	"刘氏步枪打捞_开始作战": {
+		"recognition": "OCR",
+		"roi": [1037, 621, 94, 47],
+		"expected": "开始",
+		"action": "LongPress",
+		"duration": 20,
+		"next": [
+			"刘氏步枪打捞_点击打捞队",
+			"刘氏步枪打捞_开始作战"
+		]
+	},
+	"刘氏步枪打捞_点击打捞队": {
+		"recognition": "OCR",
+		"roi": [1109, 639, 74, 52],
+		"doc": "结束回合按钮",
+		"expected": "结束",
+		"action": "LongPress",
+		"duration": 20,
+		"post_delay": 500,
+		"target": [533, 242, 40, 39],
+		"next": [
+			"刘氏步枪打捞_补给",
+			"刘氏步枪打捞_点击打捞队"
+		]
+	},
+	"刘氏步枪打捞_补给": {
+		"recognition": "OCR",
+		"roi": [1156, 534, 98, 67],
+		"expected": "补给",
+		"action": "LongPress",
+		"duration": 20,
+		"post_delay": 600,
+		"next": [
+			"刘氏步枪打捞_计划模式"
+		]
+	},
+	"刘氏步枪打捞_计划模式": {
+		"recognition": "OCR",
+		"roi": [1109, 639, 74, 52],
+		"expected": "结束",
+		"action": "LongPress",
+		"duration": 20,
+		"post_delay": 300,
+		"target": [51, 619, 21, 9],
+		"next": [
+			"刘氏步枪打捞_计划点1",
+			"刘氏步枪打捞_计划模式"
+		]
+	},
+	"刘氏步枪打捞_计划点1": {
+		"recognition": "OCR",
+		"roi": [1110, 639, 73, 51],
+		"doc": "执行计划按钮",
+		"expected": "执行",
+		"action": "LongPress",
+		"duration": 20,
+		"pre_delay": 300,
+		"post_delay": 300,
+		"timeout": 30000,
+		"target": [1163, 243, 35, 36],
+		"next": [
+			"刘氏步枪打捞_计划点2"
+		]
+	},
+	"刘氏步枪打捞_计划点2": {
+		"recognition": "OCR",
+		"roi": [1110, 639, 73, 51],
+		"expected": "执行",
+		"action": "LongPress",
+		"duration": 20,
+		"pre_delay": 300,
+		"post_delay": 300,
+		"timeout": 30000,
+		"target": [1138, 536, 97, 26],
+		"next": [
+			"刘氏步枪打捞_执行计划"
+		]
+	},
+	"刘氏步枪打捞_执行计划": {
+		"action": "LongPress",
+		"duration": 20,
+		"post_delay": 300,
+		"target": [1110, 639, 73, 51],
+		"timeout": 300000,
+		"next": [
+			"刘氏步枪打捞_再次作战"
+		]
+	},
+	"刘氏步枪打捞_再次作战": {
+		"recognition": "OCR",
+		"roi": [277, 572, 188, 73],
+		"expected": ["再次作战"],
+		"action": "LongPress",
+		"duration": 20,
+		"post_delay": 800,
+		"rate_limit": 1200,
+		"target": [318, 614, 130, 24],
+		"next": [
+			"刘氏步枪打捞_开始作战",
+			"[JumpBack]刘氏步枪打捞-点击获得角色"
+		]
+	},
+	"刘氏步枪打捞-点击获得角色": {
+		"recognition": "DirectHit",
+		"action": "LongPress",
+		"duration": 20,
+		"target": [386, 620, 1, 1],
+		"pre_delay": 100,
+		"timeout": 600000
+	}
+}

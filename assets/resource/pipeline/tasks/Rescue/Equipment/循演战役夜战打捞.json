@@ -1,0 +1,245 @@
+{
+	"!循演战役夜战打捞": {
+		"recognition": "DirectHit",
+		"action": "DoNothing",
+		"next": [
+			"循演战役夜战打捞_主界面点击战斗",
+			"循演战役夜战打捞_点击打捞关卡",
+			"循演战役夜战打捞_滑动至选择的打捞关卡",
+			"循演战役夜战打捞_点击夜战模式",
+			"循演战役夜战打捞_作战任务",
+			"循演战役夜战打捞_开始作战"
+		]
+	},
+	"循演战役夜战打捞_主界面点击战斗": {
+		"recognition": "OCR",
+		"roi": [762, 334, 312, 181],
+		"expected": "战斗",
+		"action": "LongPress",
+		"duration": 20,
+		"next": [
+			"循演战役夜战打捞_点击打捞关卡",
+			"循演战役夜战打捞_滑动至选择的打捞关卡",
+			"循演战役夜战打捞_作战任务",
+			"循演战役夜战打捞_主界面点击战斗"
+		]
+	},
+	"循演战役夜战打捞_作战任务": {
+		"recognition": "OCR",
+		"roi": [20, 105, 162, 367],
+		"expected": "作战任务",
+		"action": "LongPress",
+		"duration": 20,
+		"next": [
+			"循演战役夜战打捞_点击打捞关卡",
+			"循演战役夜战打捞_滑动至选择的打捞关卡"
+		]
+	},
+	"循演战役夜战打捞_点击夜战模式": {
+		"recognition": "OCR",
+		"roi": [492, 121, 256, 83],
+		"expected": "循演",
+		"action": "LongPress",
+		"duration": 20,
+		"target": [1186, 172, 60, 33],
+		"post_delay": 1000,
+		"next": [
+			"循演战役夜战打捞_点击打捞关卡",
+			"循演战役夜战打捞_滑动至选择的打捞关卡",
+			"循演战役夜战打捞_点击夜战模式"
+		]
+	},
+	"循演战役夜战打捞_滑动至选择的打捞关卡": {
+		"recognition": "OCR",
+		"roi": [623, 261, 92, 448],
+		"expected": "隐秘",
+		"action": "Swipe",
+		"begin": [796, 567, 1, 1],
+		"end": [795, 418, 1, 1],
+		"post_delay": 1000,
+		"next": [
+			"循演战役夜战打捞_点击打捞关卡",
+			"循演战役夜战打捞_滑动2",
+			"循演战役夜战打捞_滑动至选择的打捞关卡"
+		]
+	},
+	"循演战役夜战打捞_滑动2": {
+		"recognition": "DirectHit",
+		"action": "Swipe",
+		"begin": [796, 567, 1, 1],
+		"end": [795, 418, 1, 1],
+		"post_delay": 1000,
+		"next": [
+			"循演战役夜战打捞_点击打捞关卡",
+			"循演战役夜战打捞_滑动2"
+		]
+	},
+	"循演战役夜战打捞_点击打捞关卡": {
+		"recognition": "OCR",
+		"roi": [621, 261, 195, 454],
+		"expected": "隐秘行动",
+		"action": "LongPress",
+		"duration": 20,
+		"pre_delay": 100,
+		"next": [
+			"循演战役夜战打捞_进入打捞关卡",
+			"循演战役夜战打捞_点击打捞关卡"
+		]
+	},
+	"循演战役夜战打捞_进入打捞关卡": {
+		"recognition": "OCR",
+		"roi": [467, 149, 182, 98],
+		"expected": "隐秘行动",
+		"action": "LongPress",
+		"duration": 20,
+		"target": [952, 571, 54, 32],
+		"next": [
+			"循演战役夜战打捞_点击机场",
+			"循演战役夜战打捞_进入打捞关卡"
+		]
+	},
+	"循演战役夜战打捞_点击机场": {
+		"recognition": "OCR",
+		"roi": [20, 597, 149, 65],
+		"expected": "计划",
+		"action": "LongPress",
+		"duration": 20,
+		"target": [411, 332, 17, 17],
+		"next": [
+			"循演战役夜战打捞_开始作战",
+			"循演战役夜战打捞_点击机场",
+			"[JumpBack]!public梯队部署"
+		]
+	},
+	"循演战役夜战打捞_开始作战": {
+		"recognition": "OCR",
+		"roi": [1016, 613, 235, 84],
+		"expected": "开始",
+		"action": "LongPress",
+		"duration": 20,
+		"next": [
+			"循演战役夜战打捞_点击梯队",
+			"循演战役夜战打捞_开始作战"
+		]
+	},
+	"循演战役夜战打捞_点击梯队": {
+		"recognition": "OCR",
+		"roi": [1076, 596, 197, 118],
+		"expected": "结束",
+		"action": "LongPress",
+		"duration": 20,
+		"target": [411, 332, 17, 17],
+		"next": [
+			"循演战役夜战打捞_补给梯队",
+			"循演战役夜战打捞_点击梯队"
+		]
+	},
+	"循演战役夜战打捞_补给梯队": {
+		"recognition": "OCR",
+		"roi": [1074, 507, 191, 94],
+		"expected": "补给",
+		"action": "LongPress",
+		"duration": 20,
+		"next": [
+			"循演战役夜战打捞_进入计划模式",
+			"循演战役夜战打捞_补给梯队"
+		]
+	},
+	"循演战役夜战打捞_进入计划模式": {
+		"recognition": "OCR",
+		"roi": [7, 604, 149, 50],
+		"expected": "计划",
+		"action": "LongPress",
+		"duration": 20,
+		"next": [
+			"循演战役夜战打捞_计划点1",
+			"循演战役夜战打捞_进入计划模式"
+		]
+	},
+	"循演战役夜战打捞_计划点1": {
+		"recognition": "OCR",
+		"roi": [1086, 610, 184, 106],
+		"expected": "执行",
+		"action": "LongPress",
+		"duration": 20,
+		"target": [515, 232, 17, 16],
+		"next": [
+			"循演战役夜战打捞_计划点2"
+		]
+	},
+	"循演战役夜战打捞_计划点2": {
+		"recognition": "DirectHit",
+		"action": "LongPress",
+		"duration": 20,
+		"target": [714, 230, 17, 17],
+		"next": [
+			"循演战役夜战打捞_计划点3"
+		]
+	},
+	"循演战役夜战打捞_计划点3": {
+		"recognition": "DirectHit",
+		"action": "LongPress",
+		"duration": 20,
+		"target": [917, 230, 16, 18],
+		"post_delay": 500,
+		"next": [
+			"循演战役夜战打捞_下一回合",
+			"循演战役夜战打捞_进入计划模式"
+		]
+	},
+	"循演战役夜战打捞_下一回合": {
+		"recognition": "DirectHit",
+		"action": "LongPress",
+		"duration": 20,
+		"target": [1145, 540, 74, 21],
+		"next": [
+			"循演战役夜战打捞_执行计划",
+			"循演战役夜战打捞_下一回合"
+		]
+	},
+	"循演战役夜战打捞_执行计划": {
+		"recognition": "OCR",
+		"roi": [962, 520, 122, 62],
+		"expected": "取消",
+		"action": "LongPress",
+		"duration": 20,
+		"target": [1152, 644, 53, 30],
+		"post_delay": 100000,
+		"timeout": 200000,
+		"next": [
+			"循演战役夜战打捞_再次作战",
+			"循演战役夜战打捞_执行计划"
+		]
+	},
+	"循演战役夜战打捞_再次作战": {
+		"recognition": "OCR",
+		"roi": [366, 609, 98, 32],
+		"expected": "再次作战",
+		"action": "LongPress",
+		"duration": 20,
+		"next": [
+			"循演战役夜战打捞_再战点击"
+		]
+	},
+	"循演战役夜战打捞_再战点击": {
+		"recognition": "DirectHit",
+		"action": "LongPress",
+		"duration": 20,
+		"target": [346, 599, 119, 10],
+		"next": [
+			"循演战役夜战打捞_开始作战",
+			"循演战役装备拆解",
+			"循演战役夜战打捞_再战点击"
+		]
+	},
+	"循演战役装备拆解": {
+		"recognition": "OCR",
+		"expected": ["装备"],
+		"roi": [488, 112, 175, 267],
+		"action": "DoNothing",
+		"next": [
+			"循演战役夜战打捞_点击夜战模式",
+			"[JumpBack]public二星装备回收_回收装备"
+		]
+	}
+}

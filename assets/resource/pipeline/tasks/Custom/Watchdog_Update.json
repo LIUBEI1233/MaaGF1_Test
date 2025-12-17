@@ -1,0 +1,88 @@
+{
+	"!Watchdog_Update_Test": {
+		"next": [
+			"Watchdog_Update_Feed_Initial_3s"
+		]
+	},
+	"Watchdog_Update_Feed_Initial_3s": {
+		"recognition": "DirectHit",
+		"action": "Custom",
+		"custom_action": "watchdog_feed",
+		"custom_action_param": {
+			"timeout_ms": 3000,
+			"info": "初始化看门狗 - 3秒超时"
+		},
+		"pre_delay": 100,
+		"post_delay": 100,
+		"next": [
+			"Watchdog_Update_Notify_Initial_3s"
+		]
+	},
+	"Watchdog_Update_Notify_Initial_3s": {
+		"recognition": "DirectHit",
+		"action": "Custom",
+		"custom_action": "parametric_extnotify",
+		"custom_action_param": {
+			"message": "步骤1：看门狗已启动，初始超时阈值：3秒",
+			"parameters": {}
+		},
+		"pre_delay": 100,
+		"post_delay": 100,
+		"next": [
+			"Watchdog_Update_Update_To_15s"
+		]
+	},
+	"Watchdog_Update_Update_To_15s": {
+		"recognition": "DirectHit",
+		"action": "Custom",
+		"custom_action": "watchdog_feed",
+		"custom_action_param": {
+			"timeout_ms": 15000,
+			"info": "更新超时阈值到15秒"
+		},
+		"pre_delay": 100,
+		"post_delay": 100,
+		"next": [
+			"Watchdog_Update_Notify_Updated_15s"
+		]
+	},
+	"Watchdog_Update_Notify_Updated_15s": {
+		"recognition": "DirectHit",
+		"action": "Custom",
+		"custom_action": "parametric_extnotify",
+		"custom_action_param": {
+			"message": "步骤2：超时阈值已更新为15秒，开始等待10秒验证不会超时",
+			"parameters": {}
+		},
+		"pre_delay": 100,
+		"post_delay": 10000,
+		"next": [
+			"Watchdog_Update_Verify_No_Timeout"
+		]
+	},
+	"Watchdog_Update_Verify_No_Timeout": {
+		"recognition": "DirectHit",
+		"action": "Custom",
+		"custom_action": "parametric_extnotify",
+		"custom_action_param": {
+			"message": "步骤3：等待10秒完成！看门狗应该仍在正常运行（未超时），因为当前超时阈值为15秒",
+			"parameters": {}
+		},
+		"pre_delay": 100,
+		"post_delay": 1000,
+		"next": [
+			"Watchdog_Update_Final_Summary"
+		]
+	},
+	"Watchdog_Update_Final_Summary": {
+		"recognition": "DirectHit",
+		"action": "Custom",
+		"custom_action": "parametric_extnotify",
+		"custom_action_param": {
+			"message": "超时更新测试完成！验证结果：1)看门狗成功从3秒超时更新为15秒超时 2)等待10秒后看门狗仍正常运行 3)动态超时更新功能正常工作",
+			"parameters": {}
+		},
+		"pre_delay": 100,
+		"post_delay": 100
+	}
+}

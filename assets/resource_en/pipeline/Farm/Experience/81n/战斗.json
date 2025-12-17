@@ -1,0 +1,156 @@
+{
+	"81N战斗_开始作战前初始化": {
+		"recognition": "TemplateMatch",
+		"roi": [179, 78, 277, 233],
+		"threshold": 0.4,
+		"template": "combat/levelUp/8-1N/map_team2.png",
+		"next": [
+			"81N战斗_开始作战",
+			"[JumpBack]81N地图初始化_拖到左上角"
+		]
+	},
+	"81N战斗_开始作战": {
+		"recognition": "OCR",
+		"roi": [1008, 635, 92, 27],
+		"expected": ["START"],
+		"action": "LongPress",
+		"duration": 20,
+		"next": [
+			"81N战斗_点击2队单zas准备补给",
+			"81N_选择装备处理方式"
+		],
+		"timeout": 600000
+	},
+	"81N_选择装备处理方式": {
+		"recognition": "OCR",
+		"roi": [789, 457, 178, 137],
+		"expected": "Move",
+		"next": [
+			"81N进入_点击8-1N"
+		],
+		"timeout": 600000
+	},
+	"81N战斗_点击2队单zas准备补给": {
+		"recognition": "OCR",
+		"roi": [1107, 649, 55, 32],
+		"expected": "END",
+		"target": [336, 191, 13, 12],
+		"action": "LongPress",
+		"duration": 20,
+		"next": [
+			"81N战斗_点击补给",
+			"81N战斗_点击2队单zas准备补给",
+			"[JumpBack]81N地图初始化_长按修正"
+		]
+	},
+	"81N战斗_点击补给": {
+		"recognition": "OCR",
+		"roi": [1161, 547, 119, 33],
+		"expected": "RESUPPLY",
+		"action": "LongPress",
+		"duration": 20,
+		"next": [
+			"81N战斗_点击2队单zas"
+		]
+	},
+	"81N战斗_点击2队单zas": {
+		"target": [336, 191, 13, 12],
+		"action": "LongPress",
+		"duration": 20,
+		"next": [
+			"81N战斗_点击2队撤离",
+			"81N战斗_点击2队单zas",
+			"[JumpBack]81N地图初始化_长按修正"
+		]
+	},
+	"81N战斗_点击2队撤离": {
+		"recognition": "OCR",
+		"roi": [956, 595, 101, 83],
+		"expected": ["RETREA"],
+		"action": "LongPress",
+		"duration": 20,
+		"next": [
+			"81N战斗_点击2队撤离确定",
+			"81N战斗_点击2队撤离"
+		]
+	},
+	"81N战斗_点击2队撤离确定": {
+		"recognition": "OCR",
+		"roi": [735, 477, 76, 42],
+		"expected": ["OK", "ok"],
+		"action": "LongPress",
+		"duration": 20,
+		"next": [
+			"81N战斗_点击计划模式"
+		]
+	},
+	"81N战斗_点击计划模式": {
+		"recognition": "OCR",
+		"roi": [1107, 649, 55, 32],
+		"expected": "END",
+		"action": "LongPress",
+		"duration": 20,
+		"post_delay": 200,
+		"target": [60, 621, 23, 7],
+		"next": [
+			"81N战斗_点击1队图标",
+			"81N战斗_点击计划模式"
+		]
+	},
+	"81N战斗_点击1队图标": {
+		"recognition": "OCR",
+		"roi": [1126, 669, 110, 37],
+		"expected": "PLAN",
+		"action": "LongPress",
+		"duration": 20,
+		"target": [282, 659, 20, 7],
+		"next": [
+			"81N战斗_炸狗点1",
+			"[JumpBack]81N地图初始化_长按修正"
+		]
+	},
+	"81N战斗_炸狗点1": {
+		"action": "LongPress",
+		"duration": 20,
+		"target": [261, 517, 9, 5],
+		"next": [
+			"81N战斗_炸狗点2",
+			"81N战斗_点击1队图标"
+		]
+	},
+	"81N战斗_炸狗点2": {
+		"recognition": "OCR",
+		"roi": [1143, 531, 68, 24],
+		"expected": "NEXT",
+		"action": "LongPress",
+		"target": [338, 193, 13, 12],
+		"duration": 20,
+		"next": [
+			"81N战斗_执行计划",
+			"81N战斗_炸狗点2",
+			"81N战斗_点击计划模式"
+		]
+	},
+	"81N战斗_执行计划": {
+		"recognition": "OCR",
+		"roi": [992, 659, 69, 54],
+		"expected": ["1"],
+		"action": "LongPress",
+		"duration": 20,
+		"target": [1111, 633, 69, 43],
+		"next": [
+			"81N战斗_剩余行动01",
+			"[JumpBack]public_不中断计划"
+		],
+		"timeout": 600000
+	},
+	"81N战斗_剩余行动01": {
+		"recognition": "OCR",
+		"roi": [1155, 135, 58, 19],
+		"expected": "COMMAN",
+		"timeout": 600000,
+		"next": [
+			"81N重置_点击1队图标"
+		]
+	}
+}

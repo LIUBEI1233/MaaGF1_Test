@@ -1,0 +1,31 @@
+{
+	"!Unit_Test_Watchdog_Task": {
+		"next": [
+			"Unit_Test_Watchdog_Node_Begin"
+		]
+	},
+	"Unit_Test_Watchdog_Node_Begin": {
+		"recognition": "DirectHit",
+		"action": "Custom",
+		"custom_action": "watchdog_feed",
+		"custom_action_param": {
+			"timeout_ms": 10000,
+			"info": "看门狗单元测试"
+		},
+		"pre_delay": 100,
+		"post_delay": 100,
+		"next": [
+			"Unit_Test_Watchdog_Node_Loop"
+		]
+	},
+	"Unit_Test_Watchdog_Node_Loop": {
+		"recognition": "DirectHit",
+		"action": "Custom",
+		"custom_action": "watchdog_feed",
+		"pre_delay": 100,
+		"post_delay": 100,
+		"next": [
+			"Unit_Test_Watchdog_Node_Loop"
+		]
+	}
+}

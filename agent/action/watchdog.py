@@ -137,20 +137,45 @@ class Watchdog:
         
         return True
     
-    def feed(self, timeout_ms=30000, string_info=""):
+    def _update_timeout(self, timeout_ms, string_info=""):
+        """
+        Update timeout threshold for running watchdog
+        """
+        old_timeout = self._timeout_ms
+        self._timeout_ms = timeout_ms
+        
+        update_message = f"[WATCHDOG] Timeout Updated\n\nOld Timeout: {old_timeout}ms\n\nNew Timeout: {timeout_ms}ms\n\nInfo: {string_info}\n\nTime: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}"
+        
+        MaaLog_Info(f"Watchdog timeout updated - old: {old_timeout}ms, new: {timeout_ms}ms, info: {string_info}")
+        
+        # Send notification
+        self._send_notification(update_message)
+        
+        return True
+    
+    def feed(self, timeout_ms=None, string_info=""):
         """
         Feed the watchdog (auto-start if not running, reset timeout if running)
+        If timeout_ms is provided, always update the timeout threshold
         """
         with self._lock:
             if not self._is_running:
                 # First feed - auto start
-                MaaLog_Debug(f"Watchdog not running, auto-starting with timeout: {timeout_ms}ms, info: {string_info}")
-                return self._internal_start(timeout_ms, string_info)
+                actual_timeout = timeout_ms if timeout_ms is not None else 30000
+                MaaLog_Debug(f"Watchdog not running, auto-starting with timeout: {actual_timeout}ms, info: {string_info}")
+                return self._internal_start(actual_timeout, string_info)
             else:
-                # Subsequent feeds - reset timer
+                # Watchdog is already running
+                # Reset timer first
                 self._last_feed_time = datetime.now()
                 self._is_timeout_occurred = False  # Reset timeout flag
                 MaaLog_Debug(f"Watchdog fed at {self._last_feed_time.strftime('%Y-%m-%d %H:%M:%S')}")
+                
+                # Update timeout if provided
+                if timeout_ms is not None:
+                    MaaLog_Debug(f"Updating watchdog timeout to {timeout_ms}ms")
+                    self._update_timeout(timeout_ms, string_info)
+                
                 return True
     
     def poll(self):
@@ -188,7 +213,7 @@ class Watchdog:
             
             elapsed_ms = (datetime.now() - self._last_feed_time).total_seconds() * 1000 if self._last_feed_time else float('inf')
             
-            timeout_message = f"[WATCHDOG] Timeout Alert!\n\nStart Info: {self._start_info}\n\nTimeout Threshold: {self._timeout_ms}ms\n\nElapsed Time: {elapsed_ms:.1f}ms\n\nLast Feed: {self._last_feed_time.strftime('%Y-%m-%d %H:%M:%S') if self._last_feed_time else 'Never'}\n\nAlert Time: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n\n\n\n[WARNING] Watchdog will auto-stop to prevent spam notifications."
+            timeout_message = f"[WATCHDOG] Timeout Alert!\n\nStart Info: {self._start_info}\n\nTimeout Threshold: {self._timeout_ms}ms\n\nElapsed Time: {elapsed_ms:.1f}ms\n\nLast Feed: {self._last_feed_time.strftime('%Y-%m-%d %H:%M:%S') if self._last_feed_time else 'Never'}\n\nAlert Time: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}"
             
             MaaLog_Info(f"Watchdog timeout alert - elapsed: {elapsed_ms:.1f}ms, threshold: {self._timeout_ms}ms, auto-stopping")
             
@@ -196,7 +221,7 @@ class Watchdog:
             notification_sent = self._send_notification(timeout_message)
             
             # Auto-stop to prevent further notifications
-            self._internal_stop("Timeout occurred - auto-stopped to prevent spam")
+            self._internal_stop("Timeout occurred")
             
             return notification_sent
     
@@ -223,6 +248,12 @@ class Watchdog:
         """Check if timeout has occurred"""
         with self._lock:
             return self._is_timeout_occurred
+    
+    @property
+    def current_timeout_ms(self):
+        """Get current timeout threshold"""
+        with self._lock:
+            return self._timeout_ms
 
 # Global watchdog instance
 _global_watchdog = Watchdog()
@@ -231,11 +262,30 @@ def get_global_watchdog():
     """Get global watchdog instance"""
     return _global_watchdog
 
-@AgentServer.custom_action("watchdog_feed")
+# =============== Singleton Action Classes ===============
+
 class WatchdogFeedAction(CustomAction):
     """
-    Feed watchdog action (auto-start if not running)
+    Feed watchdog action (auto-start if not running, update timeout if provided)
+    Singleton pattern to avoid duplicate registration
     """
+    
+    _instance = None
+    _initialized = False
+    
+    def __new__(cls):
+        if cls._instance is None:
+            cls._instance = super().__new__(cls)
+        return cls._instance
+    
+    def __init__(self):
+        if not self._initialized:
+            # Only initialize once
+            super().__init__()
+            self.__class__._initialized = True
+            MaaLog_Debug(f"WatchdogFeedAction singleton created")
+        else:
+            MaaLog_Debug(f"WatchdogFeedAction singleton reused")
     
     def run(self, context: Context, argv: CustomAction.RunArg) -> bool:
         try:
@@ -243,7 +293,7 @@ class WatchdogFeedAction(CustomAction):
             MaaLog_Debug(f"WatchdogFeedAction param: {param} (type: {type(param)})")
             
             # Parse parameters
-            timeout_ms = 30000  # Default 30 seconds
+            timeout_ms = None  # Changed to None to distinguish between "not provided" and "default value"
             string_info = ""
             
             if isinstance(param, str):
@@ -254,7 +304,9 @@ class WatchdogFeedAction(CustomAction):
                     string_info = param
             
             if isinstance(param, dict):
-                timeout_ms = param.get('timeout_ms', 30000)
+                # Only set timeout_ms if explicitly provided
+                if 'timeout_ms' in param:
+                    timeout_ms = param['timeout_ms']
                 string_info = param.get('info', '')
             
             watchdog = get_global_watchdog()
@@ -268,11 +320,28 @@ class WatchdogFeedAction(CustomAction):
             MaaLog_Debug(f"Exception stack: {traceback.format_exc()}")
             return CustomAction.RunResult(success=False)
 
-@AgentServer.custom_action("watchdog_stop")
 class WatchdogStopAction(CustomAction):
     """
     Stop watchdog action (for backward compatibility or emergency stop)
+    Singleton pattern to avoid duplicate registration
     """
+    
+    _instance = None
+    _initialized = False
+    
+    def __new__(cls):
+        if cls._instance is None:
+            cls._instance = super().__new__(cls)
+        return cls._instance
+    
+    def __init__(self):
+        if not self._initialized:
+            # Only initialize once
+            super().__init__()
+            self.__class__._initialized = True
+            MaaLog_Debug(f"WatchdogStopAction singleton created")
+        else:
+            MaaLog_Debug(f"WatchdogStopAction singleton reused")
     
     def run(self, context: Context, argv: CustomAction.RunArg) -> bool:
         try:
@@ -303,3 +372,69 @@ class WatchdogStopAction(CustomAction):
             import traceback
             MaaLog_Debug(f"Exception stack: {traceback.format_exc()}")
             return CustomAction.RunResult(success=False)
+
+# =============== Registration Management ===============
+
+# Global registration state tracking
+_watchdog_actions_registered = False
+
+def _register_watchdog_actions():
+    """Register watchdog actions with singleton instances"""
+    global _watchdog_actions_registered
+    
+    if _watchdog_actions_registered:
+        MaaLog_Debug("Watchdog actions already registered, skipping")
+        return
+    
+    try:
+        MaaLog_Debug("Starting to register watchdog actions...")
+        
+        # Create singleton instances and register them
+        feed_action = WatchdogFeedAction()
+        stop_action = WatchdogStopAction()
+        
+        # Register with AgentServer
+        AgentServer.custom_action("watchdog_feed")(lambda: feed_action)
+        AgentServer.custom_action("watchdog_stop")(lambda: stop_action)
+        
+        _watchdog_actions_registered = True
+        MaaLog_Debug("Watchdog actions registered successfully")
+        
+    except Exception as e:
+        MaaLog_Debug(f"Failed to register watchdog actions: {e}")
+        import traceback
+        MaaLog_Debug(f"Registration exception stack: {traceback.format_exc()}")
+
+def get_watchdog_registration_status():
+    """Get current registration status"""
+    global _watchdog_actions_registered
+    return {
+        "registered": _watchdog_actions_registered,
+        "feed_action_instance": WatchdogFeedAction._instance is not None,
+        "stop_action_instance": WatchdogStopAction._instance is not None,
+        "feed_action_initialized": WatchdogFeedAction._initialized,
+        "stop_action_initialized": WatchdogStopAction._initialized
+    }
+
+def force_reregister_watchdog_actions():
+    """Force re-registration of watchdog actions (for debugging)"""
+    global _watchdog_actions_registered
+    
+    MaaLog_Debug("Force re-registering watchdog actions...")
+    _watchdog_actions_registered = False
+    
+    # Reset singleton states
+    WatchdogFeedAction._instance = None
+    WatchdogFeedAction._initialized = False
+    WatchdogStopAction._instance = None
+    WatchdogStopAction._initialized = False
+    
+    _register_watchdog_actions()
+
+# =============== Module Initialization ===============
+
+# Ensure actions are registered when module is imported
+_register_watchdog_actions()
+
+# Debug info
+MaaLog_Debug(f"Watchdog module loaded - registration status: {get_watchdog_registration_status()}")

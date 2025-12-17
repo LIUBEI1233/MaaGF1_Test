@@ -1,0 +1,260 @@
+{
+	"!莫比乌斯带上的逃亡": {
+		"recognition": "DirectHit",
+		"action": "DoNothing",
+		"post_delay": 1,
+		"next": [
+			"逃亡_开始作战",
+			"逃亡_识别卷积核",
+			"逃亡_桌面点击战斗"
+		]
+	},
+	"逃亡_桌面点击战斗": {
+		"recognition": "OCR",
+		"roi": [904, 387, 124, 65],
+		"expected": "战斗",
+		"action": "LongPress",
+		"duration": 15,
+		"next": [
+			"逃亡_识别卷积核",
+			"逃亡_常驻活动",
+			"逃亡_桌面点击战斗"
+		]
+	},
+	"逃亡_常驻活动": {
+		"recognition": "OCR",
+		"roi": [0, 310, 265, 410],
+		"expected": "常驻活动",
+		"action": "LongPress",
+		"duration": 20,
+		"post_delay": 1000,
+		"post_wait_freezes": 1,
+		"next": [
+			"逃亡_识别卷积核",
+			"逃亡_确认进入常驻",
+			"逃亡_常驻活动"
+		]
+	},
+	"逃亡_确认进入常驻": {
+		"recognition": "OCR",
+		"roi": [182, 95, 136, 624],
+		"expected": "魔方行动",
+		"next": [
+			"逃亡_点击卷积核",
+			"逃亡_滑动到卷积核"
+		]
+	},
+	"逃亡_滑动到卷积核": {
+		"recognition": "OCR",
+		"roi": [182, 95, 136, 624],
+		"expected": "积核",
+		"inverse": true,
+		"action": "Swipe",
+		"begin": [250, 655, 1, 1],
+		"end": [250, 500, 1, 1],
+		"post_wait_freezes": 50,
+		"next": [
+			"逃亡_点击卷积核",
+			"逃亡_滑动到卷积核"
+		]
+	},
+	"逃亡_点击卷积核": {
+		"doc": "在滑轮菜单中点击",
+		"recognition": "OCR",
+		"roi": [182, 95, 136, 624],
+		"expected": "积核",
+		"action": "LongPress",
+		"duration": 20,
+		"post_delay": 1000,
+		"next": [
+			"逃亡_识别卷积核",
+			"逃亡_点击卷积核"
+		]
+	},
+	"逃亡_识别卷积核": {
+		"doc": "此处为转折点",
+		"recognition": "OCR",
+		"roi": [527, 134, 138, 53],
+		"expected": ["卷积核", "积核"],
+		"next": [
+			"逃亡_进入卷积核",
+			"!返回主界面"
+		]
+	},
+	"逃亡_进入卷积核": {
+		"max_hit": 2,
+		"recognition": "OCR",
+		"roi": [527, 134, 138, 53],
+		"expected": ["卷积核", "积核"],
+		"action": "LongPress",
+		"target": [1047, 493, 132, 41],
+		"duration": 10,
+		"pre_delay": 1500,
+		"post_delay": 1000,
+		"next": [
+			"逃亡_进入卷积核",
+			"逃亡_识别假打捞关",
+			"逃亡_滑动1",
+			"!返回主界面"
+		]
+	},
+	"逃亡_滑动1": {
+		"doc": "在活动界面缩放",
+		"recognition": "OCR",
+		"roi": [110, 575, 142, 57],
+		"expected": "卷积核",
+		"action": "Command",
+		"exec": "powershell",
+		"args": [
+			"-ExecutionPolicy",
+			"Bypass",
+			"-File",
+			"{RESOURCE_DIR}/../tools/scroll.ps1",
+			"-ScrollCount",
+			"40",
+			"-Direction",
+			"down",
+			"-MouseX",
+			"1200",
+			"-MouseY",
+			"700"
+		],
+		"post_delay": 1400,
+		"next": [
+			"逃亡_滑动2"
+		]
+	},
+	"逃亡_滑动2": {
+		"action": "Swipe",
+		"begin": [181, 460, 1, 1],
+		"end": [1269, 706, 1, 1],
+		"duration": 100,
+		"next": [
+			"逃亡_滑动3"
+		]
+	},
+	"逃亡_滑动3": {
+		"action": "Swipe",
+		"begin": [1142, 634, 1, 1],
+		"end": [951, 681, 1, 1],
+		"duration": 50,
+		"post_delay": 400,
+		"next": [
+			"逃亡_识别假打捞关",
+			"逃亡_滑动3"
+		]
+	},
+	"逃亡_识别假打捞关": {
+		"recognition": "TemplateMatch",
+		"roi": [410, 670, 571, 50],
+		"template": "combat/resourceRecovery/卷积核/卷积核打捞图.png",
+		"duration": 20,
+		"action": "LongPress",
+		"target_offset": [173, -138, 0, 0],
+		"post_delay": 400,
+		"next": [
+			"[JumpBack]逃亡_切换难度",
+			"逃亡_进入卷积核关卡",
+			"逃亡_识别假打捞关"
+		]
+	},
+	"逃亡_切换难度": {
+		"recognition": "OCR",
+		"roi": [203, 656, 52, 33],
+		"expected": ["困难", "噩梦"],
+		"action": "LongPress",
+		"duration": 10,
+		"next": []
+	},
+	"逃亡_进入卷积核关卡": {
+		"recognition": "OCR",
+		"roi": [895, 139, 340, 157],
+		"expected": "莫比乌斯",
+		"action": "LongPress",
+		"duration": 20,
+		"target": [1120, 391, 92, 38],
+		"post_delay": 1500,
+		"next": [
+			"逃亡_部署梯队",
+			"逃亡_进入卷积核关卡"
+		]
+	},
+	"逃亡_部署梯队": {
+		"recognition": "OCR",
+		"roi": [140, 15, 132, 78],
+		"expected": "战",
+		"action": "LongPress",
+		"duration": 20,
+		"target": [715, 224, 1, 1],
+		"pre_delay": 500,
+		"post_delay": 1000,
+		"next": [
+			"逃亡_选择重装",
+			"逃亡_部署梯队"
+		]
+	},
+	"逃亡_选择重装": {
+		"recognition": "OCR",
+		"expected": ["等级", "B", "M", "A", "L"],
+		"roi": [673, 138, 165, 443],
+		"action": "LongPress",
+		"duration": 15,
+		"post_delay": 400,
+		"next": [
+			"逃亡_确定部署"
+		]
+	},
+	"逃亡_确定部署": {
+		"recognition": "OCR",
+		"roi": [1121, 620, 84, 54],
+		"expected": "部署",
+		"action": "LongPress",
+		"duration": 15,
+		"post_delay": 1000,
+		"next": [
+			"逃亡_开始作战",
+			"逃亡_选择重装"
+		]
+	},
+	"逃亡_开始作战": {
+		"recognition": "OCR",
+		"roi": [1002, 604, 277, 115],
+		"action": "LongPress",
+		"duration": 15,
+		"expected": "点击指挥",
+		"pre_delay": 1,
+		"post_delay": 1,
+		"next": [
+			"逃亡_结束回合",
+			"逃亡_开始作战"
+		]
+	},
+	"逃亡_结束回合": {
+		"recognition": "OCR",
+		"roi": [1002, 604, 277, 115],
+		"action": "LongPress",
+		"duration": 15,
+		"pre_delay": 1,
+		"post_delay": 200,
+		"timeout": 120000,
+		"expected": ["结"],
+		"next": [
+			"逃亡_结束回合1",
+			"逃亡_结束回合"
+		]
+	},
+	"逃亡_结束回合1": {
+		"recognition": "OCR",
+		"roi": [416, 34, 64, 55],
+		"expected": ["02", "2"],
+		"rate_limit": 500,
+		"post_delay": 1,
+		"timeout": 120000,
+		"next": [
+			"逃亡_开始作战",
+			"逃亡_识别卷积核",
+			"[JumpBack]public二星人形回收_人形回收",
+			"[JumpBack]public_关卡结算点击1"
+		]
+	}
+}

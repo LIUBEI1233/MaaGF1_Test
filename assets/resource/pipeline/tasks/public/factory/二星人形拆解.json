@@ -1,117 +1,75 @@
 {
-    "public二星人形回收_人形回收": {
-        "recognition": "OCR",
-        "expected": "人形回收",
-        "roi": [
-            191,
-            296,
-            891,
-            59
-        ],
-        "action": "LongPress",
-        "duration": 10,
-        "post_delay": 200,
-        "next": [
-            "public二星人形回收_回收角色",
-            "public二星人形回收_人形回收"
-        ]
-    },
-    "public二星人形回收_回收角色": {
-        "recognition": "OCR",
-        "roi": [
-            300,
-            169,
-            112,
-            60
-        ],
-        "expected": [
-            "角色"
-        ],
-        "action": "LongPress",
-        "duration": 10,
-        "post_delay": 200,
-        "next": [
-            "public二星人形回收_智能选择",
-            "public二星人形回收_回收角色"
-        ]
-    },
-    "public二星人形回收_智能选择": {
-        "recognition": "OCR",
-        "roi": [
-            1093,
-            593,
-            174,
-            106
-        ],
-        "expected": [
-            "智能选择",
-            "确定"
-        ],
-        "action": "LongPress",
-        "duration": 10,
-        "post_delay": 200,
-        "next": [
-            "public二星人形回收_智能选择",
-            "public二星人形回收_确认回收"
-        ]
-    },
-    "public二星人形回收_确认回收": {
-        "recognition": "OCR",
-        "roi": [
-            1062,
-            203,
-            89,
-            110
-        ],
-        "expected": [
-            "人力"
-        ],
-        "action": "LongPress",
-        "duration": 10,
-        "target": [
-            1096,
-            575,
-            110,
-            50
-        ],
-        "post_delay": 200,
-        "timeout": 2000,
-        "next": [
-            "public二星人形回收_进入导航栏",
-            "public二星人形回收_确认回收"
-        ]
-    },
-    "public二星人形回收_进入导航栏": {
-        "recognition": "TemplateMatch",
-        "roi": [
-            124,
-            18,
-            120,
-            105
-        ],
-        "template": "storage/navi.png",
-        "action": "LongPress",
-        "duration": 20,
-        "pre_delay": 800,
-        "post_wait_freezes": 200,
-        "next": [
-            "public二星人形回收_导航栏战斗",
-            "public二星人形回收_进入导航栏"
-        ]
-    },
-    "public二星人形回收_导航栏战斗": {
-        "recognition": "TemplateMatch",
-        "roi": [
-            80,
-            150,
-            150,
-            200
-        ],
-        "template": "storage/navi_combat.png",
-        "action": "LongPress",
-        "duration": 500,
-        "pre_delay": 1000,
-        "post_delay": 3000,
-        "next": []
-    }
+	"public二星人形回收_人形回收": {
+		"recognition": "OCR",
+		"expected": "人形回收",
+		"roi": [194, 264, 897, 155],
+		"action": "LongPress",
+		"duration": 10,
+		"post_delay": 200,
+		"next": [
+			"public二星人形回收_回收角色",
+			"public二星人形回收_人形回收"
+		]
+	},
+	"public二星人形回收_回收角色": {
+		"recognition": "OCR",
+		"roi": [300, 169, 112, 60],
+		"expected": ["角色"],
+		"action": "LongPress",
+		"duration": 10,
+		"post_delay": 200,
+		"next": [
+			"public二星人形回收_智能选择",
+			"public二星人形回收_回收角色"
+		]
+	},
+	"public二星人形回收_智能选择": {
+		"recognition": "OCR",
+		"roi": [1093, 593, 174, 106],
+		"expected": ["智能选择", "确定"],
+		"action": "LongPress",
+		"duration": 10,
+		"post_delay": 200,
+		"next": [
+			"public二星人形回收_智能选择",
+			"public二星人形回收_确认回收"
+		]
+	},
+	"public二星人形回收_确认回收": {
+		"recognition": "OCR",
+		"roi": [1062, 203, 89, 110],
+		"expected": ["人力"],
+		"action": "LongPress",
+		"duration": 10,
+		"target": [1096, 575, 110, 50],
+		"post_delay": 200,
+		"timeout": 2000,
+		"next": [
+			"public二星人形回收_进入导航栏",
+			"public二星人形回收_确认回收"
+		]
+	},
+	"public二星人形回收_进入导航栏": {
+		"recognition": "TemplateMatch",
+		"roi": [124, 18, 120, 105],
+		"template": "storage/navi.png",
+		"action": "LongPress",
+		"duration": 20,
+		"pre_delay": 800,
+		"post_wait_freezes": 200,
+		"next": [
+			"public二星人形回收_导航栏战斗",
+			"public二星人形回收_进入导航栏"
+		]
+	},
+	"public二星人形回收_导航栏战斗": {
+		"recognition": "TemplateMatch",
+		"roi": [80, 150, 150, 200],
+		"template": "storage/navi_combat.png",
+		"action": "LongPress",
+		"duration": 20,
+		"pre_delay": 1000,
+		"post_delay": 3000,
+		"next": []
+	}
 }

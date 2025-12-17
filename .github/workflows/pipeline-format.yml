@@ -1,0 +1,223 @@
+name: Pipeline JSON Formatter
+
+on:
+  push:
+    branches:
+      - "**"
+    paths:
+      - "assets/resource/pipeline/**/*.json"
+      - ".github/workflows/pipeline-format.yml"
+      - "tools/maapipeline-format/**"
+  pull_request:
+    branches:
+      - "**"
+    paths:
+      - "assets/resource/pipeline/**/*.json"
+      - ".github/workflows/pipeline-format.yml"
+      - "tools/maapipeline-format/**"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  format:
+    name: Format Pipeline JSON Files
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository with submodules
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+          submodules: 'recursive'
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      
+      - name: Verify formatter tool
+        run: |
+          if [ ! -f "tools/maapipeline-format/src/main.py" ]; then
+            echo "[FAIL] Formatter tool not found"
+            echo "Please ensure Git Submodule is properly initialized"
+            exit 1
+          fi
+          echo "[OK] Formatter tool found"
+      
+      - name: Check for pipeline JSON files
+        id: check_files
+        run: |
+          if [ ! -d "assets/resource/pipeline/tasks" ]; then
+            echo "[WARN] Pipeline tasks directory not found"
+            echo "files_exist=false" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+          
+          FILE_COUNT=$(find assets/resource/pipeline/tasks -name "*.json" -type f | wc -l)
+          
+          if [ "$FILE_COUNT" -eq 0 ]; then
+            echo "[WARN] No JSON files found in assets/resource/pipeline/tasks/"
+            echo "files_exist=false" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+          
+          echo "files_exist=true" >> $GITHUB_OUTPUT
+          echo "file_count=$FILE_COUNT" >> $GITHUB_OUTPUT
+          echo "[OK] Found $FILE_COUNT JSON files to process"
+      
+      - name: Generate diffs (before formatting)
+        id: generate_diffs
+        if: steps.check_files.outputs.files_exist == 'true'
+        run: |
+          # Create diff directory
+          mkdir -p pipeline_diffs
+          
+          # Generate diffs using the formatter tool
+          python tools/maapipeline-format/src/main.py \
+            assets/resource/pipeline/tasks \
+            --diff-only \
+            --diff-dir pipeline_diffs \
+            --yes
+          
+          # Check if any diffs were generated
+          if [ -d "pipeline_diffs" ] && [ "$(find pipeline_diffs -name '*.diff' -type f | wc -l)" -gt 0 ]; then
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+            DIFF_COUNT=$(find pipeline_diffs -name '*.diff' -type f | wc -l)
+            echo "diff_count=$DIFF_COUNT" >> $GITHUB_OUTPUT
+            echo "[OK] Generated $DIFF_COUNT diff files"
+          else
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+            echo "diff_count=0" >> $GITHUB_OUTPUT
+            echo "[INFO] No formatting changes needed"
+          fi
+      
+      - name: Format JSON files (in-place)
+        id: format_files
+        if: steps.check_files.outputs.files_exist == 'true' && steps.generate_diffs.outputs.has_changes == 'true'
+        run: |
+          # Format files in-place
+          python tools/maapipeline-format/src/main.py \
+            assets/resource/pipeline/tasks \
+            --in-place \
+            --yes
+          
+          echo "[OK] Files formatted successfully"
+      
+      - name: Check for Git changes
+        id: git_diff
+        if: steps.format_files.conclusion == 'success'
+        run: |
+          git diff --name-only
+          
+          if [ -n "$(git status --porcelain)" ]; then
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+            CHANGED_COUNT=$(git diff --name-only | wc -l)
+            echo "changed_files=$CHANGED_COUNT" >> $GITHUB_OUTPUT
+            echo "[OK] Detected $CHANGED_COUNT changed files"
+          else
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+            echo "changed_files=0" >> $GITHUB_OUTPUT
+            echo "[INFO] No Git changes detected"
+          fi
+      
+      - name: Generate summary with diff preview
+        if: steps.generate_diffs.outputs.has_changes == 'true'
+        run: |
+          cat >> $GITHUB_STEP_SUMMARY << 'SUMMARY_EOF'
+          # Pipeline JSON Formatting Report
+          
+          ## Summary
+          
+          | Metric | Value |
+          |--------|-------|
+          | Files Checked | ${{ steps.check_files.outputs.file_count }} |
+          | Files with Changes | ${{ steps.generate_diffs.outputs.diff_count }} |
+          | Status | ✅ Formatted |
+          
+          SUMMARY_EOF
+          
+          # Add diff preview
+          if [ "${{ steps.generate_diffs.outputs.has_changes }}" = "true" ]; then
+            cat >> $GITHUB_STEP_SUMMARY << 'SUMMARY_EOF'
+          
+          ## Diff Preview (First 5 Files)
+          
+          SUMMARY_EOF
+            
+            FILE_COUNT=0
+            for DIFF_FILE in $(find pipeline_diffs -name '*.diff' -type f | head -n 5); do
+              RELATIVE_PATH=$(echo "$DIFF_FILE" | sed 's|^pipeline_diffs/||')
+              
+              cat >> $GITHUB_STEP_SUMMARY << SUMMARY_EOF
+          
+          ### \`$RELATIVE_PATH\`
+          
+          \`\`\`diff
+          SUMMARY_EOF
+              
+              # Show first 50 lines
+              head -n 50 "$DIFF_FILE" >> $GITHUB_STEP_SUMMARY
+              
+              TOTAL_LINES=$(wc -l < "$DIFF_FILE")
+              if [ $TOTAL_LINES -gt 50 ]; then
+                cat >> $GITHUB_STEP_SUMMARY << SUMMARY_EOF
+          
+          ... (truncated, $TOTAL_LINES total lines)
+          SUMMARY_EOF
+              fi
+              
+              cat >> $GITHUB_STEP_SUMMARY << 'SUMMARY_EOF'
+          ```
+          
+          SUMMARY_EOF
+              
+              FILE_COUNT=$((FILE_COUNT + 1))
+            done
+          fi
+      
+      - name: Upload diff artifacts
+        if: steps.generate_diffs.outputs.has_changes == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: pipeline-format-diffs-${{ github.run_number }}
+          path: pipeline_diffs/**/*.diff
+          retention-days: 30
+      
+      - name: Commit formatted files
+        if: steps.git_diff.outputs.has_changes == 'true'
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "Pipeline Format Bot"
+          
+          git add assets/resource/pipeline/**/*.json
+          
+          cat > commit_message.txt << 'COMMIT_EOF'
+          Auto-format pipeline JSON files
+          
+          - Formatted ${{ steps.git_diff.outputs.changed_files }} files using MaaPipeline-Format
+          - Standardized JSON formatting with configured rules
+          - Validated JSON syntax and structure
+          
+          Formatting changes:
+          - Consistent indentation (4 spaces)
+          - Coordinate fields kept inline
+          - Control flow fields split across lines
+          - Comments preserved where possible
+          
+          Co-authored-by: github-actions[bot] <github-actions[bot]@users.noreply.github.com>
+          COMMIT_EOF
+          
+          git commit -F commit_message.txt
+          rm commit_message.txt
+      
+      - name: Push changes
+        if: steps.git_diff.outputs.has_changes == 'true'
+        run: |
+          BRANCH_NAME=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}
+          echo "[INFO] Pushing to branch: $BRANCH_NAME"
+          
+          git push origin $BRANCH_NAME
