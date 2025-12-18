@@ -1,8 +1,0 @@
-{
-    "Default": {
-        "rate_limit": 500,
-        "threshold": 0.6,
-        "timeout": 60000,
-        "pre_delay": 1
-    }
-}

@@ -10,14 +10,11 @@ from .config import (
     get_wechat_config, 
     get_default_ext_notify,
     get_available_notifiers,
-    get_watchdog_interval,
     set_telegram_config,
     set_wechat_config,
     set_default_ext_notify,
-    set_watchdog_interval,
     is_telegram_configured,
-    is_wechat_configured,
-    is_watchdog_interval_configured
+    is_wechat_configured
 )
 
 __all__ = [
@@ -27,12 +24,9 @@ __all__ = [
     'get_wechat_config',
     'get_default_ext_notify', 
     'get_available_notifiers',
-    'get_watchdog_interval',
     'set_telegram_config',
     'set_wechat_config',
     'set_default_ext_notify',
-    'set_watchdog_interval',
     'is_telegram_configured',
-    'is_wechat_configured',
-    'is_watchdog_interval_configured'
+    'is_wechat_configured'
 ]

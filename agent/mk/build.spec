@@ -1,21 +1,33 @@
 # -*- mode: python ; coding: utf-8 -*-
+import os
+import sys
+from pathlib import Path
+
+SPEC_DIR = Path(os.getcwd()).resolve()
+AGENT_ROOT = SPEC_DIR.parent
+
+if str(AGENT_ROOT) not in sys.path:
+    sys.path.insert(0, str(AGENT_ROOT))
 
 block_cipher = None
 
 a = Analysis(
-    ['main.py'],
-    pathex=[],
+    [str(AGENT_ROOT / 'main.py')], 
+    pathex=[str(AGENT_ROOT)],
     binaries=[],
     datas=[
-        ('agent.conf', '.'),
+        (str(AGENT_ROOT / 'agent.conf'), '.'),
     ],
     hiddenimports=[
+        'maa', 
         'maa.agent.agent_server',
         'maa.toolkit',
         'my_reco',
         'action',
         'server',
         'config',
+        'utils',
+        'utils.config',
     ],
     hookspath=[],
     hooksconfig={},
