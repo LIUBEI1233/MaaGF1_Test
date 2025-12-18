@@ -1879,18 +1879,10 @@
         "Alchemy_Task_List": {
             "cases": [
                 {
-                    "name": "向你微笑炼金(仙贝版)",
+                    "name": "静默沙盘",
                     "pipeline_override": {
                         "!Alchemy_Entry": {
-                            "next": "!向你微笑_炼金"
-                        }
-                    }
-                },
-                {
-                    "name": "向你微笑炼金(DLzcccc版)",
-                    "pipeline_override": {
-                        "!Alchemy_Entry": {
-                            "next": "!活动炼金总流程"
+                            "next": "!静默沙盘炼金_Entry"
                         }
                     }
                 }
