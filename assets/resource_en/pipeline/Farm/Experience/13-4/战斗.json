@@ -87,11 +87,8 @@
 		"roi": [412, 293, 115, 36],
 		"expected": "LOSSES",
 		"next": [
-			"134部署_弹药检查new",
 			"134进入_点击134",
-			"[JumpBack]public拆人形_人形回收",
 			"[JumpBack]public_关卡结算点击1",
-			"[JumpBack]public拆人形_导航栏战斗"
 		]
 	}
 }
