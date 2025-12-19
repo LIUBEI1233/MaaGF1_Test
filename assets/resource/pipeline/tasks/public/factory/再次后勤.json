@@ -1,25 +1,23 @@
 {
 	"后勤": {
-		"focus": {
-			"Node.Recognition.Succeeded": "{后勤} 识别命中，准备开始执行",
-			"Node.Recognition.Failed": "{后勤} 识别未命中"
-		},
+		"focus": {"Node.Recognition.Succeeded": "{后勤}识别命中，准备开始执行"},
 		"recognition": "OCR",
 		"roi": [1073, 658, 112, 34],
-		"expected": ["全体出征"],
+		"expected": ["全体", "Ex"],
 		"action": "LongPress",
 		"duration": 15,
-		"post_delay": 500,
+		"post_delay": 1500,
 		"next": [
-			"后勤_确认"
+			"后勤_确认",
+			"后勤"
 		]
 	},
 	"后勤_确认": {
 		"recognition": "OCR",
 		"roi": [732, 472, 82, 49],
-		"expected": ["确定"],
+		"expected": ["确", "OK", "ok"],
 		"action": "LongPress",
-		"duration": 10,
+		"duration": 15,
 		"post_delay": 4000,
 		"next": []
 	}

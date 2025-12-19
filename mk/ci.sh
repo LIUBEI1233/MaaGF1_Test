@@ -144,28 +144,46 @@ EOF
         shopt -s nullglob
         
         for f in *; do
-            if [ -d "$f" ]; then
-                # Only process folders starting with MaaGF1-GUI
-                if [[ "$f" != "MaaGF1-GUI"* ]]; then
-                    echo "Skipping non-GUI artifact: $f"
-                    continue
-                fi
+            if [ ! -d "$f" ]; then
+                continue
+            fi
 
-                echo "Processing artifact: $f"
+            # Case 1: GUI Artifacts (Raw folders that need zipping)
+            if [[ "$f" == "MaaGF1-GUI"* ]]; then
+                echo "Processing GUI artifact: $f"
                 
                 if [ -z "$(ls -A "$f")" ]; then
                     echo "Warning: Directory '$f' is empty. Skipping."
                     continue
                 fi
 
-                # The folder name ($f) already contains the TAG (from YAML upload-artifact).
+                # Zip the contents
                 (
                     cd "$f"
                     echo "Zipping content of $f to ../$f.zip"
-                    zip -r "../$f.zip" .
+                    zip -r -q "../$f.zip" .
                 )
+            
+            # Case 2: Resource Artifacts (Folder containing the pre-built zip)
+            elif [[ "$f" == "MaaGF1-Resource"* ]]; then
+                echo "Processing Resource artifact: $f"
+                
+                # Find the actual zip file inside the artifact folder
+                # The artifact folder name is f, the zip inside should be f.zip or similar
+                inner_zip=$(find "$f" -maxdepth 1 -name "*.zip" | head -n 1)
+                
+                if [ -n "$inner_zip" ]; then
+                    echo "Found pre-zipped resource: $inner_zip"
+                    # Move the inner zip to the current directory (assets/)
+                    mv "$inner_zip" .
+                    # Remove the artifact wrapper folder to keep things clean
+                    rm -rf "$f"
+                else
+                    echo "Warning: No zip file found inside resource artifact folder $f"
+                fi
+
             else
-                echo "Skipping non-directory: $f"
+                echo "Skipping unknown directory: $f"
             fi
         done
         ;;
