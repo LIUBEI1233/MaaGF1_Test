@@ -1,0 +1,57 @@
+{
+	"桌面进入工厂": {
+		"recognition": "OCR",
+		"roi": [1073, 261, 135, 55],
+		"expected": "FA",
+		"action": "LongPress",
+		"duration": 10,
+		"next": [
+			"妖精重建",
+			"桌面进入工厂"
+		]
+	},
+	"妖精重建": {
+		"recognition": "OCR",
+		"roi": [107, 560, 35, 34],
+		"expected": "FA",
+		"action": "LongPress",
+		"duration": 10,
+		"post_delay": 2500,
+		"next": [
+			"重建完成",
+			"public二星人形回收_进入导航栏"
+		]
+	},
+	"重建完成": {
+		"recognition": "OCR",
+		"roi": [999, 166, 247, 327],
+		"expected": "00:00'00",
+		"action": "LongPress",
+		"duration": 10,
+		"next": [
+			"收重建"
+		]
+	},
+	"收重建": {
+		"action": "LongPress",
+		"target": "重建完成",
+		"duration": 10,
+		"post_delay": 600,
+		"rate_limit": 2000,
+		"next": [
+			"再建",
+			"收重建"
+		]
+	},
+	"再建": {
+		"recognition": "OCR",
+		"roi": [277, 640, 79, 26],
+		"expected": "START",
+		"action": "LongPress",
+		"duration": 10,
+		"post_delay": 1500,
+		"next": [
+			"public二星人形回收_进入导航栏"
+		]
+	}
+}
