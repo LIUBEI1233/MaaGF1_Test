@@ -30,8 +30,8 @@
 	},
 	"134_部署1": {
 		"recognition": "OCR",
-		"roi": [1008, 635, 92, 27],
-		"expected": ["START"],
+		"roi": [837, 344, 81, 40],
+		"expected": ["4", "8"],
 		"action": "LongPress",
 		"duration": 5,
 		"target": [710, 449, 1, 1],
@@ -53,9 +53,9 @@
 		"next": []
 	},
 	"134_部署2": {
-		"recognition": "TemplateMatch",
-		"roi": [720, 394, 42, 57],
-		"template": "combat/levelUp/13-4/map_team1.png",
+		"recognition": "OCR",
+		"roi": [837, 344, 81, 40],
+		"expected": ["4", "8"],
 		"action": "LongPress",
 		"duration": 12,
 		"target": [82, 542, 1, 1],
@@ -66,9 +66,9 @@
 		]
 	},
 	"134_重新进入地图": {
-		"recognition": "TemplateMatch",
-		"roi": [720, 394, 42, 57],
-		"template": "combat/levelUp/13-4/map_team1.png",
+		"recognition": "OCR",
+		"roi": [837, 344, 81, 40],
+		"expected": ["4", "8"],
 		"action": "DoNothing",
 		"next": [
 			"134_部署1"
@@ -76,8 +76,8 @@
 	},
 	"134_部署21": {
 		"recognition": "OCR",
-		"roi": [1008, 635, 92, 27],
-		"expected": ["START"],
+		"roi": [837, 344, 81, 40],
+		"expected": ["4", "8"],
 		"action": "LongPress",
 		"duration": 12,
 		"target": [82, 542, 1, 1],
@@ -193,9 +193,9 @@
 		]
 	},
 	"134_识别开始作战": {
-		"recognition": "TemplateMatch",
-		"roi": [720, 394, 42, 57],
-		"template": "combat/levelUp/13-4/map_team1.png",
+		"recognition": "OCR",
+		"roi": [837, 344, 81, 40],
+		"expected": ["4", "8"],
 		"next": [
 			"134_开始作战",
 			"!返回主界面"
@@ -203,9 +203,9 @@
 	},
 	"134_开始作战": {
 		"max_hit": 40,
-		"recognition": "TemplateMatch",
-		"roi": [720, 394, 42, 57],
-		"template": "combat/levelUp/13-4/map_team1.png",
+		"recognition": "OCR",
+		"roi": [837, 344, 81, 40],
+		"expected": ["4", "8"],
 		"action": "LongPress",
 		"duration": 12,
 		"target": [1069, 637, 38, 16],
@@ -214,9 +214,9 @@
 		]
 	},
 	"134_开始作战1": {
-		"recognition": "TemplateMatch",
-		"roi": [720, 394, 42, 57],
-		"template": "combat/levelUp/13-4/map_team1.png",
+		"recognition": "OCR",
+		"roi": [837, 344, 81, 40],
+		"expected": ["4", "8"],
 		"action": "DoNothing",
 		"pre_delay": 1,
 		"post_delay": 1,
@@ -317,8 +317,8 @@
 	},
 	"134_关卡结算": {
 		"recognition": "OCR",
-		"roi": [425, 295, 112, 36],
-		"expected": "LOSSES",
+		"roi": [371, 608, 91, 36],
+		"expected": ["Re"],
 		"action": "DoNothing",
 		"next": [
 			"134_重新进入地图",
