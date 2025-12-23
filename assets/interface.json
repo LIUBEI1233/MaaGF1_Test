@@ -151,14 +151,12 @@
             "repeatable": true,
             "repeat_count": -1
         },
-                
         {
             "name": "3.资源 - Advanced裂变链接捡垃圾",
             "entry": "!裂变链接捡垃圾",
             "check": false,
             "doc": "⚠️",
-            "option": [
-            ],
+            "option": [],
             "repeatable": true,
             "repeat_count": -1
         },
@@ -849,7 +847,7 @@
                 }
             }
         },
-            "捡垃圾M分钟后返回基地": {
+        "捡垃圾M分钟后返回基地": {
             "name": "N分钟后返回基地",
             "type": "input",
             "inputs": [
@@ -871,7 +869,9 @@
                     }
                 },
                 "准备继续任务": {
-                    "next": ["继续作战"]
+                    "next": [
+                        "继续作战"
+                    ]
                 }
             }
         },
