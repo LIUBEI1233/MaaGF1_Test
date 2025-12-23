@@ -229,6 +229,7 @@
 		"action": "LongPress",
 		"duration": 12,
 		"target": [82, 542, 1, 1],
+		"pre_delay": 500,
 		"post_delay": 800,
 		"next": [
 			"134_补给2",
@@ -241,7 +242,7 @@
 		"expected": "RE",
 		"action": "LongPress",
 		"duration": 12,
-		"post_delay": 800,
+		"post_delay": 500,
 		"next": [
 			"134_计划1"
 		]
@@ -260,7 +261,9 @@
 		]
 	},
 	"134_计划1": {
-		"recognition": "DirectHit",
+		"recognition": "OCR",
+		"roi": [837, 344, 81, 40],
+		"expected": ["4", "8"],
 		"action": "LongPress",
 		"duration": 12,
 		"target": [710, 449, 1, 1],
@@ -288,7 +291,7 @@
 		"action": "LongPress",
 		"duration": 12,
 		"target": [700, 711, 15, 6],
-		"post_delay": 800,
+		"post_delay": 500,
 		"next": [
 			"134_计划5"
 		]

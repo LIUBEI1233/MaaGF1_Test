@@ -151,6 +151,17 @@
             "repeatable": true,
             "repeat_count": -1
         },
+                
+        {
+            "name": "3.资源 - Advanced裂变链接捡垃圾",
+            "entry": "!裂变链接捡垃圾",
+            "check": false,
+            "doc": "⚠️",
+            "option": [
+            ],
+            "repeatable": true,
+            "repeat_count": -1
+        },
         {
             "name": "3.资源 - 4-6捡垃圾",
             "entry": "!4_6捡垃圾总流程",
@@ -835,6 +846,32 @@
                 },
                 "public_关卡结算点击5": {
                     "post_delay": 300
+                }
+            }
+        },
+            "捡垃圾M分钟后返回基地": {
+            "name": "N分钟后返回基地",
+            "type": "input",
+            "inputs": [
+                {
+                    "name": "N分钟后返回基地",
+                    "default": "30",
+                    "pipeline_type": "int"
+                }
+            ],
+            "pipeline_override": {
+                "裂变_计时": {
+                    "custom_action_param": {
+                        "syntax": "Start_Time = _get_time; T = {N分钟后返回基地}"
+                    }
+                },
+                "裂变_计时1": {
+                    "custom_action_param": {
+                        "syntax": "Start_Time = _get_time; T = {N分钟后返回基地}"
+                    }
+                },
+                "准备继续任务": {
+                    "next": ["继续作战"]
                 }
             }
         },

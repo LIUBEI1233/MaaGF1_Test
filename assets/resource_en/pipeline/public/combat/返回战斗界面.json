@@ -66,5 +66,13 @@
 		"action": "LongPress",
 		"duration": 20,
 		"next": []
+	},
+	"继续作战": {
+		"recognition": "OCR",
+		"roi": [1109, 525, 131, 63],
+		"expected": "RESUME",
+		"action": "LongPress",
+		"duration": 12,
+		"next": []
 	}
 }
