@@ -1,0 +1,329 @@
+{
+	"!134总流程": {
+		"next": [
+			"134_部署21",
+			"134进入"
+		]
+	},
+	"134进入": {
+		"recognition": "OCR",
+		"roi": [649, 668, 139, 33],
+		"expected": "Old",
+		"action": "LongPress",
+		"duration": 12,
+		"next": [
+			"134进入作战",
+			"134进入"
+		]
+	},
+	"134进入作战": {
+		"recognition": "OCR",
+		"roi": [944, 588, 85, 23],
+		"expected": "NORMAL",
+		"action": "LongPress",
+		"duration": 12,
+		"post_delay": 2000,
+		"next": [
+			"134_部署1",
+			"134进入作战"
+		]
+	},
+	"134_部署1": {
+		"recognition": "OCR",
+		"roi": [1008, 635, 92, 27],
+		"expected": ["START"],
+		"action": "LongPress",
+		"duration": 5,
+		"target": [710, 449, 1, 1],
+		"pre_delay": 800,
+		"post_delay": 1000,
+		"next": [
+			"[JumpBack]134_确定部署",
+			"134_部署2",
+			"134_部署1"
+		]
+	},
+	"134_确定部署": {
+		"recognition": "OCR",
+		"roi": [1071, 592, 192, 88],
+		"expected": ["CANCEL", "OK", "ok"],
+		"action": "LongPress",
+		"duration": 12,
+		"post_delay": 500,
+		"next": []
+	},
+	"134_部署2": {
+		"recognition": "TemplateMatch",
+		"roi": [720, 394, 42, 57],
+		"template": "combat/levelUp/13-4/map_team1.png",
+		"action": "LongPress",
+		"duration": 12,
+		"target": [82, 542, 1, 1],
+		"post_delay": 1000,
+		"next": [
+			"[JumpBack]134_确定部署",
+			"134_部署21"
+		]
+	},
+	"134_重新进入地图": {
+		"recognition": "TemplateMatch",
+		"roi": [720, 394, 42, 57],
+		"template": "combat/levelUp/13-4/map_team1.png",
+		"action": "DoNothing",
+		"next": [
+			"134_部署1"
+		]
+	},
+	"134_部署21": {
+		"recognition": "OCR",
+		"roi": [1008, 635, 92, 27],
+		"expected": ["START"],
+		"action": "LongPress",
+		"duration": 12,
+		"target": [82, 542, 1, 1],
+		"rate_limit": 1500,
+		"post_delay": 1500,
+		"next": [
+			"134_识别开始作战",
+			"134_判断弹药",
+			"[JumpBack]134_确定部署"
+		]
+	},
+	"134_判断弹药": {
+		"recognition": "OCR",
+		"roi": [264, 553, 57, 24],
+		"expected": "20/20",
+		"action": "LongPress",
+		"duration": 12,
+		"target": [243, 619, 20, 8],
+		"post_delay": 1000,
+		"next": [
+			"134_交换1",
+			"134_判断弹药"
+		]
+	},
+	"134_交换1": {
+		"recognition": "OCR",
+		"roi": [191, 506, 99, 34],
+		"expected": "Vector",
+		"action": "LongPress",
+		"duration": 12,
+		"post_delay": 500,
+		"next": [
+			"134_交换2"
+		]
+	},
+	"134_交换2": {
+		"recognition": "OCR",
+		"roi": [1108, 287, 82, 29],
+		"expected": "Show",
+		"action": "LongPress",
+		"duration": 12,
+		"post_delay": 500,
+		"next": [
+			"134_交换3"
+		]
+	},
+	"134_交换3": {
+		"recognition": "OCR",
+		"roi": [915, 123, 33, 20],
+		"expected": "Show",
+		"action": "LongPress",
+		"duration": 12,
+		"post_delay": 500,
+		"next": [
+			"134_交换4"
+		]
+	},
+	"134_交换4": {
+		"recognition": "OCR",
+		"roi": [910, 658, 157, 41],
+		"expected": "CON",
+		"action": "LongPress",
+		"duration": 12,
+		"post_delay": 800,
+		"next": [
+			"134_交换5"
+		]
+	},
+	"134_交换5": {
+		"recognition": "DirectHit",
+		"action": "LongPress",
+		"duration": 12,
+		"target": [77, 644, 32, 15],
+		"post_delay": 500,
+		"next": [
+			"134_交换6"
+		]
+	},
+	"134_交换6": {
+		"recognition": "TemplateMatch",
+		"roi": [8, 323, 885, 79],
+		"green_mask": true,
+		"template": "combat/levelUp/13-4/G_team1.png",
+		"action": "LongPress",
+		"post_delay": 500,
+		"duration": 12,
+		"next": [
+			"134_交换7"
+		]
+	},
+	"134_交换7": {
+		"recognition": "OCR",
+		"roi": [1174, 631, 75, 52],
+		"expected": "OK",
+		"action": "LongPress",
+		"duration": 12,
+		"post_delay": 500,
+		"next": [
+			"134_交换8"
+		]
+	},
+	"134_交换8": {
+		"recognition": "OCR",
+		"roi": [191, 506, 99, 34],
+		"expected": "V",
+		"action": "Key",
+		"key": 27,
+		"pre_delay": 2000,
+		"next": [
+			"134_部署1",
+			"134_识别开始作战",
+			"134_交换8"
+		]
+	},
+	"134_识别开始作战": {
+		"recognition": "TemplateMatch",
+		"roi": [720, 394, 42, 57],
+		"template": "combat/levelUp/13-4/map_team1.png",
+		"next": [
+			"134_开始作战",
+			"!返回主界面"
+		]
+	},
+	"134_开始作战": {
+		"max_hit": 40,
+		"recognition": "TemplateMatch",
+		"roi": [720, 394, 42, 57],
+		"template": "combat/levelUp/13-4/map_team1.png",
+		"action": "LongPress",
+		"duration": 12,
+		"target": [1069, 637, 38, 16],
+		"next": [
+			"134_补给1"
+		]
+	},
+	"134_开始作战1": {
+		"recognition": "TemplateMatch",
+		"roi": [720, 394, 42, 57],
+		"template": "combat/levelUp/13-4/map_team1.png",
+		"action": "DoNothing",
+		"pre_delay": 1,
+		"post_delay": 1,
+		"next": []
+	},
+	"134_补给1": {
+		"recognition": "OCR",
+		"roi": [1104, 647, 62, 38],
+		"expected": "END",
+		"action": "LongPress",
+		"duration": 12,
+		"target": [82, 542, 1, 1],
+		"post_delay": 800,
+		"next": [
+			"134_补给2",
+			"134_补给1"
+		]
+	},
+	"134_补给2": {
+		"recognition": "OCR",
+		"roi": [1160, 546, 117, 35],
+		"expected": "RE",
+		"action": "LongPress",
+		"duration": 12,
+		"post_delay": 800,
+		"next": [
+			"134_计划1"
+		]
+	},
+	"134_计划2": {
+		"recognition": "OCR",
+		"roi": [1173, 396, 82, 27],
+		"expected": ["A", "c", "t"],
+		"target": [85, 627, 15, 6],
+		"action": "LongPress",
+		"duration": 12,
+		"post_delay": 1000,
+		"next": [
+			"134_计划3",
+			"134_计划2"
+		]
+	},
+	"134_计划1": {
+		"recognition": "DirectHit",
+		"action": "LongPress",
+		"duration": 12,
+		"target": [710, 449, 1, 1],
+		"post_delay": 1300,
+		"next": [
+			"134_计划2",
+			"[JumpBack]134_确定部署",
+			"134_计划1"
+		]
+	},
+	"134_计划3": {
+		"recognition": "OCR",
+		"roi": [1101, 623, 162, 85],
+		"expected": ["EXE", "CUTE"],
+		"action": "LongPress",
+		"duration": 12,
+		"target": [608, 537, 19, 15],
+		"post_delay": 1000,
+		"next": [
+			"134_计划4"
+		]
+	},
+	"134_计划4": {
+		"recognition": "DirectHit",
+		"action": "LongPress",
+		"duration": 12,
+		"target": [700, 711, 15, 6],
+		"post_delay": 800,
+		"next": [
+			"134_计划5"
+		]
+	},
+	"134_计划5": {
+		"recognition": "OCR",
+		"roi": [1136, 525, 82, 32],
+		"expected": "NEXT",
+		"action": "LongPress",
+		"duration": 12,
+		"post_delay": 500,
+		"next": [
+			"134_计划6"
+		]
+	},
+	"134_计划6": {
+		"recognition": "DirectHit",
+		"action": "LongPress",
+		"duration": 12,
+		"target": [1154, 655, 29, 12],
+		"post_delay": 4000,
+		"next": [
+			"134_关卡结算",
+			"[JumpBack]public_加速结算进入"
+		]
+	},
+	"134_关卡结算": {
+		"recognition": "OCR",
+		"roi": [425, 295, 112, 36],
+		"expected": "LOSSES",
+		"action": "DoNothing",
+		"next": [
+			"134_重新进入地图",
+			"134进入",
+			"[JumpBack]public_关卡结算点击1"
+		]
+	}
+}

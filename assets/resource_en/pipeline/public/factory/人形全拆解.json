@@ -1,0 +1,170 @@
+{
+	"public_全回收_人形回收": {
+		"recognition": "OCR",
+		"roi": [631, 309, 81, 40],
+		"expected": "Retire",
+		"action": "LongPress",
+		"duration": 15,
+		"post_delay": 200,
+		"next": [
+			"public_全回收_回收角色",
+			"public_全回收_人形回收"
+		]
+	},
+	"public_全回收_回收角色": {
+		"recognition": "OCR",
+		"roi": [335, 211, 76, 29],
+		"expected": "T-DOLL",
+		"action": "LongPress",
+		"duration": 15,
+		"post_delay": 700,
+		"next": [
+			"public_全回收_智能选择",
+			"public_全回收_回收角色"
+		]
+	},
+	"public_全回收_智能选择": {
+		"recognition": "OCR",
+		"roi": [1093, 593, 174, 106],
+		"expected": ["SELECT", "OK"],
+		"action": "LongPress",
+		"duration": 15,
+		"post_delay": 200,
+		"next": [
+			"public_全回收_智能选择",
+			"public_全回收_确认回收"
+		]
+	},
+	"public_全回收_确认回收": {
+		"recognition": "OCR",
+		"roi": [1062, 201, 109, 39],
+		"expected": "Manpower",
+		"action": "LongPress",
+		"duration": 15,
+		"target": [1096, 575, 110, 50],
+		"post_delay": 1500,
+		"timeout": 60000,
+		"next": [
+			"public_全回收_回收角色1",
+			"public_全回收_确认回收"
+		]
+	},
+	"public_全回收_回收角色1": {
+		"recognition": "OCR",
+		"roi": [335, 211, 76, 29],
+		"expected": "T-DOLL",
+		"action": "LongPress",
+		"duration": 15,
+		"post_delay": 2000,
+		"next": [
+			"public_全回收_进入全拆解",
+			"public二星人形回收_进入导航栏"
+		]
+	},
+	"public_全回收_进入全拆解": {
+		"recognition": "OCR",
+		"roi": [1093, 593, 174, 106],
+		"expected": ["SELECT"],
+		"next": [
+			"public_点击1"
+		]
+	},
+	"public_点击1": {
+		"action": "LongPress",
+		"target": [80, 248, 49, 29],
+		"duration": 15,
+		"post_delay": 500,
+		"next": [
+			"piblic_全拆解判断是否还有人形",
+			"public二星人形回收_进入导航栏"
+		]
+	},
+	"piblic_全拆解判断是否还有人形": {
+		"recognition": "OCR",
+		"roi": [1093, 593, 174, 106],
+		"expected": ["OK"],
+		"next": [
+			"public_点击2"
+		]
+	},
+	"public_点击2": {
+		"action": "LongPress",
+		"target": [261, 234, 53, 33],
+		"duration": 15,
+		"next": [
+			"public_点击3"
+		]
+	},
+	"public_点击3": {
+		"action": "LongPress",
+		"target": [429, 246, 63, 33],
+		"duration": 15,
+		"next": [
+			"public_点击4"
+		]
+	},
+	"public_点击4": {
+		"action": "LongPress",
+		"target": [610, 240, 62, 33],
+		"duration": 15,
+		"next": [
+			"public_点击5"
+		]
+	},
+	"public_点击5": {
+		"action": "LongPress",
+		"target": [768, 236, 70, 35],
+		"duration": 15,
+		"next": [
+			"public_点击6"
+		]
+	},
+	"public_点击6": {
+		"action": "LongPress",
+		"target": [944, 236, 61, 28],
+		"duration": 15,
+		"post_delay": 500,
+		"next": [
+			"public_全回收_智能选择1"
+		]
+	},
+	"public_全回收_智能选择1": {
+		"recognition": "OCR",
+		"roi": [1093, 593, 174, 106],
+		"expected": ["OK"],
+		"action": "LongPress",
+		"duration": 15,
+		"post_delay": 1200,
+		"next": [
+			"public_全回收_确认回收1",
+			"public_全回收_智能选择1"
+		]
+	},
+	"public_全回收_确认回收1": {
+		"recognition": "OCR",
+		"roi": [1062, 201, 109, 39],
+		"expected": "Core",
+		"action": "LongPress",
+		"duration": 15,
+		"target": [1096, 575, 110, 50],
+		"post_delay": 1500,
+		"timeout": 60000,
+		"next": [
+			"public_全回收_确认回收1_1",
+			"public_全回收_确认回收1"
+		]
+	},
+	"public_全回收_确认回收1_1": {
+		"recognition": "OCR",
+		"roi": [760, 608, 71, 43],
+		"expected": ["OK", "ok"],
+		"action": "LongPress",
+		"duration": 15,
+		"post_delay": 1500,
+		"timeout": 60000,
+		"next": [
+			"public二星人形回收_进入导航栏",
+			"public_全回收_确认回收1_1"
+		]
+	}
+}
