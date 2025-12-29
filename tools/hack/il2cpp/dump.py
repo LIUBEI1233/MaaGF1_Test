@@ -56,7 +56,7 @@ class MetadataDumper:
 
     def _safe_dump(self, start_address, index):
         buffer = bytearray()
-        chunk_size = 4096 
+        chunk_size = 1024 
         current_addr = start_address
         bytes_read = 0
         
