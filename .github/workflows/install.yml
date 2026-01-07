@@ -165,6 +165,62 @@ jobs:
           name: ${{ steps.artifact_name.outputs.name }}
           path: "install"
 
+  # Runtime Replace (Luna Build)
+  runtime-replace:
+    needs: [meta, install]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Read Luna Configuration
+        id: config
+        run: |
+          repo=$(python -c "import configparser; c = configparser.ConfigParser(); c.read('mk/.conf'); print(c['luna']['repo'])")
+          tag=$(python -c "import configparser; c = configparser.ConfigParser(); c.read('mk/.conf'); print(c['luna']['tag'])")
+          echo "repo=$repo" >> $GITHUB_OUTPUT
+          echo "tag=$tag" >> $GITHUB_OUTPUT
+          echo "Luna Config: Repo=$repo, Tag=$tag"
+
+      # 1. Download the base artifact (x86_64, with-agent)
+      - name: Download Base Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: MaaGF1-GUI-${{ needs.meta.outputs.tag }}-x86_64-Agent
+          path: base_artifact
+
+      # 2. Download the Luna MaaFramework
+      - name: Download Luna MaaFramework
+        uses: robinraju/release-downloader@v1
+        with:
+          repository: ${{ steps.config.outputs.repo }}
+          tag: ${{ steps.config.outputs.tag }}
+          fileName: "MAA-win-x86_64-*.zip"
+          out-file-path: "deps_luna"
+          extract: false # Keep it zipped for the script to handle
+
+      # 3. Run the replacement script
+      - name: Execute Runtime Replace
+        run: |
+          # Find the downloaded zip file
+          LUNA_ZIP=$(find deps_luna -name "MAA-win-x86_64-*.zip" | head -n 1)
+          
+          python mk/runtime_replace.py \
+            --base base_artifact \
+            --luna-pkg "$LUNA_ZIP" \
+            --output install_luna
+
+      # 4. Upload the new artifact
+      # Note: We upload the directory. The release job's zip_assets script handles zipping folders starting with MaaGF1-GUI
+      - uses: actions/upload-artifact@v4
+        with:
+          name: MaaGF1-GUI-${{ needs.meta.outputs.tag }}-x86_64-Luna
+          path: install_luna
+
   build-summary:
     if: always()
     needs: [meta, install]
@@ -202,8 +258,7 @@ jobs:
 
   release:
     if: ${{ needs.meta.outputs.is_release == 'true' }}
-    # Added package-resources to needs
-    needs: [install, package-resources, changelog, meta]
+    needs: [install, package-resources, runtime-replace, changelog, meta]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
