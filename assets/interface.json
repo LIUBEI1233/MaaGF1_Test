@@ -1,7 +1,7 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "name": "MaaGF1",
-    "version": "v1.9.1",
+    "version": "v1.9.2",
     "url": "https://github.com/MaaGF1/MaaGF1",
     "mirrorchyan_rid": null,
     "mirrorchyan_multiplatform": false,
@@ -133,9 +133,15 @@
             "repeat_count": -1
         },
         {
-            "name": "3.资源 - 灰域炸山",
+            "name": "3.资源 - DLZ版炸山",
             "entry": "灰域_总流程",
-            "check": false
+            "doc": "[点击这里浏览器打开操作手册](https://maagf1.github.io/docs/tutorial/resource/DLZ版自动灰域/)",
+            "option": [
+                "炸山彩蛋",
+                "炸山流程"
+            ],
+            "repeatable": true,
+            "repeat_count": -1
         },
         {
             "name": "3.资源 - 裂变链接捡垃圾",
@@ -151,15 +157,18 @@
             "repeatable": true,
             "repeat_count": -1
         },
-                
         {
             "name": "3.资源 - Advanced裂变链接捡垃圾",
             "entry": "!裂变链接捡垃圾",
             "check": false,
             "doc": "⚠️",
+<<<<<<< HEAD
             "option": [
                 "捡垃圾M分钟后返回基地"
             ],
+=======
+            "option": [],
+>>>>>>> 908a317e7ca571fbfe07d8bd2fbb565d847f9cc6
             "repeatable": true,
             "repeat_count": -1
         },
@@ -215,7 +224,7 @@
             "name": "3.资源 - 炼金",
             "entry": "!Alchemy_Entry",
             "check": false,
-            "doc": "向你微笑(先辈)通关任意难度向你微笑，将地图缩放至最小即可开启运行，自动部署的梯队须为铁血梯队。\n向你微笑(DLZC)通关任意难度向你微笑，地图缩放到最小，拖动到右下角边缘开始",
+            "doc": "[点击这里浏览器打开操作手册](https://maagf1.github.io/docs/)",
             "option": [
                 "Alchemy_Task_List"
             ],
@@ -320,6 +329,56 @@
         }
     },
     "option": {
+        "炸山彩蛋": {
+            "cases": [
+                {
+                    "name": "开启",
+                    "pipeline_override": {
+                        "灰域_刷新难度": {
+                            "next": [
+                                "灰域_彩蛋_刷新难度_炸山彩蛋"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "关闭",
+                    "pipeline_override": {}
+                }
+            ]
+        },
+        "炸山流程": {
+            "cases": [
+                {
+                    "name": "正常流程",
+                    "pipeline_override": {}
+                },
+                {
+                    "name": "重新部署",
+                    "pipeline_override": {
+                        "灰域_炸山_代理中": {
+                            "next": [
+                                "灰域_人形回收",
+                                "灰域_组件回收",
+                                "灰域_代理已完成",
+                                {
+                                    "name": "灰域_普通关卡_流程",
+                                    "jump_back": true
+                                },
+                                {
+                                    "name": "灰域_炸山_重新部署_流程",
+                                    "jump_back": true
+                                },
+                                {
+                                    "name": "灰域_彩蛋_奇遇之地",
+                                    "jump_back": true
+                                }
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
         "捡垃圾版本选择": {
             "cases": [
                 {
@@ -850,7 +909,7 @@
                 }
             }
         },
-            "捡垃圾M分钟后返回基地": {
+        "捡垃圾M分钟后返回基地": {
             "name": "N分钟后返回基地",
             "type": "input",
             "inputs": [
@@ -872,7 +931,9 @@
                     }
                 },
                 "准备继续任务": {
-                    "next": ["继续作战"]
+                    "next": [
+                        "继续作战"
+                    ]
                 }
             }
         },

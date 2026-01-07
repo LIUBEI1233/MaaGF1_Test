@@ -5,7 +5,7 @@
 </p>
 <h1 align="center">MaaGF1 - 少女前线自动化助手</h1>
 
-MaaGF1 是基于 [MaaFrameork](https://github.com/MaaXYZ/MaaFramework) 的、适用于游戏《少女前线》的自动化工具。
+MaaGF1 是基于 [MaaFramework](https://github.com/MaaXYZ/MaaFramework) 的、适用于游戏《少女前线》的自动化工具。
 
 ## 一、免责声明
 
