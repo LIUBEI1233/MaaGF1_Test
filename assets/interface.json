@@ -162,13 +162,9 @@
             "entry": "!裂变链接捡垃圾",
             "check": false,
             "doc": "⚠️",
-<<<<<<< HEAD
             "option": [
                 "捡垃圾M分钟后返回基地"
             ],
-=======
-            "option": [],
->>>>>>> 908a317e7ca571fbfe07d8bd2fbb565d847f9cc6
             "repeatable": true,
             "repeat_count": -1
         },
