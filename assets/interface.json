@@ -1,7 +1,7 @@
 {
 	"$schema": "http://json-schema.org/draft-07/schema#",
 	"name": "MaaGF1",
-	"version": "v1.9.3",
+	"version": "v1.9.4",
 	"url": "https://github.com/MaaGF1/MaaGF1",
 	"mirrorchyan_rid": null,
 	"mirrorchyan_multiplatform": false,
@@ -177,8 +177,8 @@
 			"check": false,
 			"doc": "[点击这里浏览器打开操作手册](https://maagf1.github.io/docs/)",
 			"option": ["Alchemy_Task_List"],
-			"repeatable": false,
-			"repeat_count": 1
+			"repeatable": true,
+			"repeat_count": -1
 		},
 		{
 			"name": "4.常驻打捞 - 人形",
