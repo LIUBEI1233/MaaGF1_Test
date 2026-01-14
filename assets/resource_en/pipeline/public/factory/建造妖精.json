@@ -24,8 +24,8 @@
 	},
 	"重建完成": {
 		"recognition": "OCR",
-		"roi" : [1019,234,199,426],
-		"expected" : "PRODUCTION",
+		"roi": [1019, 234, 199, 426],
+		"expected": "PRODUCTION",
 		"action": "LongPress",
 		"duration": 10,
 		"next": [
