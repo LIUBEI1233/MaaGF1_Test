@@ -97,6 +97,21 @@ jobs:
           echo "maafw_version=$maafw_ver" >> $GITHUB_OUTPUT
           echo "Target maafw version: $maafw_ver"
 
+      # --- Cache Mechanism for Python Dependencies ---
+      - name: Get Pip Cache Path
+        id: pip-cache-path
+        shell: bash
+        run: echo "dir=$(pip cache dir)" >> $GITHUB_OUTPUT
+
+      - name: Cache Pip Dependencies
+        uses: actions/cache@v4
+        with:
+          path: ${{ steps.pip-cache-path.outputs.dir }}
+          # Key includes OS, Arch, and hash of config file (where version is defined)
+          key: pip-${{ matrix.os }}-${{ matrix.arch }}-${{ hashFiles('mk/.conf') }}
+          restore-keys: |
+            pip-${{ matrix.os }}-${{ matrix.arch }}-
+
       - name: Install Python dependencies
         shell: bash
         run: |
@@ -115,7 +130,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      # Cache Mechanism Implementation
+      # --- Cache Mechanism for MFAAvalonia ---
       - name: Cache MFAAvalonia
         id: cache-mfa
         uses: actions/cache@v4
@@ -140,9 +155,22 @@ jobs:
         shell: bash
         run: find deps/bin -name "*.zip" -type f -delete
 
+      # --- Cache Mechanism for Agent Compilation ---
+      # Only runs if variant is with-agent.
+      # Hashes all python files in agent directory to detect changes.
+      - name: Cache Agent Build
+        if: matrix.variant == 'with-agent'
+        id: cache-agent
+        uses: actions/cache@v4
+        with:
+          path: agent/dist
+          key: agent-build-${{ matrix.os }}-${{ matrix.arch }}-${{ hashFiles('agent/**/*.py', 'agent/mk/*.py', 'agent/*.conf') }}
+
       - name: Run Install Script
         shell: bash
         run: |
+          # install.py will check if agent/dist exists (restored from cache)
+          # If it exists, it skips the build process.
           python ./mk/install.py ${{ needs.meta.outputs.tag }} --variant ${{ matrix.variant }}
 
       - name: Generate Build Report
