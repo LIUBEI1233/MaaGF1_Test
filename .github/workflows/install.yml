@@ -98,21 +98,33 @@ jobs:
           echo "Target maafw version: $maafw_ver"
 
       # --- Cache Mechanism for Python Dependencies ---
-      - name: Get Pip Cache Path
-        id: pip-cache-path
-        shell: bash
-        run: echo "dir=$(pip cache dir)" >> $GITHUB_OUTPUT
+      # 1. Create
+      - name: Create Virtual Environment
+        run: python -m venv venv
 
-      - name: Cache Pip Dependencies
+      # 2. Activate (Add venv/Scripts to PATH)
+      # all subsequent 'python' commands will automatically use the interpreter provided by venv.
+      - name: Activate Virtual Environment
+        shell: bash
+        run: echo "${{ github.workspace }}/venv/Scripts" >> $GITHUB_PATH
+
+      # 3. Cache
+      - name: Cache Virtual Environment
+        id: cache-venv
         uses: actions/cache@v4
         with:
-          path: ${{ steps.pip-cache-path.outputs.dir }}
-          # Key includes OS, Arch, and hash of config file (where version is defined)
-          key: pip-${{ matrix.os }}-${{ matrix.arch }}-${{ hashFiles('mk/.conf') }}
+          path: venv
+          # Key:
+          # 1. OS & Arch: Basic Environment;
+          # 2. mk/.conf: MaaFw's Version;
+          # 3. install.yml: Versions such as requests and pyinstaller, which are hardcoded in YAML.
+          key: venv-${{ matrix.os }}-${{ matrix.arch }}-${{ hashFiles('mk/.conf') }}-${{ hashFiles('.github/workflows/install.yml') }}
           restore-keys: |
             pip-${{ matrix.os }}-${{ matrix.arch }}-
 
+      # 4. Install Deps (if cache misses)
       - name: Install Python dependencies
+        if: steps.cache-venv.outputs.cache-hit != 'true'
         shell: bash
         run: |
           python -m pip install --upgrade pip
