@@ -3,7 +3,8 @@
 var State = {
 	mode: "inject", 
 	fakePos: { x: 0, y: 0 },
-	blockWheel: true, // Default: Block physical wheel
+	blockWheel: true,	// Default: Block physical wheel
+	pendingWheel: 0,	// Store fake wheel delta to inject
 	gameHwnd: null
 };
 
@@ -62,7 +63,6 @@ function debug_hook() {
 		});
 	}
 
-	// 3. Hook GetRawInputData (Blocks Physical/SendInput Wheel)
 	if (ptr_GetRawInputData) {
 		Interceptor.attach(ptr_GetRawInputData, {
 			onEnter: function(args) {
@@ -70,41 +70,52 @@ function debug_hook() {
 				this.uiCommand = args[1].toInt32(); // RID_INPUT = 0x10000003
 			},
 			onLeave: function(retval) {
-				// If successful and we are reading Input Data (not header)
-				if (retval.toInt32() > 0 && this.pData.isNull() === false && State.blockWheel) {
+				// Check success
+				if (retval.toInt32() > 0 && this.pData.isNull() === false) {
 					try {
-						// RAWINPUTHEADER is at pData
-						// DWORD dwType is at offset 0
 						var dwType = this.pData.readU32();
 						
 						if (dwType === RIM_TYPEMOUSE) {
-							// RAWMOUSE struct starts after header
-							// Header size: x64=24 bytes, x86=16 bytes
 							var headerSize = (ptrSize === 8) ? 24 : 16;
 							var rawMousePtr = this.pData.add(headerSize);
 							
-							// RAWMOUSE Layout:
-							// Offset 0: usFlags (2 bytes)
-							// Offset 4: usButtonFlags (2 bytes) - This contains RI_MOUSE_WHEEL
-							// Offset 6: usButtonData (2 bytes) - This contains Wheel Delta
-							
-							var usButtonFlags = rawMousePtr.add(4).readU16();
-							
-							// If this is SendInput from user's real mouse, let game do nothing
-							if ((usButtonFlags & RI_MOUSE_WHEEL) === RI_MOUSE_WHEEL) {
-								rawMousePtr.add(4).writeU16(usButtonFlags & ~RI_MOUSE_WHEEL);
-								rawMousePtr.add(6).writeU16(0);
+							// Check if we need to INJECT a fake wheel event
+							if (State.pendingWheel !== 0) {
+								// 1. Force flags to indicate wheel event
+								// usButtonFlags offset = 4
+								var currentFlags = rawMousePtr.add(4).readU16();
+								rawMousePtr.add(4).writeU16(currentFlags | RI_MOUSE_WHEEL);
+								
+								// 2. Write the delta
+								// usButtonData offset = 6
+								rawMousePtr.add(6).writeU16(State.pendingWheel);
+								
+								// 3. Consume the event
+								State.pendingWheel = 0;
+								
+								// send({type: 'info', payload: "Injected Wheel RawInput"});
+								return; // Skip the blocking logic below
+							}
+
+							// Block physical wheel logic (Original Logic)
+							if (State.blockWheel) {
+								var usButtonFlags = rawMousePtr.add(4).readU16();
+								if ((usButtonFlags & RI_MOUSE_WHEEL) === RI_MOUSE_WHEEL) {
+									// Strip the wheel flag and zero the delta
+									rawMousePtr.add(4).writeU16(usButtonFlags & ~RI_MOUSE_WHEEL);
+									rawMousePtr.add(6).writeU16(0);
+								}
 							}
 						}
 					} catch (e) {
-						// send({type: 'error', stack: "RawInput Error: " + e.message});
+						 // send({type: 'error', stack: "RawInput Error: " + e.message});
 					}
 				}
 			}
 		});
 	}
 
-	send({ type: 'info', payload: "Hooks installed: Pos(ScreenToClient/GetCursorPos), Wheel(RawInput Only)" });
+	send({ type: 'info', payload: "Hooks installed: Pos(Spoof), Wheel(Block/Inject)" });
 }
 
 // ================= Message Processing =================
@@ -112,6 +123,11 @@ recv(function onMessage(message) {
 	if (message.type === "UPDATE_POS") {
 		State.fakePos.x = message.x;
 		State.fakePos.y = message.y;
+	}
+	else if (message.type === "SIMULATE_WHEEL") {
+		// Receive delta from Python
+		State.pendingWheel = message.delta;
+		// send({ type: 'info', payload: "Pending Wheel: " + message.delta });
 	}
 	else if (message.type === "SET_WHEEL") {
 		State.blockWheel = !message.enable;
