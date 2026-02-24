@@ -4,6 +4,7 @@
 	"url": "https://github.com/MaaGF1/MaaGF1",
 	"interface_version": 2,
 	"version": "v1.11.0-alpha.1",
+	"title": "$MaaGF1_Title",
 	"welcome": "[点击这里浏览器打开操作手册](https://maagf1.github.io/docs/",
 	"mirrorchyan_rid": null,
 	"mirrorchyan_multiplatform": false,
@@ -22,7 +23,7 @@
 	],
 	"resource": [
 		{
-			"name": "官服",
+			"name": "国服",
 			"path": ["{PROJECT_DIR}/resource/"]
 		},
 		{
@@ -33,6 +34,10 @@
 			]
 		}
 	],
+	"languages": {
+		"zh-CN": "./resource/lang.zh-CN.json",
+		"en-US": "./resource_en/lang.en-US.json"
+	},
 	"task": [
 		{
 			"name": "1.经验 - 13-4循环",
